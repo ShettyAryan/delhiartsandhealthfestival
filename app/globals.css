@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   DAHF theme — Tailwind v4 CSS-first config.
+   This is CLAUDE.md §5.1 expressed as @theme. Tailwind v4 has no
+   tailwind.config.ts; `--color-*: initial` wipes the default palette entirely,
+   so slate/gray/zinc/neutral/stone/emerald/sky simply do not resolve.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Wipe the default palette completely. */
+  --color-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Primary */
+  --color-teal: #09a794;
+  --color-navy: #000066;
+  --color-pink: #ed2b75;
+
+  /* Secondary */
+  --color-red: #ed3237;
+  --color-yellow: #edbf09;
+  --color-purple: #804388;
+  --color-lime: #c1ff72;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-maroon: #7f3653;
+  --color-slate: #4c8e9a; /* brand slate — not Tailwind's slate */
+
+  /* Extended */
+  --color-cream: #f2e7da;
+  --color-cream-2: #eae0d0;
+  --color-ink: #1a1a1a;
+
+  /* Mural-only — sampled from the press-kit artwork. Scoped to <Motif>. */
+  --color-mural-blue: #626dd9;
+  --color-mural-green: #0d422e;
+  --color-mural-cream: #fde4ba;
+
+  /* Fonts */
+  --font-display: var(--font-antonio), sans-serif;
+  --font-body: var(--font-libre-franklin), sans-serif;
+  --font-mono: var(--font-special-elite), monospace;
+
+  /* Fluid type scale */
+  --text-display: clamp(4rem, 12vw, 12rem);
+  --text-display--line-height: 0.95;
+  --text-h1: clamp(2.5rem, 6vw, 5rem);
+  --text-h1--line-height: 1.02;
+  --text-h2: clamp(2rem, 4vw, 3.5rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --text-h3--line-height: 1.1;
+  --text-lead: clamp(1.25rem, 1.6vw, 1.5rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-mono: 0.8125rem;
+
+  /* Section rhythm */
+  --spacing-section-y: clamp(4rem, 10vw, 8rem);
+  --spacing-section-x: clamp(1.5rem, 5vw, 4rem);
+
+  /* Deliberately different radii by role */
+  --radius-chip: 999px;
+  --radius-card: 4px;
+  --radius-block: 0;
+  /* The one large-radius treatment on the site: the hero photo frame. A
+     fourth role, not a substitute for card/chip/block — see hero.tsx. */
+  --radius-photo: 1.75rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Base reset
+--------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream font-body text-body text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  /* Visible custom focus — never the browser default outline. */
+  :focus-visible {
+    outline: 3px solid var(--color-pink);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-black);
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Custom scrollbar — the team modal's own scroll track, not the OS default.
+   Firefox takes the two-value `scrollbar-color` shorthand; everything
+   WebKit/Blink (Chrome, Edge, Safari) needs the `::-webkit-scrollbar-*`
+   pseudo-elements instead. Tokens, not arbitrary hex — same rule as
+   everywhere else on the site (§5.1).
+--------------------------------------------------------------------------- */
+
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-navy) transparent;
+  /* Without this, scrolling past the panel's own top/bottom "chains" the
+     leftover wheel delta to whatever's behind it. `data-lenis-prevent` (see
+     team-modal.tsx) stops Lenis's own JS-driven scroll from hijacking the
+     event, but scroll chaining itself is native browser behaviour, not
+     something Lenis does — body's `overflow: hidden` while the modal is
+     open doesn't reliably stop it in every browser either. This is the
+     purpose-built CSS fix, independent of both. */
+  overscroll-behavior: contain;
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-navy);
+  border-radius: 999px;
+  border: 2px solid var(--color-cream);
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-maroon);
+}
