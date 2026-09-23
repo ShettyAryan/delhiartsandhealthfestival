@@ -186,14 +186,14 @@ export const NAV = [
     label: "Team",
     children: [
       { label: "Festival Team", href: "/festival-team" },
-      { label: "Advisory Board", href: "/advisory-board" },
+      { label: "Advisory Board & Consultants", href: "/advisory-board" },
     ],
   },
   {
     label: "Get Involved",
     children: [
       { label: "Be a part of DAHF", href: "/get-involved" },
-      { label: "Press", href: "/press" },
+      { label: "Press & Media", href: "/press" },
       { label: "Contact Us", href: "/contact" },
     ],
   },

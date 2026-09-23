@@ -165,8 +165,8 @@ export default function Home() {
           the ecosystem section, with the mural band as its separator, rather
           than lower against Why Delhi (§8's original placement). */}
       <ColorSection tone="teal">
-        <h2 className="font-display text-h2 font-bold">Festival at a Glance</h2>
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+        <h2 className="font-display text-h2 font-bold text-white">Festival at a Glance</h2>
+        <div className="mt-12 grid gap-10 text-white sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {STATS.map((s) => (
             <StatBlock
               key={s.label}

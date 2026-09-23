@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins, Newsreader, Mulish } from "next/font/google";
 import SmoothScroll from "@/components/smooth-scroll";
 import { MotifDefs } from "@/components/motif";
-import LoadingScreen from "@/components/loading-screen";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import "./globals.css";
@@ -65,15 +64,6 @@ export default function RootLayout({
         anywhere else in the tree. https://react.dev/link/hydration-mismatch
       */}
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
-        {/*
-          First-visit splash: DELHI stamping in with the Venn dot falling onto
-          the I, then fading to reveal the site underneath. Mounted here
-          rather than inside <Hero> so it covers whichever page a visitor
-          actually lands on first, and so it only ever runs once per tab (a
-          root layout persists across client-side navigations; only a full
-          reload remounts it).
-        */}
-        <LoadingScreen />
         {/* Motif geometry, emitted once; <Motif> and the mural reference it. */}
         <MotifDefs />
         <SmoothScroll>
