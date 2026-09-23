@@ -170,9 +170,8 @@ export const DONATE_HREF: string =
  * "About DAHF" pointing at the same route), so it's a hover/focus trigger
  * only, not a dead-end link pretending to be live.
  *
- * "Festival Team" and "Advisory Board" are anchors into the single /team
- * page (CLAUDE.md §6 combines them there) rather than separate routes — see
- * the matching `id`s on those sections in app/team/page.tsx.
+ * "Festival Team" and "Advisory Board" are their own routes now (they used
+ * to be anchors into a single /team page; /team redirects to /festival-team).
  */
 export const NAV = [
   {
@@ -180,13 +179,14 @@ export const NAV = [
     children: [
       { label: "About DAHF", href: "/about" },
       { label: "Programme", href: "/programme" },
+      { label: "Pre-Festival Events", href: "/pre-festival-events" },
     ],
   },
   {
     label: "Team",
     children: [
-      { label: "Festival Team", href: "/team#festival-team" },
-      { label: "Advisory Board", href: "/team#advisory-board" },
+      { label: "Festival Team", href: "/festival-team" },
+      { label: "Advisory Board", href: "/advisory-board" },
     ],
   },
   {
@@ -205,7 +205,9 @@ export const NAV = [
 export const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Programme", href: "/programme" },
-  { label: "Team", href: "/team" },
+  { label: "Pre-Festival Events", href: "/pre-festival-events" },
+  { label: "Festival Team", href: "/festival-team" },
+  { label: "Advisory Board", href: "/advisory-board" },
   { label: "Get Involved", href: "/get-involved" },
   { label: "Press", href: "/press" },
   { label: "Contact", href: "/contact" },
@@ -921,7 +923,7 @@ export const CONSULTANTS: Person[] = [
 export const GET_INVOLVED = {
   heading: "Help shape Delhi's first Arts and Health Festival",
   intro:
-    "DAHF is being built through partnership and participation. It is not one organisation handing down a finished programme. It is a growing group of people who decided this was worth making. If any of that speaks to you, there is a place for you here.",
+    "DAHF is built by and with the people who show up. Through practices, ideas, conversations and collaborations, the festival continues to take shape. Whether you are an individual, a practitioner, an artist, a researcher or an organisation, there is a place for you here.",
   paths: [
     {
       heading: "Join the team",
@@ -946,7 +948,7 @@ export const GET_INVOLVED = {
       } as FestivalImage,
     },
     {
-      heading: "Bring your practice",
+      heading: "Share your practice",
       body: "We want to hear from artists and facilitators with something to share: a workshop, a performance, an exhibition, an installation, a talk, or a community project that explores the relationship between arts, health, and wellbeing. If your work lives in that space, we would love to see it.",
       cta: "Submit an Expression of Interest",
       href: FORMS.expressionOfInterest,
@@ -1076,27 +1078,27 @@ export const PRESS = {
   faqs: [
     {
       q: "What makes the festival unique?",
-      a: "It treats arts and care as interconnected practices rather than separate sectors, on the premise that bringing them into dialogue can transform both. Delhi is a fitting host, with its closeness to national policy, its dense network of medical institutions, its cultural heritage, and a strong research base.",
+      a: "DAHF brings arts and health together as interconnected practices, creating a city-wide platform where creativity, care, research, and community come into dialogue.",
     },
     {
       q: "What are the key highlights of the 2026 edition?",
-      a: "The festival features over 50 events across the city, from performances and movement-based workshops to storytelling, talks, installations, community activations, and research exchanges. A central focus is bringing arts-based practice into healthcare and public spaces, with an emphasis on participation rather than passive observation.",
+      a: "The 2026 edition features 50+ events across Delhi, including performances, expressive arts and movement workshops, storytelling, conversations, installations, community activations, and research exchanges.",
     },
     {
       q: "Is the festival free or ticketed?",
-      a: "The festival is designed to be widely accessible. Many events will be free and open to the public, while some may require registration or a ticket. Full details will be shared with the programme announcement.",
+      a: "Many events will be free and open to the public, while some may require prior registration or ticketing; details will be announced with the programme.",
     },
     {
       q: "Is the festival accessible?",
-      a: "Accessibility is central to the festival's design. Programming is being developed to be inclusive across communities and backgrounds, and events are hosted in public and community spaces around the city, with attention to physical, social, and economic access.",
+      a: "Accessibility is central to the festival’s design, with efforts to make programmes inclusive across physical, social, and economic contexts and reach diverse communities across the city.",
     },
     {
       q: "How can the media attend or cover the festival?",
-      a: "Media representatives are invited to attend and cover the festival, and interviews can be arranged on request with organisers, artists, healthcare professionals, and collaborators. Press registration details, media kits, and programme schedules will be shared closer to the event.",
+      a: "Media representatives are welcome to attend and cover the festival; press registration, media kits, programme information, and interview opportunities will be shared closer to the festival.",
     },
     {
       q: "Where can the media find updates and press materials?",
-      a: "Updates and press materials are shared through the festival's official Instagram and LinkedIn channels. Detailed schedules and press releases will be available closer to the festival dates.",
+      a: "Updates and press materials will be shared through DAHF’s official website, Instagram and LinkedIn channels, with detailed schedules and press releases released closer to the festival.",
     },
   ],
   mediaResources: [
@@ -1125,4 +1127,70 @@ export const CONTACT_HERO_IMAGE: FestivalImage = {
   src: "/images/contact-hero.jpg",
   alt: "Participants tossing coloured balloons together in a dance studio",
   motif: "kalash",
+};
+
+// ---------------------------------------------------------------------------
+// Pre-Festival Events
+// ---------------------------------------------------------------------------
+
+export type PreFestivalEvent = {
+  group: string;
+  title: string;
+  partner?: string;
+  location: string;
+  date: string;
+  /** One entry per carousel slide. Add `src` as photographs arrive; more
+   * entries add more slides. */
+  images: FestivalImage[];
+};
+
+export const PRE_FESTIVAL = {
+  heading: "Pre-Festival Events",
+  events: [
+    {
+      group: "Opening Event",
+      title: "Dilli Art Jam",
+      location: "Lodhi Garden",
+      date: "30 August 2026",
+      images: [{ alt: "Dilli Art Jam at Lodhi Garden", motif: "daisy" }],
+    },
+    {
+      group: "School Initiative",
+      title: "Knowledge Tree School, Gurgaon",
+      partner: "In partnership with Read India Foundation",
+      location: "Knowledge Tree School, Gurgaon",
+      date: "5 September 2026",
+      images: [{ alt: "School initiative at Knowledge Tree School, Gurgaon", motif: "stairs" }],
+    },
+    {
+      group: "School Initiative",
+      title: "Jagran Public School, Noida",
+      partner: "In partnership with Read India Foundation",
+      location: "Jagran Public School, Noida",
+      date: "8 September 2026",
+      images: [{ alt: "School initiative at Jagran Public School, Noida", motif: "star" }],
+    },
+    {
+      group: "School Initiative",
+      title: "JSS Public School, Noida",
+      partner: "In partnership with Read India Foundation",
+      location: "JSS Public School, Noida",
+      date: "15 September 2026",
+      images: [{ alt: "School initiative at JSS Public School, Noida", motif: "kalash" }],
+    },
+  ] as PreFestivalEvent[],
+  upcomingHeading: "Upcoming Events",
+  upcoming: [
+    { title: "Zine-making Workshop", partner: "" },
+    {
+      title: "Khula Aasmaan - Arts and Mental Health Fest",
+      partner:
+        "In partnership with Empowering Minds and Symbiosis Centre for Management Studies",
+    },
+    {
+      title: "Lights On Again",
+      partner: "In partnership with Sahaayta and Neev Mental Health",
+    },
+  ],
+  closing: "Stay tuned for more updates on ongoing events.",
 };

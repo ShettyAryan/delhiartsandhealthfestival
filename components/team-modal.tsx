@@ -105,12 +105,14 @@ export default function TeamModal({
                   className="font-display text-h2 font-bold text-navy"
                 >
                   {person.name}
-                  {person.pronouns ? (
-                    <span className="ml-2 font-body text-small font-normal opacity-70">
-                      ({person.pronouns})
-                    </span>
-                  ) : null}
                 </h2>
+                {person.pronouns ? (
+                  <p className="mt-3">
+                    <span className="inline-block rounded-chip border border-navy px-3 py-0.5 font-body text-small font-medium text-navy">
+                      {person.pronouns}
+                    </span>
+                  </p>
+                ) : null}
                 <p className={`mt-2 font-body text-body ${accent}`}>{person.role}</p>
 
                 {tags.length ? (

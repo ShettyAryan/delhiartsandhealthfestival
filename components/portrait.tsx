@@ -70,7 +70,7 @@ export default function Portrait({
         className={`${shape} ${toneFor(name)} flex items-center justify-center`}
         aria-hidden="true"
       >
-        <span className="font-display text-h1 font-bold leading-none">
+        <span className="font-display text-h3 font-bold leading-none">
           {initials(name)}
         </span>
       </div>

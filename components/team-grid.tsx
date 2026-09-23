@@ -27,10 +27,15 @@ export default function TeamGrid({
   people,
   accent = "text-pink",
   columns = "sm:grid-cols-2 lg:grid-cols-3",
+  centerFirst = false,
 }: {
   people: Person[];
   accent?: string;
   columns?: string;
+  /** Three-column layout with the first person alone, centred, on row 1 and
+   * everyone else on row 2 in order (used for Festival Leadership). Applies
+   * from `md` up — pass a matching `columns` (md:grid-cols-3). */
+  centerFirst?: boolean;
 }) {
   const [active, setActive] = useState<Person | null>(null);
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
@@ -54,9 +59,20 @@ export default function TeamGrid({
         button's own content ends rather than needing every card's internal
         layout to match line-for-line.
       */}
-      <ul className={`grid items-stretch gap-6 ${columns}`}>
-        {people.map((p) => (
-          <li key={p.name} className="h-full">
+      <ul className={`grid items-stretch gap-4 ${columns}`}>
+        {people.map((p, i) => (
+          <li
+            key={p.name}
+            className={`h-full ${
+              !centerFirst
+                ? ""
+                : i === 0
+                  ? "md:col-start-2 md:row-start-1"
+                  : `md:row-start-2 ${
+                      ["md:col-start-1", "md:col-start-2", "md:col-start-3"][i - 1] ?? ""
+                    }`
+            }`}
+          >
             <button
               type="button"
               onClick={(e) => {
@@ -65,19 +81,36 @@ export default function TeamGrid({
               }}
               aria-haspopup="dialog"
               aria-label={`View full profile: ${p.name}`}
-              className="group flex h-full w-full flex-col rounded-card border border-current/20 p-5 text-left transition-[transform,border-color] duration-200 hover:scale-[1.03] hover:border-current/50"
+              className="group flex h-full w-full flex-col gap-3 rounded-card border border-current/20 p-4 text-left transition-[transform,border-color] duration-200 hover:scale-[1.02] hover:border-current/50 lg:flex-row lg:gap-4"
             >
+              {/* Compact card: a small portrait (stacked above the text
+                  below `lg`, beside it from `lg` up) rather than a
+                  full-column-width one, so both rows of Festival Leadership
+                  fit on one screen. Sized the same on every roster. */}
               <Portrait
                 name={p.name}
                 src={p.photo}
-                sizes="(min-width: 1024px) 22vw, (min-width: 640px) 40vw, 80vw"
-                className="w-full"
+                sizes="112px"
+                className="w-24 shrink-0 lg:w-28"
               />
-              <h3 className="mt-4 font-display text-h3 font-semibold">
-                {p.name}
-              </h3>
-              <p className={`mt-1 font-body text-small ${accent}`}>{p.role}</p>
-              <p className="mt-3 line-clamp-3 text-body">{p.bio[0]}</p>
+              <div className="min-w-0">
+                <h3 className="font-display text-[clamp(1.125rem,1.5vw,1.375rem)] font-semibold leading-tight">
+                  {p.name}
+                </h3>
+                {p.pronouns ? (
+                  <p className="mt-1.5">
+                    <span className="inline-block rounded-chip border border-current px-2.5 font-body text-small font-medium leading-normal">
+                      {p.pronouns}
+                    </span>
+                  </p>
+                ) : null}
+                <p className={`mt-1.5 font-body text-small leading-snug ${accent}`}>
+                  {p.role}
+                </p>
+                <p className="mt-2 line-clamp-2 text-small leading-snug">
+                  {p.bio[0]}
+                </p>
+              </div>
             </button>
           </li>
         ))}

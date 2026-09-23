@@ -3,13 +3,7 @@ import ColorSection from "@/components/color-section";
 import CTAButton from "@/components/cta-button";
 import Figure from "@/components/figure";
 import FloatingMotif from "@/components/floating-motif";
-import {
-  FORMS,
-  PRESS,
-  PRESS_HERO_IMAGE,
-  PRESS_IMAGES,
-  SOCIALS,
-} from "@/lib/content";
+import { FORMS, PRESS, PRESS_HERO_IMAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Press & Media",
@@ -36,52 +30,48 @@ export default function PressPage() {
           className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-lime/70"
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-360 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <h1 className="font-display text-h1 font-bold text-navy">
+        {/*
+          Heading sized like the other pages' heroes (the same clamp the
+          homepage and Programme heroes use, not the shared text-h1 token).
+          The intro paragraphs are gone, and Quick facts now sits right in
+          their place — inline rows, deliberately not a card grid (§8) —
+          with the photo height-capped by viewport, same as the Programme
+          hero, so it matches the shorter text column.
+        */}
+        <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <h1 className="font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[0.95] text-navy">
               {PRESS.heading}
             </h1>
-            <div className="mt-8 max-w-[62ch] space-y-5">
-              {PRESS.about.map((p, i) => (
-                <p key={i} className="text-lead">
-                  {p}
-                </p>
+            <h2 className="mt-8 font-eyebrow text-eyebrow text-maroon">
+              Quick facts
+            </h2>
+            <dl className="mt-3 divide-y divide-navy/20 border-y border-navy/20">
+              {PRESS.quickFacts.map((f) => (
+                <div key={f.term} className="grid gap-1 py-3 sm:grid-cols-12 sm:gap-6">
+                  <dt className="font-body text-small font-semibold text-navy sm:col-span-4">
+                    {f.term}
+                  </dt>
+                  <dd className="text-body leading-snug sm:col-span-8">{f.body}</dd>
+                </div>
               ))}
+            </dl>
+            <div className="mt-6">
+              <CTAButton href={FORMS.factSheet} external>
+                Fact Sheet
+              </CTAButton>
             </div>
           </div>
 
           <Figure
             image={PRESS_HERO_IMAGE}
             ratio="portrait"
-            sizes="(min-width: 1024px) 38vw, 100vw"
+            sizes="(min-width: 1024px) 46vw, 100vw"
             priority
-            className="rounded-photo lg:col-span-5"
+            className="h-[30vh] w-full rounded-photo sm:h-[32vh] md:h-[38vh] lg:col-span-6 lg:h-[54vh]"
           />
         </div>
       </section>
-
-      {/* Quick facts — inline, deliberately not a card grid (§8) */}
-      <ColorSection tone="navy">
-        <h2 className="font-display text-h2 font-bold">Quick facts</h2>
-        <dl className="mt-10 divide-y divide-cream/20 border-y border-cream/20">
-          {PRESS.quickFacts.map((f) => (
-            <div key={f.term} className="grid gap-1 py-5 md:grid-cols-12 md:gap-8">
-              <dt className="font-eyebrow text-eyebrow text-yellow md:col-span-3">
-                {f.term}
-              </dt>
-              <dd className="text-body md:col-span-8 md:col-start-5">{f.body}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-10">
-          {/* invert, not the default primary — this section is tone="navy"
-              above, and CTAButton's primary variant is now a navy fill,
-              which would disappear against it. */}
-          <CTAButton href={FORMS.factSheet} variant="invert" external>
-            Fact Sheet
-          </CTAButton>
-        </div>
-      </ColorSection>
 
       {/* Press FAQs — native <details>, so it works with JS disabled (§9) */}
       <ColorSection tone="cream" className="relative z-0 overflow-hidden">
@@ -102,7 +92,7 @@ export default function PressPage() {
         <div className="mt-12 border-t border-navy/20">
           {PRESS.faqs.map((f) => (
             <details key={f.q} className="group border-b border-navy/20">
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 font-display text-h3 font-semibold text-navy">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-display text-[clamp(1.125rem,1.6vw,1.375rem)] font-semibold leading-snug text-navy">
                 {f.q}
                 <span
                   aria-hidden="true"
@@ -126,7 +116,9 @@ export default function PressPage() {
         </div>
       </ColorSection>
 
-      {/* Media resources + enquiries */}
+      {/* Media enquiries. The "Media resources" column that used to sit
+          beside it (list, request line, image thumbnails) is removed on
+          request; enquiries stay since they carry the press contact. */}
       <ColorSection tone="cream-2" className="relative z-0 overflow-hidden">
         <FloatingMotif
           variant="daisy"
@@ -135,80 +127,22 @@ export default function PressPage() {
           duration={12}
           delay={0.4}
         />
-        <div className="relative grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <h2 className="font-display text-h2 font-bold text-navy">
-              Media resources
-            </h2>
-            <ul className="mt-6 space-y-3">
-              {PRESS.mediaResources.map((r) => (
-                <li key={r} className="border-l-4 border-teal pl-4 text-body">
-                  {r}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-body">
-              To request materials, write to{" "}
-              <a
-                href={`mailto:${PRESS.mediaEmail}`}
-                className="text-maroon underline decoration-1 underline-offset-4"
-              >
-                {PRESS.mediaEmail}
-              </a>
-              .
-            </p>
-
-            {/* A look at what's available, against the "View festival images"
-                line above — press need to see before they request. */}
-            <ul className="mt-8 grid grid-cols-3 gap-3">
-              {PRESS_IMAGES.map((img) => (
-                <li key={img.alt}>
-                  <Figure
-                    image={img}
-                    ratio="square"
-                    sizes="(min-width: 1024px) 14vw, 30vw"
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-6 lg:col-start-7">
-            <h2 className="font-display text-h2 font-bold text-navy">
-              Media enquiries
-            </h2>
-            <p className="mt-6 max-w-[52ch] text-body">
-              For interviews, features, media partnerships, and accreditation,
-              write to{" "}
-              <a
-                href={`mailto:${PRESS.mediaEmail}`}
-                className="text-maroon underline decoration-1 underline-offset-4"
-              >
-                {PRESS.mediaEmail}
-              </a>
-              .
-            </p>
-          </div>
+        <div className="relative">
+          <h2 className="font-display text-h2 font-bold text-navy">
+            Media enquiries
+          </h2>
+          <p className="mt-6 max-w-[52ch] text-body">
+            For festival images, press kit, interviews, features and media
+            partnerships, write to{" "}
+            <a
+              href={`mailto:${PRESS.mediaEmail}`}
+              className="text-maroon underline decoration-1 underline-offset-4"
+            >
+              {PRESS.mediaEmail}
+            </a>
+            .
+          </p>
         </div>
-      </ColorSection>
-
-      {/* Social follow strip */}
-      <ColorSection tone="pink">
-        <h2 className="font-display text-h2 font-bold">Follow the festival</h2>
-        <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
-          {SOCIALS.map((s) => (
-            <li key={s.href}>
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-display text-h3 font-semibold underline decoration-2 underline-offset-8 hover:text-navy"
-              >
-                {s.label}
-              </a>
-            </li>
-          ))}
-        </ul>
       </ColorSection>
     </>
   );

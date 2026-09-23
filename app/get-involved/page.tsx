@@ -1,72 +1,57 @@
 import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
-import Figure from "@/components/figure";
+import CTAButton from "@/components/cta-button";
 import { GET_INVOLVED } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Get Involved",
   description:
-    "Join the team, partner with us, or bring your practice to Delhi's first Arts and Health Festival.",
+    "Join the team, partner with us, or share your practice at Delhi's first Arts and Health Festival.",
 };
 
-/**
- * Text and CTA colours measured against each block (§9). Pink takes black
- * rather than cream — cream on pink is 3.3:1, below AA at body size.
- */
-const BLOCK: Record<string, { bg: string; cta: string }> = {
-  pink: { bg: "bg-pink text-black", cta: "bg-navy text-cream hover:bg-black" },
-  teal: { bg: "bg-teal text-black", cta: "bg-navy text-cream hover:bg-black" },
-  yellow: { bg: "bg-yellow text-black", cta: "bg-navy text-cream hover:bg-black" },
+/** Accent top rule per path, matching the colour each used to have as a
+ * full-bleed block. Literal map so Tailwind's scanner sees the classes. */
+const BORDER: Record<string, string> = {
+  pink: "border-pink",
+  teal: "border-teal",
+  yellow: "border-yellow",
 };
 
 export default function GetInvolvedPage() {
   return (
     <>
-      <ColorSection tone="cream">
-        <h1 className="max-w-[18ch] font-display text-h1 font-bold text-navy">
+      {/*
+        The three paths are three cards in one row now (they used to be three
+        stacked full-bleed colour blocks with an image each). The heading is
+        held to one line from `lg` up — the same clamp/nowrap treatment as the
+        homepage's closing CTA, since a 48-character title can't be one line
+        at phone widths at any readable size, and wraps there instead.
+      */}
+      <ColorSection tone="cream" className="pt-8 md:pt-12">
+        <h1 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold leading-[1.05] text-navy lg:whitespace-nowrap">
           {GET_INVOLVED.heading}
         </h1>
-        <p className="mt-8 max-w-[62ch] text-lead">{GET_INVOLVED.intro}</p>
-      </ColorSection>
+        <p className="mt-6 max-w-[62ch] text-lead">{GET_INVOLVED.intro}</p>
 
-      {/* Three paths as three full colour blocks, stacked */}
-      {GET_INVOLVED.paths.map((p) => {
-        const style = BLOCK[p.bg] ?? BLOCK.pink;
-        return (
-          <section
-            key={p.heading}
-            className={`px-section-x py-section-y ${style.bg}`}
-            aria-labelledby={p.heading.replace(/\s+/g, "-").toLowerCase()}
-          >
-            <div className="mx-auto grid w-full max-w-360 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-7">
-                <h2
-                  id={p.heading.replace(/\s+/g, "-").toLowerCase()}
-                  className="font-display text-h2 font-bold"
-                >
-                  {p.heading}
-                </h2>
-                <p className="mt-6 max-w-[58ch] text-lead">{p.body}</p>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-8 inline-flex rounded-chip px-7 py-3.5 font-body text-body font-medium transition-colors ${style.cta}`}
-                >
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {GET_INVOLVED.paths.map((p) => (
+            <div
+              key={p.heading}
+              className={`flex flex-col rounded-card border-t-4 bg-cream-2 p-8 ${BORDER[p.bg]}`}
+            >
+              <h2 className="font-display text-h3 font-semibold text-navy">
+                {p.heading}
+              </h2>
+              <p className="mt-4 text-body">{p.body}</p>
+              <div className="mt-auto pt-8">
+                <CTAButton href={p.href} external>
                   {p.cta}
-                </a>
+                </CTAButton>
               </div>
-
-              <Figure
-                image={p.image}
-                ratio="landscape"
-                sizes="(min-width: 1024px) 34vw, 100vw"
-                className="lg:col-span-4 lg:col-start-9"
-              />
             </div>
-          </section>
-        );
-      })}
+          ))}
+        </div>
+      </ColorSection>
     </>
   );
 }

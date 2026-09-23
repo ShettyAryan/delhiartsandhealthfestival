@@ -494,7 +494,8 @@ lib/
 /                → Home
 /about           → About DAHF
 /programme       → Programme (five-day journey)
-/team            → Festival Team + Advisory Board + Consultants (combined)
+/festival-team   → Festival Leadership + committees + Consultants (split out of the old /team)
+/advisory-board  → Advisory Board (own page; /team redirects to /festival-team)
 /get-involved    → Volunteer, Partner, Bring your practice
 /press           → Press & Media
 /contact         → Contact
