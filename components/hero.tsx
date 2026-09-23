@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import CTAButton from "@/components/cta-button";
 import HeroCarousel from "@/components/hero-carousel";
+import StayInformed from "@/components/stay-informed";
 import { DONATE_HREF, FESTIVAL } from "@/lib/content";
 
 /**
@@ -118,6 +119,7 @@ export default function Hero() {
               <CTAButton href="/get-involved" variant="secondary">
                 Get Involved
               </CTAButton>
+              <StayInformed />
             </div>
           </div>
         </div>
