@@ -27,9 +27,10 @@ export default function CTAButton({
     "inline-flex items-center justify-center rounded-chip px-7 py-3.5 font-body text-body font-medium transition-[color,background-color,transform] hover:-translate-y-0.5 active:translate-y-0";
 
   const VARIANTS = {
-    // §7 asks for cream text on the pink fill, but that measures 3.3:1 — below
-    // AA at this size. Black on pink is 5.2:1 and keeps the pink signature.
-    primary: "bg-pink text-black hover:bg-maroon hover:text-cream",
+    // Navy fill, white text — navy/cream (now literally white) measures
+    // 14.4:1, comfortably clear of AA. Changed from the earlier pink fill on
+    // client direction.
+    primary: "bg-navy text-cream hover:bg-maroon",
     secondary: "border-2 border-navy text-navy hover:bg-navy hover:text-cream",
     // For use on pink/red sections, where a navy outline would only reach 4.4:1.
     invert: "bg-cream text-navy hover:bg-white",

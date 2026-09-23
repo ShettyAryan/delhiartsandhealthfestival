@@ -107,8 +107,10 @@ export const FESTIVAL = {
   location: "Delhi, India",
   subheading:
     "Reimagining Delhi as the Capital of Care through arts, health, wellbeing, creativity, and community.",
-  intro:
-    "The Delhi Arts & Health Festival (DAHF) is a city-wide initiative exploring the role of arts and creativity in health, wellbeing, care, and social connection. Through workshops, performances, exhibitions, conversations, research exchanges, and community experiences, the festival brings together artists, healthcare professionals, researchers, educators, policymakers, organisations, and the public to imagine healthier futures for individuals, communities, and cities.",
+  introParagraphs: [
+    "The Delhi Arts & Health Festival (DAHF) is a city-wide initiative exploring the role of arts and creativity in health, wellbeing, care, and social connection.",
+    "The festival brings together artists, healthcare professionals, researchers, educators, policymakers, organisations, and the public to imagine healthier futures for individuals, communities, and cities.",
+  ],
 } as const;
 
 export const CONTACT = [
@@ -157,13 +159,9 @@ export const FORMS = {
  */
 export const REGISTER_HREF: string = FORMS.festivalWeek;
 
-/**
- * OPEN WITH CLIENT: the Donate button was requested with the link "to follow".
- * Pointed at the sponsorship-and-funding address from the client's own contact
- * list so the button does something real — a `#` would ship a dead control.
- * Swap this one line for the payment link when it arrives.
- */
-export const DONATE_HREF: string = "mailto:fundraising.dahf@gmail.com";
+/** Milaap fundraiser page for the festival — the client's payment link. */
+export const DONATE_HREF: string =
+  "https://milaap.org/fundraisers/support-the-delhi-arts-and-health-festival/deeplink?deeplink_type=paytm";
 
 /**
  * Three top-level categories, each a dropdown of the pages/sections under it.
@@ -215,16 +213,15 @@ export const FOOTER_LINKS = [
 
 /** Marquee words, in order (CLAUDE.md §4). */
 export const MARQUEE_WORDS = [
-  "creativity",
-  "care",
-  "community",
-  "healing",
-  "movement",
-  "story",
-  "celebration",
-  "practice",
-  "belonging",
-  "joy",
+  "workshops",
+  "performances",
+  "exhibitions",
+  "panels",
+  "talks",
+  "art installations",
+  "research",
+  "community experiences",
+  "conversations",
 ] as const;
 
 // ---------------------------------------------------------------------------

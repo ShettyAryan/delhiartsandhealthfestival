@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Antonio, Libre_Franklin, Special_Elite } from "next/font/google";
+import { Poppins, Newsreader, Mulish } from "next/font/google";
 import SmoothScroll from "@/components/smooth-scroll";
 import { MotifDefs } from "@/components/motif";
 import LoadingScreen from "@/components/loading-screen";
@@ -9,33 +9,31 @@ import "./globals.css";
 
 /**
  * Weights are named explicitly rather than letting next/font pull the variable
- * face. The variable files measured larger here and, being one slice per subset,
- * left a 52kB face that the browser still fetched outside the preload set.
- * Naming weights emits exactly the four cuts the design uses.
- *
- * Libre Franklin 700 is deliberately absent: every bold in the design is Antonio
- * (font-display). The only body weight above 400 is font-medium on buttons.
+ * face, matching the discipline the previous Antonio/Libre Franklin load used.
+ * Poppins covers headings, the hero title, and eyebrow labels (400 default,
+ * 600/700 for the bold weights already used throughout).
  */
-const antonio = Antonio({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
-  variable: "--font-antonio",
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const libreFranklin = Libre_Franklin({
+const mulish = Mulish({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-libre-franklin",
+  variable: "--font-mulish",
   display: "swap",
 });
 
-// Not preloaded: Special Elite only sets small metadata labels, never the LCP
-// element, so it should not compete for bandwidth with the body font.
-const specialElite = Special_Elite({
+// Medium italic only: Newsreader's one job on this site is the hero
+// subtitle line, so there is no reason to fetch a roman cut it never uses.
+const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-special-elite",
+  weight: ["500"],
+  style: ["italic"],
+  variable: "--font-newsreader",
   display: "swap",
   preload: false,
 });
@@ -56,9 +54,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${antonio.variable} ${libreFranklin.variable} ${specialElite.variable} h-full`}
+      className={`${poppins.variable} ${mulish.variable} ${newsreader.variable} h-full`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">
+      {/*
+        Browser extensions (e.g. Liner) inject attributes like
+        data-liner-extension-version onto html/body before React hydrates.
+        suppressHydrationWarning on just these two tags ignores that
+        attribute-only mismatch without silencing real hydration errors
+        anywhere else in the tree. https://react.dev/link/hydration-mismatch
+      */}
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         {/*
           First-visit splash: DELHI stamping in with the Venn dot falling onto
           the I, then fading to reveal the site underneath. Mounted here

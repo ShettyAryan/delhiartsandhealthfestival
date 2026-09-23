@@ -46,7 +46,7 @@ export default function DayName({
 
   return (
     <motion.h2
-      className={`flex ${className ?? ""}`}
+      className={`flex flex-wrap ${className ?? ""}`}
       variants={container}
       initial="hidden"
       whileInView="show"

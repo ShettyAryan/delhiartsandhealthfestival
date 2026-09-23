@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { VENN, Venn, WORDMARK } from "@/components/logo";
 import CTAButton from "@/components/cta-button";
 import HeroCarousel from "@/components/hero-carousel";
 import { DONATE_HREF, FESTIVAL } from "@/lib/content";
@@ -20,7 +19,7 @@ export default function Hero() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-16 pt-8 md:pb-24 md:pt-12">
+    <section className="relative z-0 flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-cream px-section-x py-5 md:min-h-[calc(100vh-4.5rem)] md:py-10">
       {/*
         Decorative brand-colour circles, scoped to the whole section (moved
         here from <HeroCarousel> on client reference) rather than just the
@@ -44,108 +43,75 @@ export default function Hero() {
       */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[8%] -top-[12%] -z-10 aspect-square w-[30%] rounded-chip bg-pink"
+        className="pointer-events-none absolute -right-[8%] -top-[12%] -z-10 aspect-square w-[30%] rounded-chip bg-pink/70"
         animate={reduced ? undefined : { y: [0, -22, 0], x: [0, 12, 0] }}
         transition={reduced ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[9%] top-[38%] -z-10 aspect-square w-[22%] rounded-chip bg-yellow"
+        className="pointer-events-none absolute -left-[9%] top-[38%] -z-10 aspect-square w-[22%] rounded-chip bg-yellow/70"
         animate={reduced ? undefined : { y: [0, 18, 0], x: [0, -10, 0] }}
         transition={
           reduced ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }
         }
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-400 items-center gap-8 lg:grid-cols-12 lg:gap-16">
         {/* Text column */}
         <div className="lg:col-span-6">
-          <p className="font-mono text-mono tracking-[0.08em] text-maroon">
+          <p className="font-eyebrow text-eyebrow text-maroon">
             {FESTIVAL.datesLine}
           </p>
 
           {/*
-            The DELHI wordmark stays real (traced paths), just resized to sit
-            inline with the rest of the headline instead of spanning the full
-            container width — a deliberate departure from §2's "monumental"
-            hero for this specific two-column composition.
+            Plain text headline, not the traced SVG wordmark — on client
+            direction, this composition drops the logo treatment entirely and
+            reads as ordinary (if large) text, uppercased via CSS rather than
+            the SVG's own letterforms.
 
-            Accessible name: the SVG and the dot are aria-hidden, so "Delhi" is
-            supplied via sr-only text and the rest ("Arts & Health Festival")
-            is real, readable text — no double-announcement.
+            Pink, not navy: at this size (well above the 24px/18.66px-bold
+            large-text threshold) pink on the section's white background
+            measures ~4.0:1, clearing the 3:1 large-text AA minimum with
+            margin — not reused at body/label size elsewhere, where it would
+            fail (§0.5).
           */}
-          <h1 className="mt-4 font-display text-h1 font-bold leading-[0.95] md:mt-6">
-            <span className="sr-only">Delhi</span>
-            {/*
-              Wrapper sized to the wordmark's own aspect ratio (347:100, so
-              width = height × 3.47) rather than left as w-auto shrink-wrap —
-              the dot below needs a definite box to position against.
-            */}
-            <span
-              className="relative inline-block align-baseline"
-              style={{ height: "0.82em", width: "2.8454em" }}
-            >
-              <svg
-                viewBox={WORDMARK.viewBox}
-                className="absolute inset-0 h-full w-full text-navy"
-                fill="currentColor"
-                fillRule="evenodd"
-                aria-hidden="true"
-                focusable="false"
-              >
-                {WORDMARK.letters.map((l) => (
-                  <path key={l.key} d={l.d} transform={`translate(${l.x} 0)`} />
-                ))}
-              </svg>
-
-              {/*
-                Centred over the I (x 321.1–347 of the 347-wide viewBox, so
-                96.3% from the left), sitting above the letter's top edge the
-                way a tittle sits above a lowercase i — the same spot
-                <LoadingScreen>'s dot falls onto, at splash time.
-              */}
-              <span
-                aria-hidden="true"
-                className="absolute"
-                style={{
-                  left: "96.3%",
-                  top: "-0.36em",
-                  width: "0.3em",
-                  height: "0.3em",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                <svg viewBox={VENN.viewBox} className="h-full w-full">
-                  <Venn id="hero-venn-dot" />
-                </svg>
-              </span>
-            </span>{" "}
-            <span className="uppercase text-pink">Arts &amp; Health</span>{" "}
-            <span className="uppercase text-navy">Festival</span>
+          {/*
+            Sized below the shared --text-h1 token (which every other page's
+            own top headline uses at full 80px) — a hero-local, deliberately
+            smaller clamp so the headline reads well sharing a row with the
+            photo on desktop, rather than the full-bleed monumental size.
+            Tried snapping this to the exact --text-h1/--text-subtitle/
+            --text-body tokens at `lg`+ for full sitewide uniformity;
+            reverted after measuring it — the CTA row landed at 799px of an
+            800px-tall 1280×800 window (fits by under a pixel) and was cut
+            off outright at 1024×768. The one-viewport-fit guarantee and
+            exact cross-page size match are in real tension here since the
+            fit depends on viewport height, which no width-based breakpoint
+            can key off reliably. Kept the smaller, tested-safe size.
+          */}
+          <h1 className="mt-3 font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.95] text-pink md:mt-4">
+            Delhi Arts &amp; Health Festival
           </h1>
 
           <div>
             {/*
-              Pink text is used here, not maroon: at this size (text-lead is
-              still well above the 24px/18.66px-bold large-text threshold once
-              set in bold — here it's the Antonio headline weight above, and
-              this line itself is regular Libre Franklin at ~20-24px, so it is
-              checked separately) — measured at ~3.3:1 against cream, which
-              clears the 3:1 large-text AA minimum narrowly. Kept below body
-              size elsewhere per §0.5; not reused for smaller text.
-
-              Real italic glyphs were not added to the Libre Franklin font load
-              (§0.1 already limits it to 400/500 to protect the mobile perf
-              budget), so this is a browser-synthesised oblique — an accepted
-              trade-off for one short line rather than a second font fetch.
+              Real italic glyphs, not a synthesised oblique: Newsreader is
+              loaded specifically for this one line (medium weight, italic
+              style only). Sized down from the shared --text-subtitle token
+              for the same reason as the headline above.
             */}
-            <p className="mt-6 max-w-[46ch] text-lead italic text-ink">
+            <p className="mt-3 max-w-[42ch] font-subtitle text-[clamp(1.25rem,1.8vw,1.4375rem)] italic leading-tight text-ink md:mt-4">
               {FESTIVAL.subheading}
             </p>
-            <p className="mt-5 max-w-[58ch] text-body text-ink">
-              {FESTIVAL.intro}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3 md:gap-4">
+            {FESTIVAL.introParagraphs.map((para, i) => (
+              <p
+                key={i}
+                className="mt-3 max-w-[54ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.4] text-ink md:mt-4"
+              >
+                {para}
+              </p>
+            ))}
+            <div className="mt-6 flex flex-wrap gap-3 md:gap-4">
               <CTAButton href={DONATE_HREF} external>
                 Donate
               </CTAButton>
@@ -157,7 +123,11 @@ export default function Hero() {
         </div>
 
         {/* Photo column — decorative circles live inside HeroCarousel, scoped
-            to just the photo box so they never reach the controls below. */}
+            to just the photo box so they never reach the controls below. The
+            carousel's own box is capped by viewport height on desktop (see
+            hero-carousel.tsx) so it still fits one viewport there; on mobile
+            it's sized generously since a scroll to reach the buttons is now
+            expected. */}
         <div className="lg:col-span-6">
           <HeroCarousel />
         </div>

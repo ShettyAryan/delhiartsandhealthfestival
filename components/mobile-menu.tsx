@@ -161,12 +161,18 @@ export default function MobileMenu({
                 </motion.li>
               ))}
               <motion.li variants={item} className="pt-6">
+                {/*
+                  Cream (white) fill / navy text, not a navy fill — this
+                  overlay's own background is bg-navy, so a navy button here
+                  would be invisible against it. Same inverted treatment
+                  CTAButton's `invert` variant uses on other dark surfaces.
+                */}
                 <a
                   href={REGISTER_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onClose}
-                  className="inline-flex rounded-chip bg-pink px-7 py-3.5 font-body text-body font-medium text-black"
+                  className="inline-flex rounded-chip bg-cream px-7 py-3.5 font-body text-body font-medium text-navy transition-colors hover:bg-white"
                 >
                   Register
                 </a>

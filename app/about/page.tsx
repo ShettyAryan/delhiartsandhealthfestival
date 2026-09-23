@@ -37,11 +37,11 @@ export default function AboutPage() {
       <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-section-y pt-8 md:pt-12">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-[6%] -top-[16%] aspect-square w-[26%] rounded-chip bg-yellow"
+          className="pointer-events-none absolute -right-[6%] -top-[16%] aspect-square w-[26%] rounded-chip bg-yellow/70"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[7%] bottom-[8%] aspect-square w-[20%] rounded-chip bg-pink"
+          className="pointer-events-none absolute -left-[7%] bottom-[8%] aspect-square w-[20%] rounded-chip bg-pink/70"
         />
 
         {/*
@@ -52,7 +52,7 @@ export default function AboutPage() {
         */}
         <div className="relative z-10 mx-auto grid w-full max-w-360 items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <p className="font-mono text-mono tracking-[0.08em] text-maroon">
+            <p className="font-eyebrow text-eyebrow text-maroon">
               {ABOUT.heading}
             </p>
             <h1 className="mt-5 max-w-[22ch] font-display text-h1 font-bold text-navy">

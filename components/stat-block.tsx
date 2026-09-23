@@ -88,8 +88,16 @@ export default function StatBlock({
   }, [reduced, inView, value]);
 
   return (
-    <div ref={ref}>
-      <div className="font-display text-h1 font-bold leading-none tabular-nums">
+    <div ref={ref} className="min-w-0">
+      {/*
+        A dedicated, smaller clamp rather than the shared --text-h1 token:
+        at text-h1's full 80px, the widest stat ("10,000+") ran past its
+        column in the 5-across desktop grid and pushed the whole page into
+        horizontal overflow. min-w-0 above lets this grid item shrink below
+        its content's default min-width so the smaller clamp can actually
+        take effect instead of being overridden by grid auto-sizing.
+      */}
+      <div className="font-display text-[clamp(2rem,3.4vw,3.5rem)] font-bold leading-none tabular-nums">
         <span ref={numRef}>{value.toLocaleString("en-IN")}</span>
         <span ref={plusRef}>{suffix}</span>
       </div>

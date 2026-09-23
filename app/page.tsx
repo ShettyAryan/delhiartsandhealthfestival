@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/hero";
 import Figure from "@/components/figure";
 import Motif from "@/components/motif";
@@ -8,7 +9,6 @@ import MuralBand from "@/components/mural-band";
 import ColorSection from "@/components/color-section";
 import StatBlock from "@/components/stat-block";
 import PathwayCard from "@/components/pathway-card";
-import ThemeChip from "@/components/theme-chip";
 import CTAButton from "@/components/cta-button";
 import {
   FESTIVAL,
@@ -16,7 +16,6 @@ import {
   GLOBAL_ECOSYSTEM,
   PATHWAYS,
   STATS,
-  THEMATIC_AREAS,
   WHAT_IS_ARTS_HEALTH,
   WHY_ARTS_HEALTH_COMMUNITY,
   WHY_DELHI,
@@ -57,17 +56,16 @@ const ACCENT_BG: Record<string, string> = {
   maroon: "bg-maroon",
 };
 
-/**
- * The Why Delhi stagger. Each pillar steps further right (1 → 2 → 1 → 3) so the
- * four read as an editorial spread rather than a 4-up card grid (§8). Written
- * as literal class strings so Tailwind's scanner sees them.
- */
-const PILLAR_POS = [
-  { head: "lg:col-span-5 lg:col-start-1", body: "lg:col-span-6 lg:col-start-7" },
-  { head: "lg:col-span-5 lg:col-start-2", body: "lg:col-span-5 lg:col-start-8" },
-  { head: "lg:col-span-6 lg:col-start-1", body: "lg:col-span-5 lg:col-start-7" },
-  { head: "lg:col-span-5 lg:col-start-3", body: "lg:col-span-4 lg:col-start-9" },
-];
+/** Same accents again, as top-border colours for the Why Arts/Health/Community
+ * cards. Same literal-map reasoning as ACCENT_BG above. */
+const ACCENT_BORDER: Record<string, string> = {
+  pink: "border-pink",
+  teal: "border-teal",
+  purple: "border-purple",
+  yellow: "border-yellow",
+  lime: "border-lime",
+  maroon: "border-maroon",
+};
 
 export default function Home() {
   return (
@@ -83,38 +81,78 @@ export default function Home() {
           Each side is one grid child holding two motifs, so mobile still gets
           only two extra stacked rows (a short side-by-side pair above and
           below the text) instead of four. */}
-      <ColorSection tone="cream">
-        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="mx-auto flex gap-4 lg:col-span-2 lg:flex-col">
+      {/*
+        Scaled down throughout — at the previous sizing (py-section-y padding,
+        h-60/sm:h-72 logos, gap-8 between stacked rows) this section ran to
+        ~1550px tall on a 375×667 phone against a 667px budget, and still
+        ~1070px on a 900px-tall desktop window. The min-h-screen + flex
+        centering below matches the same one-viewport approach hero.tsx uses.
+        Logos step up by breakpoint rather than jumping straight to their
+        largest size, since that's what was blowing the mobile budget out;
+        they still reach the full 3x-larger size the client asked for, just
+        only once the viewport actually has room for it (xl, 1280px+).
+      */}
+      <ColorSection
+        tone="cream"
+        className="flex min-h-[calc(100vh-4rem)] items-center py-6 md:min-h-[calc(100vh-4.5rem)] md:py-10"
+      >
+        <div className="grid items-center gap-3 lg:grid-cols-12 lg:gap-8">
+          <div className="mx-auto flex gap-3 lg:col-span-2 lg:flex-col">
             <Motif
               variant="daisy"
               fit="meet"
-              className="h-14 w-14 rounded-card lg:h-24 lg:w-24"
+              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
             />
             <Motif
               variant="stairs"
               fit="meet"
-              className="h-14 w-14 rounded-card lg:h-24 lg:w-24"
+              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
             />
           </div>
           <div className="text-center lg:col-span-8">
             <h2 className="mx-auto max-w-[24ch] font-display text-h2 font-bold text-navy">
               {GLOBAL_ECOSYSTEM.heading}
             </h2>
-            <p className="mx-auto mt-6 max-w-[65ch] text-lead">
+
+            <p className="mt-3 font-eyebrow text-eyebrow text-maroon">
+              In Association with
+            </p>
+            {/* Both source files carry generous transparent padding around
+                the mark itself, so the two logos don't fill this box evenly
+                — a fixed height + object-contain keeps them from
+                distorting rather than trying to match their visual weight
+                pixel-for-pixel. */}
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+              <Image
+                src="/images/GAIMFlogo.png"
+                alt="Global Arts in Medicine Fellowship (GAIMF)"
+                width={864}
+                height={1080}
+                className="h-14 w-auto sm:h-20 lg:h-32 xl:h-50"
+              />
+              <Image
+                src="/images/GSAHlogo.png"
+                alt="Global South Arts & Health (GSAH)"
+                width={864}
+                height={1080}
+                className="h-14 w-auto sm:h-20 lg:h-32 xl:h-50"
+              />
+            </div>
+
+            <p className="mx-auto mt-1 max-w-[65ch] text-justify text-[clamp(0.8125rem,2.2vw,1.1875rem)] leading-[1.3] md:mt-1">
               {GLOBAL_ECOSYSTEM.body}
             </p>
           </div>
-          <div className="mx-auto flex gap-4 lg:col-span-2 lg:flex-col">
+          <div className="mx-auto flex gap-3 lg:col-span-2 lg:flex-col">
             <Motif
               variant="star"
               fit="meet"
-              className="h-14 w-14 rounded-card lg:h-24 lg:w-24"
+              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
             />
             <Motif
               variant="kalash"
               fit="meet"
-              className="h-14 w-14 rounded-card lg:h-24 lg:w-24"
+              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
             />
           </div>
         </div>
@@ -139,26 +177,32 @@ export default function Home() {
         </div>
       </ColorSection>
 
-      {/* What is Arts & Health — editorial two-column, image anchoring the
-          left. A teal rule gives the heading a graphic anchor instead of an
-          eyebrow label (§2 rules those out), and the first paragraph reads as
-          a lead statement — larger than the two that follow it — rather than
-          three paragraphs of identical weight. */}
+      {/* What is Arts & Health — editorial two-column. The heading now spans
+          the full width on its own row, above the grid, rather than being
+          boxed into the left column — that decoupled it from the image's
+          height and let the two columns start and end at different points.
+          The image and text columns below are equal 6/6 splits (not the
+          previous 6/5-offset-8, which made the columns different widths) and
+          `items-stretch` matches their heights — the image now fills to the
+          same height as the paragraph stack via object-cover instead of
+          stopping short/running long against it. A teal rule still anchors
+          the heading instead of an eyebrow label (§2 rules those out). */}
       <ColorSection tone="cream-2">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <h2 className="font-display text-h2 font-bold text-navy">
+          {WHAT_IS_ARTS_HEALTH.heading}
+        </h2>
+        <div className="mt-5 h-1.5 w-16 bg-teal" />
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
           <div className="lg:col-span-6">
-            <h2 className="font-display text-h2 font-bold text-navy">
-              {WHAT_IS_ARTS_HEALTH.heading}
-            </h2>
-            <div className="mt-5 h-1.5 w-16 bg-teal" />
             <Figure
               image={WHAT_IS_ARTS_HEALTH_IMAGE}
               ratio="landscape"
               sizes="(min-width: 1024px) 46vw, 100vw"
-              className="mt-8"
+              className="h-full"
             />
           </div>
-          <div className="space-y-6 lg:col-span-5 lg:col-start-8">
+          <div className="flex flex-col justify-center space-y-6 lg:col-span-6">
             {WHAT_IS_ARTS_HEALTH.paragraphs.map((p, i) => (
               <p
                 key={i}
@@ -175,14 +219,20 @@ export default function Home() {
         </div>
       </ColorSection>
 
-      {/* Why Arts, Health & Community — three columns, each with its own accent */}
+      {/* Why Arts, Health & Community — three cards, each with its own accent
+          top rule. Bordered + rounded-card rather than a drop shadow — the
+          card treatment the user asked for, without the generic
+          soft-shadow-on-every-card look §2 rules out. */}
       <ColorSection tone="cream">
         <h2 className="font-display text-h2 font-bold text-navy">
           Why Arts, Health &amp; Community?
         </h2>
-        <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
           {WHY_ARTS_HEALTH_COMMUNITY.map((c) => (
-            <div key={c.term}>
+            <div
+              key={c.term}
+              className={`rounded-card border-t-4 bg-cream-2 p-8 ${ACCENT_BORDER[c.accent]}`}
+            >
               <h3
                 className={`font-display text-h3 font-semibold ${ACCENT[c.accent]}`}
               >
@@ -261,35 +311,36 @@ export default function Home() {
             ratio="wide"
             sizes="(min-width: 1024px) 90vw, 100vw"
           />
-          <figcaption className="mt-3 font-mono text-mono tracking-[0.04em] text-cream/70">
+          <figcaption className="mt-3 font-eyebrow text-eyebrow text-cream/70">
             Lodhi Garden, Delhi
           </figcaption>
         </figure>
 
-        <div className="mt-16 space-y-10 md:mt-20 md:space-y-14">
-          {WHY_DELHI.pillars.map((p, i) => {
-            const pos = PILLAR_POS[i % PILLAR_POS.length];
-            return (
-              <div
-                key={p.term}
-                className="group grid gap-3 border-t border-cream/20 pt-10 transition-colors hover:border-cream/50 lg:grid-cols-12 lg:gap-8"
+        {/*
+          A properly aligned 2-up grid, not the previous editorial zigzag
+          (each pillar staggered to its own column-start) — on client
+          direction, that read as misaligned rather than intentional. Body
+          copy is text-body here, not text-lead, so the section reads more
+          compactly and needs less scrolling to get through all four.
+        */}
+        <div className="mt-16 grid gap-x-12 gap-y-10 md:mt-20 md:grid-cols-2 md:gap-y-12">
+          {WHY_DELHI.pillars.map((p) => (
+            <div
+              key={p.term}
+              className="group border-t border-cream/20 pt-8 transition-colors hover:border-cream/50"
+            >
+              <h3
+                className={`flex items-center gap-3 font-display text-h3 font-semibold ${ACCENT[p.accent]}`}
               >
-                <h3
-                  className={`flex items-center gap-3 font-display text-h3 font-semibold ${ACCENT[p.accent]} ${pos.head}`}
-                >
-                  <span
-                    aria-hidden="true"
-                    className={`h-3 w-3 shrink-0 rounded-chip transition-transform duration-300 group-hover:scale-125 ${ACCENT_BG[p.accent]}`}
-                  />
-                  {p.term}
-                </h3>
-                {/* text-lead, not text-body — the heading and the intro
-                    paragraph above are the only other type in this section,
-                    so "the text" bumping up means these pillar descriptions. */}
-                <p className={`max-w-[52ch] text-lead ${pos.body}`}>{p.body}</p>
-              </div>
-            );
-          })}
+                <span
+                  aria-hidden="true"
+                  className={`h-3 w-3 shrink-0 rounded-chip transition-transform duration-300 group-hover:scale-125 ${ACCENT_BG[p.accent]}`}
+                />
+                {p.term}
+              </h3>
+              <p className="mt-3 max-w-[52ch] text-body">{p.body}</p>
+            </div>
+          ))}
         </div>
       </ColorSection>
 
@@ -317,20 +368,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Thematic Areas — chips on cream */}
-      <ColorSection tone="cream">
-        <h2 className="font-display text-h2 font-bold text-navy">
-          Festival Thematic Areas
-        </h2>
-        <ul className="mt-10 flex flex-wrap gap-x-2 gap-y-3">
-          {THEMATIC_AREAS.map((t) => (
-            <ThemeChip key={t}>{t}</ThemeChip>
-          ))}
-        </ul>
-      </ColorSection>
-
-      {/* Final CTA */}
-      <ColorSection tone="pink">
+      {/* Final CTA — navy background, white text, per client direction
+          (was pink). ColorSection's own tone map already pairs navy with
+          cream text, which is now literally white (see globals.css). */}
+      <ColorSection tone="navy">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <h2 className="max-w-[16ch] font-display text-h1 font-bold">
@@ -338,7 +379,8 @@ export default function Home() {
             </h2>
             <p className="mt-8 max-w-[52ch] text-lead">{FINAL_CTA.body}</p>
             <div className="mt-8">
-              {/* `invert` on pink: a navy outline would only reach 4.4:1 here. */}
+              {/* `invert` still fits on navy: white fill / navy text reads
+                  clearly against the dark background. */}
               <CTAButton href="/get-involved" variant="invert">
                 Get Involved
               </CTAButton>

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
-import Logo from "@/components/logo";
 import { NAV, REGISTER_HREF } from "@/lib/content";
 
 /**
@@ -70,7 +70,14 @@ export default function SiteHeader() {
       >
         <div className="mx-auto flex h-full w-full max-w-360 items-center justify-between gap-6">
           <Link href="/" aria-label="Delhi Arts & Health Festival, home">
-            <Logo id="hdr" orientation="horizontal" className="h-9 w-auto md:h-10" />
+            <Image
+              src="/images/logoblack.png"
+              alt="Delhi Arts & Health Festival"
+              width={864}
+              height={1080}
+              priority
+              className="h-30 w-auto md:h-45"
+            />
           </Link>
 
           {/* Nav and the Register/menu controls grouped as one right-aligned
@@ -164,7 +171,7 @@ export default function SiteHeader() {
                 href={REGISTER_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden rounded-chip bg-pink px-5 py-2.5 font-body text-small font-medium text-black transition-colors hover:bg-maroon md:inline-flex"
+                className="hidden rounded-chip bg-navy px-5 py-2.5 font-body text-small font-medium text-cream transition-colors hover:bg-maroon md:inline-flex"
               >
                 Register
               </a>

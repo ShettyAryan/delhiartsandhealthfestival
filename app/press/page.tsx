@@ -29,11 +29,11 @@ export default function PressPage() {
       <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-section-y pt-8 md:pt-12">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-red"
+          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-red/70"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-lime"
+          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-lime/70"
         />
 
         <div className="relative z-10 mx-auto grid w-full max-w-360 items-start gap-12 lg:grid-cols-12 lg:gap-16">
@@ -66,7 +66,7 @@ export default function PressPage() {
         <dl className="mt-10 divide-y divide-cream/20 border-y border-cream/20">
           {PRESS.quickFacts.map((f) => (
             <div key={f.term} className="grid gap-1 py-5 md:grid-cols-12 md:gap-8">
-              <dt className="font-mono text-mono tracking-[0.08em] text-yellow md:col-span-3">
+              <dt className="font-eyebrow text-eyebrow text-yellow md:col-span-3">
                 {f.term}
               </dt>
               <dd className="text-body md:col-span-8 md:col-start-5">{f.body}</dd>
@@ -74,7 +74,10 @@ export default function PressPage() {
           ))}
         </dl>
         <div className="mt-10">
-          <CTAButton href={FORMS.factSheet} external>
+          {/* invert, not the default primary — this section is tone="navy"
+              above, and CTAButton's primary variant is now a navy fill,
+              which would disappear against it. */}
+          <CTAButton href={FORMS.factSheet} variant="invert" external>
             Fact Sheet
           </CTAButton>
         </div>

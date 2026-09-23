@@ -67,7 +67,15 @@ export default function HeroCarousel() {
         The decorative brand-colour circles moved up to <Hero>, scoped to the
         whole section rather than just this photo box — see hero.tsx.
       */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-photo bg-cream-2">
+      {/*
+        Height pinned to viewport height rather than aspect-ratio-off-width —
+        on the two-column desktop layout an aspect-[4/3] box driven by ~46vw
+        of column width could grow taller than the hero's one-viewport
+        budget there. Mobile no longer needs to fit one viewport (a scroll to
+        reach the CTAs is expected), so its height here is just a
+        comfortable size, not a fit constraint.
+      */}
+      <div className="relative h-[30vh] w-full overflow-hidden rounded-photo bg-cream-2 sm:h-[32vh] md:h-[38vh] lg:h-[54vh]">
         <AnimatePresence initial={false}>
           <motion.div
             key={index}

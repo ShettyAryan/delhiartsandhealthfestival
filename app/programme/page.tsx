@@ -48,11 +48,11 @@ export default function ProgrammePage() {
       <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-section-y pt-8 md:pt-12">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-teal"
+          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-teal/70"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-purple"
+          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-purple/70"
         />
 
         <div className="relative z-10 mx-auto grid w-full max-w-360 items-start gap-12 lg:grid-cols-12 lg:gap-16">
@@ -113,12 +113,12 @@ export default function ProgrammePage() {
             >
               {/* No opacity here: dimming the label to 80% drops it to 4.4:1 on
                   pink and 4.2:1 on purple, just under AA at this size. */}
-              <p className="font-mono text-mono tracking-[0.08em]">{d.n}</p>
+              <p className="font-eyebrow text-eyebrow">{d.n}</p>
               <DayName
                 name={d.name}
                 className="mt-4 font-display text-display font-bold leading-none"
               />
-              <p className="mt-4 font-mono text-lead">({d.english})</p>
+              <p className="mt-4 font-eyebrow text-lead">({d.english})</p>
               <p className="mt-8 max-w-[42ch] text-lead">{d.body}</p>
             </div>
 
@@ -185,7 +185,7 @@ export default function ProgrammePage() {
         <ol className="mt-12 grid gap-8 md:grid-cols-4">
           {TIMELINE.map((t) => (
             <li key={t.when} className="border-t-4 border-yellow pt-5">
-              <p className="font-mono text-mono tracking-[0.08em] text-yellow">
+              <p className="font-eyebrow text-eyebrow text-yellow">
                 {t.when}
               </p>
               <p className="mt-3 max-w-[26ch] text-body">{t.what}</p>
@@ -194,7 +194,10 @@ export default function ProgrammePage() {
         </ol>
 
         <div className="mt-14">
-          <CTAButton href={FORMS.programmes} external>
+          {/* invert, not the default primary — this section is tone="navy"
+              above, and CTAButton's primary variant is now a navy fill,
+              which would disappear against it. */}
+          <CTAButton href={FORMS.programmes} variant="invert" external>
             Festival Programmes
           </CTAButton>
         </div>

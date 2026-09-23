@@ -29,11 +29,11 @@ export default function ContactPage() {
       <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-section-y pt-8 md:pt-12">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-maroon"
+          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-maroon/70"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-yellow"
+          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-yellow/70"
         />
 
         {/*
@@ -69,7 +69,7 @@ export default function ContactPage() {
             <dl className="mt-auto space-y-6 pt-10">
               {CONTACT.map((c) => (
                 <div key={c.email} className="border-t border-navy/20 pt-5">
-                  <dt className="font-mono text-mono tracking-[0.08em] text-maroon">
+                  <dt className="font-eyebrow text-eyebrow text-maroon">
                     {c.role}
                   </dt>
                   <dd className="mt-2">

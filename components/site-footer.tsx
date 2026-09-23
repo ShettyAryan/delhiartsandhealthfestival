@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Logo from "@/components/logo";
+import Image from "next/image";
 import { MuralStrip } from "@/components/motif";
+import SocialIcon, { platformFromLabel } from "@/components/social-icon";
 import { CONTACT, FOOTER_LINKS, SOCIALS, FESTIVAL } from "@/lib/content";
 
 /** Static mural band — no parallax here, the footer is a full stop. */
@@ -14,32 +15,38 @@ function FooterMural() {
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-navy text-cream">
+    <footer className="bg-black text-cream">
       <FooterMural />
 
       <div className="px-section-x py-section-y">
         <div className="mx-auto grid w-full max-w-360 gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Logo id="ftr" variant="negative" orientation="stacked" className="w-44" />
-            <p className="mt-6 font-mono text-mono tracking-[0.08em] text-yellow">
+          <div className="min-w-0 lg:col-span-4">
+            <Image
+              src="/images/logowhitebig.png"
+              alt="Delhi Arts & Health Festival"
+              width={864}
+              height={1080}
+              className="w-44 h-auto"
+            />
+            <p className="mt-6 font-eyebrow text-eyebrow text-yellow">
               {FESTIVAL.datesLine}
             </p>
           </div>
 
-          <div className="lg:col-span-4">
+          <div className="min-w-0 lg:col-span-4">
             <h2 className="font-display text-h3 font-semibold text-cream">
               Write to us
             </h2>
             <dl className="mt-5 space-y-4">
               {CONTACT.map((c) => (
                 <div key={c.email}>
-                  <dt className="font-mono text-mono tracking-[0.08em] text-yellow">
+                  <dt className="font-eyebrow text-eyebrow text-yellow">
                     {c.role}
                   </dt>
                   <dd>
                     <a
                       href={`mailto:${c.email}`}
-                      className="font-body text-body underline decoration-1 underline-offset-4 hover:text-yellow"
+                      className="break-words font-body text-body underline decoration-1 underline-offset-4 hover:text-yellow"
                     >
                       {c.email}
                     </a>
@@ -49,7 +56,7 @@ export default function SiteFooter() {
             </dl>
           </div>
 
-          <div className="lg:col-span-3 lg:col-start-10">
+          <div className="min-w-0 lg:col-span-3 lg:col-start-10">
             <h2 className="font-display text-h3 font-semibold text-cream">
               Explore
             </h2>
@@ -66,19 +73,31 @@ export default function SiteFooter() {
             <h2 className="mt-10 font-display text-h3 font-semibold text-cream">
               Follow
             </h2>
-            <ul className="mt-5 space-y-2">
-              {SOCIALS.map((s) => (
-                <li key={s.href}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-body text-body hover:text-yellow"
-                  >
-                    {s.label}
-                  </a>
-                </li>
-              ))}
+            {/* Logo badges, not text links — each still carries an
+                aria-label since the glyph alone (SVG marked aria-hidden)
+                isn't an accessible name. 44px badges clear the 24px WCAG
+                2.5.8 target-size minimum with room to spare. */}
+            <ul className="mt-5 flex gap-3">
+              {SOCIALS.map((s) => {
+                const platform = platformFromLabel(s.label);
+                return (
+                  <li key={s.href}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      className="flex h-11 w-11 items-center justify-center rounded-chip border border-cream/30 text-cream transition-colors hover:border-yellow hover:text-yellow"
+                    >
+                      {platform ? (
+                        <SocialIcon platform={platform} className="h-5 w-5" />
+                      ) : (
+                        <span className="font-body text-small">{s.label[0]}</span>
+                      )}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

@@ -31,9 +31,16 @@
   --color-maroon: #7f3653;
   --color-slate: #4c8e9a; /* brand slate — not Tailwind's slate */
 
-  /* Extended */
-  --color-cream: #f2e7da;
-  --color-cream-2: #eae0d0;
+  /* Extended — on client direction, the beige/tan canvas is gone: --cream is
+     now the site's white, and --cream-2 is a near-white neutral kept only so
+     alternating sections and card surfaces (e.g. the Why Arts/Health/
+     Community cards) still read as a distinct surface against pure white,
+     not so the page has any warm tan cast left. Both names are kept as-is
+     rather than renamed to --white/--white-2 — every bg-cream/text-cream
+     usage sitewide inherits the new value with this one edit, instead of
+     needing a sweep through every component. */
+  --color-cream: #ffffff;
+  --color-cream-2: #f7f6f4;
   --color-ink: #1a1a1a;
 
   /* Mural-only — sampled from the press-kit artwork. Scoped to <Motif>. */
@@ -42,25 +49,31 @@
   --color-mural-cream: #fde4ba;
 
   /* Fonts */
-  --font-display: var(--font-antonio), sans-serif;
-  --font-body: var(--font-libre-franklin), sans-serif;
-  --font-mono: var(--font-special-elite), monospace;
+  --font-display: var(--font-poppins), sans-serif; /* hero title + headings */
+  --font-body: var(--font-mulish), sans-serif;
+  --font-eyebrow: var(--font-poppins), sans-serif; /* renamed from font-mono — Special Elite is gone */
+  --font-subtitle: var(--font-newsreader), serif; /* hero subtitle only — real italic, not synthesised */
 
-  /* Fluid type scale */
+  /* Type scale */
   --text-display: clamp(4rem, 12vw, 12rem);
   --text-display--line-height: 0.95;
-  --text-h1: clamp(2.5rem, 6vw, 5rem);
+  --text-h1: clamp(2.5rem, 6vw, 5rem); /* hero title — caps at 80px */
   --text-h1--line-height: 1.02;
-  --text-h2: clamp(2rem, 4vw, 3.5rem);
-  --text-h2--line-height: 1.05;
+  --text-h2: clamp(2rem, 4.5vw, 3.75rem); /* other headings — caps at 60px */
+  --text-h2--line-height: 1.2;
   --text-h3: clamp(1.5rem, 2.5vw, 2rem);
   --text-h3--line-height: 1.1;
   --text-lead: clamp(1.25rem, 1.6vw, 1.5rem);
   --text-lead--line-height: 1.5;
-  --text-body: 1.0625rem;
-  --text-body--line-height: 1.6;
+  --text-subtitle: 1.5rem; /* 24px, hero subtitle only */
+  --text-subtitle--line-height: 1.2;
+  --text-subtitle--font-weight: 500;
+  --text-body: 1.25rem; /* 20px */
+  --text-body--line-height: 1.5;
   --text-small: 0.875rem;
-  --text-mono: 0.8125rem;
+  --text-eyebrow: 0.9375rem; /* 15px */
+  --text-eyebrow--letter-spacing: 0.24em;
+  --text-eyebrow--font-weight: 700;
 
   /* Section rhythm */
   --spacing-section-y: clamp(4rem, 10vw, 8rem);
