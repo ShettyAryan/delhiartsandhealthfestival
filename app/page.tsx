@@ -16,6 +16,7 @@ import {
   GLOBAL_ECOSYSTEM,
   PATHWAYS,
   STATS,
+  THEMATIC_AREAS,
   WHAT_IS_ARTS_HEALTH,
   WHY_ARTS_HEALTH_COMMUNITY,
   WHY_DELHI,
@@ -297,7 +298,7 @@ export default function Home() {
             {WHY_DELHI.heading}
           </h2>
           <div className="mx-auto mt-5 h-1.5 w-16 bg-lime" />
-          <p className="mx-auto mt-6 max-w-[65ch] text-lead">
+          <p className="mx-auto mt-6 max-w-[65ch] text-justify text-lead">
             {WHY_DELHI.lead}
           </p>
         </div>
@@ -345,7 +346,7 @@ export default function Home() {
       </ColorSection>
 
       {/* Experience Pathways — 5 colour blocks stacked, one per pathway */}
-      <section aria-labelledby="pathways">
+      {/* <section aria-labelledby="pathways">
         <div className="bg-cream px-section-x pt-section-y">
           <h2
             id="pathways"
@@ -366,24 +367,56 @@ export default function Home() {
             />
           ))}
         </div>
-      </section>
+      </section> */}
 
-      {/* Final CTA — navy background, white text, per client direction
-          (was pink). ColorSection's own tone map already pairs navy with
-          cream text, which is now literally white (see globals.css). */}
-      <ColorSection tone="navy">
+      {/* Thematic Areas — re-added on client direction, as an actual bulleted
+          list (point-based) rather than the earlier chip/pill treatment.
+          cream-2, not cream, so there's still a visible seam against the
+          Final CTA section right below it, which is now white too. */}
+      <ColorSection tone="cream-2">
+        <h2 className="font-display text-h2 font-bold text-navy">
+          Festival Thematic Areas
+        </h2>
+        <ul className="mt-10 grid gap-x-10 gap-y-4 md:grid-cols-2">
+          {THEMATIC_AREAS.map((t) => (
+            <li key={t} className="flex items-start gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-2.5 h-2 w-2 shrink-0 rounded-chip bg-maroon"
+              />
+              <span className="text-body">{t}</span>
+            </li>
+          ))}
+        </ul>
+      </ColorSection>
+
+      {/* Final CTA — white background, black text, per client direction
+          (was navy/white before that, pink before that). Using tone="cream"
+          for the white fill (cream is literally white now, see globals.css)
+          rather than adding a new tone just for this one section, with
+          text-black set explicitly since the tone's own default (text-ink,
+          #1A1A1A) is a near-black, not the literal black asked for here. */}
+      <ColorSection tone="cream" className="text-black">
+        {/*
+          Back inside the same lg:col-span-7 column as the body/button, so
+          the heading's left edge lines up with them and the block as a
+          whole aligns against the image beside it, rather than floating
+          full-width and disconnected above the row (the previous attempt at
+          a one-line fit). Still doubled up from the original half-size, so
+          it wraps at "Health" — "Festival" drops to its own line, which is
+          fine here; a clean shared alignment with the image matters more
+          than forcing one line, per client direction.
+        */}
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
-            <h2 className="max-w-[16ch] font-display text-h1 font-bold">
+            <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.05]">
               {FINAL_CTA.heading}
             </h2>
             <p className="mt-8 max-w-[52ch] text-lead">{FINAL_CTA.body}</p>
             <div className="mt-8">
-              {/* `invert` still fits on navy: white fill / navy text reads
-                  clearly against the dark background. */}
-              <CTAButton href="/get-involved" variant="invert">
-                Get Involved
-              </CTAButton>
+              {/* primary, not invert — this section is white now, not navy,
+                  so the navy-fill primary button is what reads clearly here. */}
+              <CTAButton href="/get-involved">Get Involved</CTAButton>
             </div>
           </div>
 

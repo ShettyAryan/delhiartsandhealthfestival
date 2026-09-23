@@ -116,7 +116,7 @@ export const FESTIVAL = {
 export const CONTACT = [
   { role: "General enquiries", email: "delhiartsandhealthfestival@gmail.com" },
   { role: "Partnerships and media", email: "partnerships.dahf@gmail.com" },
-  { role: "Programming", email: "programme.dahf@gmail.com" },
+  { role: "Programming", email: "curation.dahf@gmail.com" },
   { role: "Sponsorship and funding", email: "fundraising.dahf@gmail.com" },
 ] as const;
 
@@ -236,9 +236,7 @@ export const GLOBAL_ECOSYSTEM = {
 export const WHAT_IS_ARTS_HEALTH = {
   heading: "What is Arts & Health?",
   paragraphs: [
-    "Arts and Health is a growing interdisciplinary field exploring how creative practice can support physical health, mental wellbeing, social connection, learning, healing, and community development.",
-    "Across the world, artists and healthcare professionals are working together in hospitals, schools, community centres, care homes, public spaces, and cultural institutions to improve health outcomes, strengthen social cohesion, and create more humane systems of care.",
-    "The Delhi Arts & Health Festival aims to make this growing field visible, accessible, and relevant within the Indian context.",
+    "Across the world, artists, healthcare professionals and communities are working together to improve health outcomes, strengthen social cohesion, and create more humane systems of care. The Delhi Arts & Health Festival aims to make this growing field visible, accessible, and relevant within the Indian context.",
   ],
 } as const;
 
@@ -373,7 +371,7 @@ export const THEMATIC_AREAS = [
 
 export const FINAL_CTA = {
   heading: "Help Shape Delhi's First Arts & Health Festival",
-  body: "Whether you are an artist, researcher, healthcare professional, organisation, volunteer, funder, or simply someone curious about the relationship between creativity and wellbeing, there is a place for you in this growing movement.",
+  body: "Whether you are an artist, researcher, healthcare professional, organisation, volunteer, funder, or simply curious, there is a place for you in this growing movement.",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -403,7 +401,6 @@ export const ABOUT = {
   globalMomentum: {
     heading: "Global momentum",
     paragraphs: [
-      "For decades, the link between creativity and health was treated as something supplementary, a kindness rather than a science. That is changing.",
       "Around the world, institutions such as the World Health Organization, University College London, and Johns Hopkins University have invested in research on how the arts support health, ease isolation, and improve quality of life. Hospitals are bringing artists into care teams, not as an afterthought, but as part of how people get better.",
       "DAHF is not introducing a new idea. It is joining a global movement that India has every reason to help lead.",
     ],
@@ -421,7 +418,19 @@ export const ABOUT = {
       term: "India's National Health Policy 2017",
       body: "emphasises preventive and promotive health and the mainstreaming of traditional practices such as Yoga and AYUSH, recognising culture and community as part of how people stay well.",
     },
+    {
+      term: "In India, 1 in 7 Indians",
+      body: "lives with a mental health concern (NIMHANS, 2023).",
+    },
   ],
+  whyDelhi: {
+    heading: "Why Delhi",
+    paragraphs: [
+      "A city shaped by migration, memory, culture and constant change, Delhi brings together diverse communities, creative practices and a rich healthcare ecosystem. It offers a powerful setting to explore what arts and health can mean in a contemporary Indian city.",
+      "India has long recognised the relationship between creativity, community and healing. Our art forms, rituals, crafts and collective practices have supported people through joy, grief, celebration, healing and change across generations.",
+      "DAHF builds on this indigenous knowledge while bringing it into conversation with contemporary health and mental health practice. The festival brings practitioners, communities and individuals together to experience, explore and expand the role of the arts in health, healing and wellbeing.",
+    ],
+  },
   gsah: {
     heading: "The Global South Arts and Health Initiative",
     paragraphs: [
@@ -437,30 +446,12 @@ export const ABOUT = {
     ],
   },
   hopes: [
-    {
-      term: "Community",
-      body: "Bringing people, organisations, and practitioners from multiple sectors into genuine relationships, not just onto the same guest list.",
-    },
-    {
-      term: "A stronger field",
-      body: "Growing the visibility and confidence of arts and health as a recognised area of practice in India.",
-    },
-    {
-      term: "Knowledge that travels",
-      body: "Creating space for research, documentation, and learning that outlasts the festival week.",
-    },
-    {
-      term: "Support for practitioners",
-      body: "Backing the artists, therapists, health workers, researchers, and educators who do this work, often without recognition.",
-    },
-    {
-      term: "Public engagement",
-      body: "Making conversations about health, wellbeing, and creativity easier to find and easier to join.",
-    },
-    {
-      term: "Influence over time",
-      body: "Feeding ideas into the wider worlds of healthcare, education, culture, and policy.",
-    },
+    "Stronger collaboration between arts, health, education and community sectors",
+    "Greater integration of creative practice within healthcare and community wellbeing settings",
+    "Increased visibility and opportunities for artists working in care and social impact",
+    "More research, documentation and evidence emerging from India",
+    "Stronger national and international collaborations across the Global South",
+    "A growing public understanding that creativity is fundamental to health, wellbeing and collective care",
   ],
 } as const;
 
@@ -471,7 +462,7 @@ export const ABOUT = {
 export const PROGRAMME = {
   heading: "Five days. Many ways in. One conversation.",
   intro:
-    "The Delhi Arts and Health Festival unfolds across the city through workshops, performances, exhibitions, conversations, and shared experiences. Some of it asks you to think. Some of it asks you to move, make, or simply be present. You can follow a single thread through the week or wander between them.",
+    "The Delhi Arts and Health Festival unfolds across the city through workshops, performances, exhibitions, conversations, and shared experiences. You can follow a single thread through the week or wander between them.",
   // "(proposed)" dropped on request — flagging since the source PDF carried
   // it deliberately (the five-day structure wasn't presented as final there).
   // Worth a client check if that's still true; not ours to relitigate here.

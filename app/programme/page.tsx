@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
 import DayName from "@/components/day-name";
 import Figure from "@/components/figure";
-import CTAButton from "@/components/cta-button";
 import {
   DAYS,
   FESTIVAL_EXPLORES,
-  FORMS,
+  PATHWAYS,
   PROGRAMME,
   PROGRAMME_HERO_IMAGE,
-  TIMELINE,
-  WAYS_TO_EXPERIENCE,
 } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -19,13 +16,24 @@ export const metadata: Metadata = {
     "Five days. Many ways in. One conversation. Pehchaan, Bayaan, Armaan, Karwaan, Muskaan — the shape of the festival week.",
 };
 
-/** Full-viewport colour per day, per CLAUDE.md §8. */
+/** Colour per day, per CLAUDE.md §8. */
 const DAY_TONE: Record<string, string> = {
   navy: "bg-navy text-cream",
   pink: "bg-pink text-black",
   purple: "bg-purple text-cream",
   teal: "bg-teal text-black",
   yellow: "bg-yellow text-black",
+};
+
+/** Same five colours as top-border accents, for the Festival Pathways cards.
+ * Literal map, not a `border-${bg}` template — Tailwind's scanner needs the
+ * full class string somewhere in source. */
+const PATHWAY_BORDER: Record<string, string> = {
+  pink: "border-pink",
+  yellow: "border-yellow",
+  red: "border-red",
+  lime: "border-lime",
+  purple: "border-purple",
 };
 
 export default function ProgrammePage() {
@@ -55,20 +63,31 @@ export default function ProgrammePage() {
           className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-purple/70"
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-360 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <h1 className="max-w-[16ch] font-display text-h1 font-bold text-navy">
+        {/*
+          Heading and intro text sized to match the homepage hero exactly
+          (the same hero-local clamps hero.tsx uses, not the shared --text-h1/
+          --text-lead tokens every other page's own hero uses) — on request.
+          The photo is resized to match: hero.tsx's own image is height-capped
+          by viewport rather than left to grow with a "portrait" aspect ratio,
+          so this one gets the same treatment instead of towering over the
+          now-smaller text beside it.
+        */}
+        <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <h1 className="max-w-[16ch] font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[0.95] text-navy">
               {PROGRAMME.heading}
             </h1>
-            <p className="mt-8 max-w-[62ch] text-lead">{PROGRAMME.intro}</p>
+            <p className="mt-6 max-w-[62ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.4] text-ink">
+              {PROGRAMME.intro}
+            </p>
           </div>
 
           <Figure
             image={PROGRAMME_HERO_IMAGE}
             ratio="portrait"
-            sizes="(min-width: 1024px) 38vw, 100vw"
+            sizes="(min-width: 1024px) 46vw, 100vw"
             priority
-            className="rounded-photo lg:col-span-5"
+            className="h-[30vh] w-full rounded-photo sm:h-[32vh] md:h-[38vh] lg:col-span-6 lg:h-[54vh]"
           />
         </div>
       </section>
@@ -80,7 +99,11 @@ export default function ProgrammePage() {
         heading on this page uses. It's meant to read as a second beat, not
         another routine section header.
       */}
-      <ColorSection tone="cream-2">
+      {/* py-10/md:py-14 override the default py-section-y (up to 128px each
+          side) — trimmed specifically so this heading plus all five compact
+          day bars below have a real shot at fitting within one viewport
+          without scrolling, per the per-day sizing goal below. */}
+      <ColorSection tone="cream-2" className="py-10 md:py-14">
         <div className="text-center">
           <h2 className="mx-auto max-w-[20ch] font-display text-h1 font-bold text-navy">
             {PROGRAMME.shapeHeading}
@@ -92,114 +115,101 @@ export default function ProgrammePage() {
       </ColorSection>
 
       {/*
-        The five-day journey — each day a full-viewport colour block, now paired
-        with an image. The picture alternates side down the week so the five read
-        as a journey rather than one template repeated, and the day name stays
-        left-anchored throughout so the stamp-in always lands in the same place.
+        The five-day journey — compact colour bars now, not full-viewport
+        (min-h-[80vh]) blocks with their own image each. At the old size,
+        just the five min-heights totalled 400vh before any padding or
+        content, meaning a visitor arriving at this section had to scroll
+        through roughly four extra screens to see all five days. No images
+        here anymore (that's what made the old per-day block tall enough to
+        need 80vh in the first place) and the day name drops from
+        text-display (up to 192px) to text-h2 — still the same DayName
+        component and its letter-by-letter stamp-in animation, just smaller.
+        Five compact bars stacked like this land at well under one extra
+        screen combined, in practice — verified at common desktop heights.
       */}
-      {DAYS.map((d, i) => (
+      {DAYS.map((d) => (
         <section
           key={d.name}
-          className={`flex min-h-[80vh] flex-col justify-center px-section-x py-section-y ${DAY_TONE[d.bg]}`}
+          className={`px-section-x py-6 md:py-8 ${DAY_TONE[d.bg]}`}
           aria-label={`${d.n}: ${d.name}`}
         >
-          <div className="mx-auto grid w-full max-w-360 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-            <div
-              className={
-                i % 2 === 1
-                  ? "lg:col-span-6 lg:col-start-7 lg:row-start-1"
-                  : "lg:col-span-6"
-              }
-            >
+          <div className="mx-auto grid w-full max-w-360 items-center gap-4 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-4">
               {/* No opacity here: dimming the label to 80% drops it to 4.4:1 on
                   pink and 4.2:1 on purple, just under AA at this size. */}
               <p className="font-eyebrow text-eyebrow">{d.n}</p>
               <DayName
                 name={d.name}
-                className="mt-4 font-display text-display font-bold leading-none"
+                className="mt-1 font-display text-h2 font-bold leading-none"
               />
-              <p className="mt-4 font-eyebrow text-lead">({d.english})</p>
-              <p className="mt-8 max-w-[42ch] text-lead">{d.body}</p>
+              <p className="mt-1 font-eyebrow text-small">({d.english})</p>
             </div>
-
-            <Figure
-              image={d.image}
-              ratio="landscape"
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className={
-                i % 2 === 1
-                  ? "lg:col-span-5 lg:col-start-1 lg:row-start-1"
-                  : "lg:col-span-5 lg:col-start-8"
-              }
-            />
+            <p className="mt-3 max-w-[60ch] text-body lg:col-span-8 lg:mt-0">
+              {d.body}
+            </p>
           </div>
         </section>
       ))}
 
-      {/* Ways to experience — horizontal band */}
+      {/* Festival Pathways — the five colour-blocked cards PathwayCard
+          renders on the homepage (currently unused there, that section is
+          commented out) shown here instead as compact cards, the same
+          bordered/rounded-card/accent-top-rule treatment as the homepage's
+          Why Arts/Health/Community cards, rather than full-bleed blocks. */}
       <ColorSection tone="cream">
         <h2 className="font-display text-h2 font-bold text-navy">
-          Ways to experience the festival
+          Festival Pathways
         </h2>
-        <div className="mt-12 grid gap-8 md:grid-cols-3 lg:grid-cols-5">
-          {WAYS_TO_EXPERIENCE.map((w) => (
-            <div key={w.term} className="border-t-4 border-pink pt-5">
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {PATHWAYS.map((p) => (
+            <div
+              key={p.term}
+              className={`rounded-card border-t-4 bg-cream-2 p-8 ${PATHWAY_BORDER[p.bg]}`}
+            >
               <h3 className="font-display text-h3 font-semibold text-navy">
-                {w.term}
+                {p.term}
               </h3>
-              <p className="mt-3 text-body">{w.body}</p>
+              <p className="mt-3 max-w-[42ch] text-body">{p.body}</p>
             </div>
           ))}
         </div>
       </ColorSection>
 
-      {/* What the festival explores — compact chip grid + descriptions */}
-      <ColorSection tone="cream-2">
+      {/* What the festival explores — three columns, smaller type, so all
+          eleven areas fit on screen at once without scrolling. The term
+          (subheading) drops from text-h3 to a ~17-18px clamp and the
+          description from text-body to text-small; padding is trimmed the
+          same way as the shape-of-the-week section above. Below `sm` it's a
+          single column — three columns can't hold these on a phone. */}
+      <ColorSection tone="cream-2" className="py-10 md:py-14">
         <h2 className="font-display text-h2 font-bold text-navy">
           {FESTIVAL_EXPLORES.heading}
         </h2>
-        <p className="mt-6 max-w-[62ch] text-lead">{FESTIVAL_EXPLORES.intro}</p>
+        <p className="mt-4 max-w-[62ch] text-body">{FESTIVAL_EXPLORES.intro}</p>
 
-        {/*
-          No chip row here: it would repeat the eleven terms immediately above
-          the list that already carries them with the client's descriptions. The
-          chip treatment lives on the homepage, where the terms stand alone.
-        */}
-        <dl className="mt-14 grid gap-x-8 gap-y-6 md:grid-cols-2">
+        <dl className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
           {FESTIVAL_EXPLORES.items.map((t) => (
-            <div key={t.term} className="border-t border-navy/20 pt-4">
-              <dt className="font-display text-h3 font-semibold text-navy">
+            <div key={t.term} className="border-t border-navy/20 pt-3">
+              <dt className="font-display text-[clamp(1rem,1.3vw,1.125rem)] font-semibold leading-snug text-navy">
                 {t.term}
               </dt>
-              <dd className="mt-2 max-w-[50ch] text-body">{t.body}</dd>
+              <dd className="mt-1 text-small leading-snug">{t.body}</dd>
             </div>
           ))}
         </dl>
       </ColorSection>
 
-      {/* How the programme unfolds — horizontal timeline */}
+      {/* Full Programme Schedule — replaces the earlier "How the programme
+          unfolds" timeline + Festival Programmes button, on request. No
+          link here since there's nothing to link to yet. */}
       <ColorSection tone="navy">
-        <h2 className="font-display text-h2 font-bold">
-          How the programme unfolds
-        </h2>
-        <ol className="mt-12 grid gap-8 md:grid-cols-4">
-          {TIMELINE.map((t) => (
-            <li key={t.when} className="border-t-4 border-yellow pt-5">
-              <p className="font-eyebrow text-eyebrow text-yellow">
-                {t.when}
-              </p>
-              <p className="mt-3 max-w-[26ch] text-body">{t.what}</p>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-14">
-          {/* invert, not the default primary — this section is tone="navy"
-              above, and CTAButton's primary variant is now a navy fill,
-              which would disappear against it. */}
-          <CTAButton href={FORMS.programmes} variant="invert" external>
-            Festival Programmes
-          </CTAButton>
+        <div className="text-center">
+          <h2 className="font-display text-h2 font-bold">
+            Full Programme Schedule
+          </h2>
+          <p className="mt-6 font-display text-h1 font-bold uppercase text-yellow">
+            Coming Soon!
+          </p>
         </div>
       </ColorSection>
     </>
