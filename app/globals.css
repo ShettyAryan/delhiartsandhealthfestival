@@ -51,6 +51,7 @@
   /* Fonts */
   --font-display: var(--font-poppins), sans-serif; /* hero title + headings */
   --font-body: var(--font-mulish), sans-serif;
+  --font-samarkan: "Samarkan", var(--font-poppins), sans-serif; /* Pehchaan to Muskaan day names only */
   --font-eyebrow: var(--font-poppins), sans-serif; /* renamed from font-mono — Special Elite is gone */
   --font-subtitle: var(--font-newsreader), serif; /* hero subtitle only — real italic, not synthesised */
 

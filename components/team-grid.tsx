@@ -98,10 +98,8 @@ export default function TeamGrid({
                   {p.name}
                 </h3>
                 {p.pronouns ? (
-                  <p className="mt-1.5">
-                    <span className="inline-block rounded-chip border border-current px-2.5 font-body text-small font-medium leading-normal">
-                      {p.pronouns}
-                    </span>
+                  <p className="mt-1 font-body text-small leading-snug">
+                    ({p.pronouns})
                   </p>
                 ) : null}
                 <p className={`mt-1.5 font-body text-small leading-snug ${accent}`}>

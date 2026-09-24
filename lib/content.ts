@@ -238,7 +238,8 @@ export const GLOBAL_ECOSYSTEM = {
 export const WHAT_IS_ARTS_HEALTH = {
   heading: "What is Arts & Health?",
   paragraphs: [
-    "Across the world, artists, healthcare professionals and communities are working together to improve health outcomes, strengthen social cohesion, and create more humane systems of care. The Delhi Arts & Health Festival aims to make this growing field visible, accessible, and relevant within the Indian context.",
+    "Across the world, artists, healthcare professionals and communities are working together to improve health outcomes, strengthen social cohesion, and create more humane systems of care.",
+    "The Delhi Arts & Health Festival aims to make this growing field visible, accessible, and relevant within the Indian context.",
   ],
 } as const;
 
@@ -462,13 +463,13 @@ export const ABOUT = {
 // ---------------------------------------------------------------------------
 
 export const PROGRAMME = {
-  heading: "Five days. Many ways in. One conversation.",
+  heading: "Five Days. Five Themes. Many Conversations",
   intro:
     "The Delhi Arts and Health Festival unfolds across the city through workshops, performances, exhibitions, conversations, and shared experiences. You can follow a single thread through the week or wander between them.",
   // "(proposed)" dropped on request — flagging since the source PDF carried
   // it deliberately (the five-day structure wasn't presented as final there).
   // Worth a client check if that's still true; not ours to relitigate here.
-  shapeHeading: "The shape of the week",
+  shapeHeading: "Shape of the week",
   shapeIntro:
     "We have built the five days as a journey inward and then back out toward each other. Each day carries a name and a feeling.",
 } as const;
@@ -574,9 +575,7 @@ export const WAYS_TO_EXPERIENCE = [
 ] as const;
 
 export const FESTIVAL_EXPLORES = {
-  heading: "What the festival explores",
-  intro:
-    "Our programming moves across a wide field. These are the areas we return to again and again.",
+  heading: "Festival Thematic Areas",
   items: [
     {
       term: "Mental Health and Emotional Wellbeing",
@@ -713,6 +712,7 @@ export const WIDER_TEAM_NOTE =
 export const COMMITTEE: Person[] = [
   {
     name: "Shilka Agarwal",
+    pronouns:"she/her",
     photo: "/images/team/shilka-agarwal.jpg",
     role: "Festival Implementation Lead",
     bio: [
@@ -726,6 +726,7 @@ export const COMMITTEE: Person[] = [
   },
   {
     name: "Ananya Mahapatra",
+    pronouns:"she/her",
     photo: "/images/team/ananya-mahapatra.jpg",
     role: "Committee Head — Research and Documentation",
     bio: [
@@ -773,6 +774,7 @@ export const COMMITTEE: Person[] = [
   {
     name: "Riya",
     photo: "/images/team/riya.jpg",
+    pronouns:"she/her",
     role: "Committee Head — Partnerships and Outreach",
     bio: [
       "Riya is a Dance Movement Therapy Facilitator and arts-based practitioner who creates movement and arts-based spaces for children, adults, and corporates. Her approach is rooted in the belief that any form of art - whether we experience, create, watch, listen, or witness - has the power to enrich, restore, and beautify our lives. Riya's artistic practice includes capoeira, belly dance, contemporary inspired intuitive movement and illustrative storytelling.",
@@ -781,6 +783,7 @@ export const COMMITTEE: Person[] = [
   },
   {
     name: "Aarushi Panwar",
+    pronouns:"she/her",
     photo: "/images/team/aarushi-panwar.jpg",
     role: "Committee Head — Communications and Design",
     bio: [
@@ -793,7 +796,7 @@ export const COMMITTEE: Person[] = [
 ];
 
 export const ADVISORY_INTRO = {
-  heading: "Guiding the festival",
+  heading: "Guiding the Festival",
   body: "Our advisory board brings together respected voices across creative arts therapies, healthcare, accessibility, research, public art, and institutional strategy. They guide the festival's direction, protect its integrity, and keep us honest about the difference between good intentions and good practice.",
 } as const;
 
@@ -1165,7 +1168,6 @@ export const PRE_FESTIVAL = {
     {
       group: "School Initiative",
       title: "Jagran Public School, Noida",
-      partner: "In partnership with Read India Foundation",
       location: "Jagran Public School, Noida",
       date: "8 September 2026",
       images: [{ alt: "School initiative at Jagran Public School, Noida", motif: "star" }],
@@ -1173,7 +1175,6 @@ export const PRE_FESTIVAL = {
     {
       group: "School Initiative",
       title: "JSS Public School, Noida",
-      partner: "In partnership with Read India Foundation",
       location: "JSS Public School, Noida",
       date: "15 September 2026",
       images: [{ alt: "School initiative at JSS Public School, Noida", motif: "kalash" }],
@@ -1192,5 +1193,6 @@ export const PRE_FESTIVAL = {
       partner: "In partnership with Sahaayta and Neev Mental Health",
     },
   ],
-  closing: "Stay tuned for more updates on ongoing events.",
+  closingLink: "Stay tuned",
+  closingRest: " for more updates on ongoing events.",
 };

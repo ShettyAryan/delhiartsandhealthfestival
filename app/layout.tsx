@@ -56,6 +56,11 @@ export default function RootLayout({
       className={`${poppins.variable} ${mulish.variable} ${newsreader.variable} h-full`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Samarkan, for the Pehchaan to Muskaan day names only (programme page). */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/samarkan" />
+      </head>
       {/*
         Browser extensions (e.g. Liner) inject attributes like
         data-liner-extension-version onto html/body before React hydrates.

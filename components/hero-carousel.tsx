@@ -57,7 +57,7 @@ export default function HeroCarousel() {
       role="group"
       aria-roledescription="carousel"
       aria-label="The festival in pictures"
-      className="relative"
+      className="relative lg:h-full"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -75,7 +75,7 @@ export default function HeroCarousel() {
         reach the CTAs is expected), so its height here is just a
         comfortable size, not a fit constraint.
       */}
-      <div className="relative h-[30vh] w-full overflow-hidden rounded-photo bg-cream-2 sm:h-[32vh] md:h-[38vh] lg:h-[54vh]">
+      <div className="relative h-[30vh] w-full overflow-hidden rounded-photo bg-cream-2 sm:h-[32vh] md:h-[38vh] lg:h-full">
         <AnimatePresence initial={false}>
           <motion.div
             key={index}
@@ -118,7 +118,7 @@ export default function HeroCarousel() {
 
       {/* Controls. Live region is polite only when nothing is moving on its own. */}
       <div
-        className="mt-4 flex items-center gap-4"
+        className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-chip bg-white/90 px-2"
         aria-live={running ? "off" : "polite"}
       >
         {/*

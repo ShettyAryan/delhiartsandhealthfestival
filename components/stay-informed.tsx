@@ -11,7 +11,14 @@ type Status = "idle" | "sending" | "done" | "error";
  * moves into the dialog on open and back to the button on close, and body
  * scroll locks while it is up.
  */
-export default function StayInformed() {
+export default function StayInformed({
+  children = "Stay Informed",
+  variant = "button",
+}: {
+  children?: React.ReactNode;
+  /** `button` is the outlined hero CTA; `link` is an inline text link. */
+  variant?: "button" | "link";
+}) {
   const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -74,9 +81,13 @@ export default function StayInformed() {
           setMessage("");
           setOpen(true);
         }}
-        className="inline-flex items-center justify-center rounded-chip border-2 border-navy px-7 py-3.5 font-body text-body font-medium text-navy transition-[color,background-color,transform] hover:-translate-y-0.5 hover:bg-navy hover:text-cream active:translate-y-0"
+        className={
+          variant === "link"
+            ? "cursor-pointer text-maroon underline decoration-1 underline-offset-4 hover:text-navy"
+            : "inline-flex items-center justify-center rounded-chip border-2 border-navy px-7 py-3.5 font-body text-body font-medium text-navy transition-[color,background-color,transform] hover:-translate-y-0.5 hover:bg-navy hover:text-cream active:translate-y-0"
+        }
       >
-        Stay Informed
+        {children}
       </button>
 
       <AnimatePresence>

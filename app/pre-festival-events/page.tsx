@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
 import Figure from "@/components/figure";
 import EventCarousel from "@/components/event-carousel";
+import StayInformed from "@/components/stay-informed";
 import { PRE_FESTIVAL } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -79,7 +80,8 @@ export default function PreFestivalEventsPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-10 max-w-[62ch] text-lead">{PRE_FESTIVAL.closing}</p>
+        <p className="mt-10 max-w-[62ch] text-lead"><StayInformed variant="link">{PRE_FESTIVAL.closingLink}</StayInformed>
+          {PRE_FESTIVAL.closingRest}</p>
       </ColorSection>
     </>
   );

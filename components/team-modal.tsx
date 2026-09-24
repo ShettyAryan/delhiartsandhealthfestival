@@ -107,10 +107,8 @@ export default function TeamModal({
                   {person.name}
                 </h2>
                 {person.pronouns ? (
-                  <p className="mt-3">
-                    <span className="inline-block rounded-chip border border-navy px-3 py-0.5 font-body text-small font-medium text-navy">
-                      {person.pronouns}
-                    </span>
+                  <p className="mt-2 font-body text-body text-navy">
+                    ({person.pronouns})
                   </p>
                 ) : null}
                 <p className={`mt-2 font-body text-body ${accent}`}>{person.role}</p>

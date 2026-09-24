@@ -48,10 +48,10 @@ export default function Marquee() {
     <ul className="flex shrink-0 items-center">
       {MARQUEE_WORDS.map((word) => (
         <li key={word} className="flex items-center">
-          <span className="font-display text-h3 lowercase text-cream">
+          <span className="font-display text-[clamp(1.25rem,2vw,1.625rem)] lowercase text-cream">
             {word}
           </span>
-          <span className="px-5 text-h3 text-yellow md:px-8" aria-hidden="true">
+          <span className="px-5 text-[clamp(1.25rem,2vw,1.625rem)] text-yellow md:px-8" aria-hidden="true">
             ·
           </span>
         </li>

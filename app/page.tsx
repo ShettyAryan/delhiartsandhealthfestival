@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/hero";
 import Figure from "@/components/figure";
-import Motif from "@/components/motif";
 import FloatingMotif from "@/components/floating-motif";
 import Marquee from "@/components/marquee";
 import MuralBand from "@/components/mural-band";
@@ -16,7 +15,6 @@ import {
   GLOBAL_ECOSYSTEM,
   PATHWAYS,
   STATS,
-  THEMATIC_AREAS,
   WHAT_IS_ARTS_HEALTH,
   WHY_ARTS_HEALTH_COMMUNITY,
   WHY_DELHI,
@@ -97,33 +95,20 @@ export default function Home() {
         tone="cream"
         className="flex min-h-[calc(100vh-4rem)] items-center py-6 md:min-h-[calc(100vh-4.5rem)] md:py-10"
       >
-        <div className="grid items-center gap-3 lg:grid-cols-12 lg:gap-8">
-          <div className="mx-auto flex gap-3 lg:col-span-2 lg:flex-col">
-            <Motif
-              variant="daisy"
-              fit="meet"
-              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
-            />
-            <Motif
-              variant="stairs"
-              fit="meet"
-              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
-            />
-          </div>
-          <div className="text-center lg:col-span-8">
-            <h2 className="mx-auto max-w-[24ch] font-display text-h2 font-bold text-navy">
+        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="max-w-[24ch] font-display text-h2 font-bold text-navy">
               {GLOBAL_ECOSYSTEM.heading}
             </h2>
+            <div className="mt-5 h-1.5 w-16 bg-teal" />
 
-            <p className="mt-3 font-eyebrow text-eyebrow text-maroon">
+            <p className="mt-6 font-eyebrow text-eyebrow text-maroon">
               In Association with
             </p>
             {/* Both source files carry generous transparent padding around
-                the mark itself, so the two logos don't fill this box evenly
-                — a fixed height + object-contain keeps them from
-                distorting rather than trying to match their visual weight
-                pixel-for-pixel. */}
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+                the mark itself, so a fixed height + object-contain keeps them
+                from distorting rather than matching visual weight. */}
+            <div className="mt-2 flex flex-wrap items-center gap-6 md:gap-10">
               <Image
                 src="/images/GAIMFlogo.png"
                 alt="Global Arts in Medicine Fellowship (GAIMF)"
@@ -139,23 +124,11 @@ export default function Home() {
                 className="h-14 w-auto sm:h-20 lg:h-32 xl:h-50"
               />
             </div>
+          </div>
 
-            <p className="mx-auto mt-1 max-w-[65ch] text-justify text-[clamp(0.8125rem,2.2vw,1.1875rem)] leading-[1.3] md:mt-1">
-              {GLOBAL_ECOSYSTEM.body}
-            </p>
-          </div>
-          <div className="mx-auto flex gap-3 lg:col-span-2 lg:flex-col">
-            <Motif
-              variant="star"
-              fit="meet"
-              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
-            />
-            <Motif
-              variant="kalash"
-              fit="meet"
-              className="h-9 w-9 rounded-card lg:h-24 lg:w-24"
-            />
-          </div>
+          <p className="max-w-[65ch] text-justify text-[clamp(0.9375rem,2.2vw,1.1875rem)] leading-[1.5]">
+            {GLOBAL_ECOSYSTEM.body}
+          </p>
         </div>
       </ColorSection>
 
@@ -166,6 +139,7 @@ export default function Home() {
           than lower against Why Delhi (§8's original placement). */}
       <ColorSection tone="teal">
         <h2 className="font-display text-h2 font-bold text-white">Festival at a Glance</h2>
+        <div className="mt-5 h-1.5 w-16 bg-white" />
         <div className="mt-12 grid gap-10 text-white sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {STATS.map((s) => (
             <StatBlock
@@ -195,27 +169,27 @@ export default function Home() {
         <div className="mt-5 h-1.5 w-16 bg-teal" />
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
-          <div className="lg:col-span-6">
-            <Figure
-              image={WHAT_IS_ARTS_HEALTH_IMAGE}
-              ratio="landscape"
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="h-full"
-            />
-          </div>
           <div className="flex flex-col justify-center space-y-6 lg:col-span-6">
             {WHAT_IS_ARTS_HEALTH.paragraphs.map((p, i) => (
               <p
                 key={i}
                 className={
                   i === 0
-                    ? "max-w-[52ch] text-lead font-medium text-navy"
-                    : "max-w-[52ch] text-body"
+                    ? "max-w-[52ch] text-body"
+                    : "max-w-[52ch] text-lead font-medium text-navy"
                 }
               >
                 {p}
               </p>
             ))}
+          </div>
+          <div className="lg:col-span-6 lg:min-h-88">
+            <Figure
+              image={WHAT_IS_ARTS_HEALTH_IMAGE}
+              ratio="landscape"
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="h-full lg:aspect-auto"
+            />
           </div>
         </div>
       </ColorSection>
@@ -228,6 +202,7 @@ export default function Home() {
         <h2 className="font-display text-h2 font-bold text-navy">
           Why Arts, Health &amp; Community?
         </h2>
+        <div className="mt-5 h-1.5 w-16 bg-teal" />
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {WHY_ARTS_HEALTH_COMMUNITY.map((c) => (
             <div
@@ -369,27 +344,6 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* Thematic Areas — re-added on client direction, as an actual bulleted
-          list (point-based) rather than the earlier chip/pill treatment.
-          cream-2, not cream, so there's still a visible seam against the
-          Final CTA section right below it, which is now white too. */}
-      <ColorSection tone="cream-2">
-        <h2 className="font-display text-h2 font-bold text-navy">
-          Festival Thematic Areas
-        </h2>
-        <ul className="mt-10 grid gap-x-10 gap-y-4 md:grid-cols-2">
-          {THEMATIC_AREAS.map((t) => (
-            <li key={t} className="flex items-start gap-3">
-              <span
-                aria-hidden="true"
-                className="mt-2.5 h-2 w-2 shrink-0 rounded-chip bg-maroon"
-              />
-              <span className="text-body">{t}</span>
-            </li>
-          ))}
-        </ul>
-      </ColorSection>
-
       {/* Final CTA — white background, black text, per client direction
           (was navy/white before that, pink before that). Using tone="cream"
           for the white fill (cream is literally white now, see globals.css)
@@ -412,6 +366,7 @@ export default function Home() {
             <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.05]">
               {FINAL_CTA.heading}
             </h2>
+            <div className="mt-5 h-1.5 w-16 bg-teal" />
             <p className="mt-8 max-w-[52ch] text-lead">{FINAL_CTA.body}</p>
             <div className="mt-8">
               {/* primary, not invert — this section is white now, not navy,

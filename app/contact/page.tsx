@@ -55,7 +55,6 @@ export default function ContactPage() {
             <h1 className="font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[0.95] text-navy">
               {CONTACT_PAGE.heading}
             </h1>
-            <p className="mt-4 max-w-[62ch] text-body">{CONTACT_PAGE.intro}</p>
 
             {/*
               The emails, moved up from their own section into the hero

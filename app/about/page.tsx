@@ -34,20 +34,23 @@ export default function AboutPage() {
         <h1 className="font-display text-h1 font-bold text-navy">
           About DAHF
         </h1>
+        <div className="mt-5 h-1.5 w-16 bg-teal" />
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           <div className="rounded-card border-t-4 border-teal bg-cream-2 p-8">
             <h2 className="font-display text-h2 font-bold text-navy">
               {ABOUT.vision.heading}
             </h2>
-            <p className="mt-4 text-lead">{ABOUT.vision.body}</p>
+            <div className="mt-5 h-1.5 w-16 bg-teal" />
+            <p className="mt-6 text-lead">{ABOUT.vision.body}</p>
           </div>
 
           <div className="rounded-card border-t-4 border-navy bg-cream-2 p-8">
             <h2 className="font-display text-h2 font-bold text-navy">
               {ABOUT.mission.heading}
             </h2>
-            <div className="mt-4 space-y-4">
+            <div className="mt-5 h-1.5 w-16 bg-teal" />
+            <div className="mt-6 space-y-4">
               {ABOUT.mission.paragraphs.map((p, i) => (
                 <p key={i} className="text-body">
                   {p}
@@ -87,6 +90,7 @@ export default function AboutPage() {
             duration={10}
           />
           <h2 className="font-display text-h2 font-bold text-navy">Why Now</h2>
+          <div className="mt-5 h-1.5 w-16 bg-teal" />
         </div>
 
         {/* Research highlights as pull-quotes, not bullets. No images in
@@ -125,7 +129,8 @@ export default function AboutPage() {
         <h2 className="font-display text-h2 font-bold">
           {ABOUT.whyDelhi.heading}
         </h2>
-        <div className="mt-8 max-w-[65ch] space-y-5">
+        <div className="mt-5 h-1.5 w-16 bg-white" />
+        <div className="mt-8 max-w-[65ch] space-y-5 text-justify">
           {ABOUT.whyDelhi.paragraphs.map((p, i) => (
             <p key={i} className="text-body">
               {p}
@@ -152,23 +157,22 @@ export default function AboutPage() {
           <h2 className="font-display text-h2 font-bold text-navy">
             What We Hope to Achieve
           </h2>
+          <div className="mt-5 h-1.5 w-16 bg-teal" />
         </div>
-        <ol className="relative mt-12 space-y-6 md:space-y-8">
+        <ul className="relative mt-12 space-y-6 md:space-y-8">
           {ABOUT.hopes.map((h, i) => (
             <li
               key={i}
               className="flex items-start gap-5 border-t border-navy/20 pt-6 md:gap-8"
             >
               <span
-                className="font-display text-h3 font-bold text-pink"
                 aria-hidden="true"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+                className="mt-3 h-2.5 w-2.5 shrink-0 rounded-chip bg-maroon"
+              />
               <p className="max-w-[65ch] text-lead text-navy">{h}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </ColorSection>
 
       {/* Closing image — reuses the vision-board photo, freed up when the

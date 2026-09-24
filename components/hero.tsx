@@ -57,7 +57,7 @@ export default function Hero() {
         }
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-400 items-center gap-8 lg:grid-cols-12 lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-400 items-center gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-16">
         {/* Text column */}
         <div className="lg:col-span-6">
           <p className="font-eyebrow text-eyebrow text-maroon">

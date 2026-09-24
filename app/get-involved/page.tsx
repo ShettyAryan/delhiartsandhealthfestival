@@ -27,23 +27,23 @@ export default function GetInvolvedPage() {
         homepage's closing CTA, since a 48-character title can't be one line
         at phone widths at any readable size, and wraps there instead.
       */}
-      <ColorSection tone="cream" className="pt-8 md:pt-12">
+      <ColorSection tone="cream" className="pb-8 pt-8 md:pb-10 md:pt-12">
         <h1 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold leading-[1.05] text-navy lg:whitespace-nowrap">
           {GET_INVOLVED.heading}
         </h1>
-        <p className="mt-6 max-w-[62ch] text-lead">{GET_INVOLVED.intro}</p>
+        <p className="mt-4 max-w-[62ch] text-body">{GET_INVOLVED.intro}</p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 lg:grid-cols-3">
           {GET_INVOLVED.paths.map((p) => (
             <div
               key={p.heading}
-              className={`flex flex-col rounded-card border-t-4 bg-cream-2 p-8 ${BORDER[p.bg]}`}
+              className={`flex flex-col rounded-card border-t-4 bg-cream-2 p-5 ${BORDER[p.bg]}`}
             >
-              <h2 className="font-display text-h3 font-semibold text-navy">
+              <h2 className="font-display text-[clamp(1.125rem,1.6vw,1.375rem)] font-semibold text-navy">
                 {p.heading}
               </h2>
-              <p className="mt-4 text-body">{p.body}</p>
-              <div className="mt-auto pt-8">
+              <p className="mt-2 text-small leading-snug">{p.body}</p>
+              <div className="mt-auto pt-5">
                 <CTAButton href={p.href} external>
                   {p.cta}
                 </CTAButton>

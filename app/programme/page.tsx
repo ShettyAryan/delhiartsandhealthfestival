@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 
 /** Colour per day, per CLAUDE.md §8. */
 const DAY_TONE: Record<string, string> = {
-  navy: "bg-navy text-cream",
-  pink: "bg-pink text-black",
-  purple: "bg-purple text-cream",
-  teal: "bg-teal text-black",
-  yellow: "bg-yellow text-black",
+  navy: "bg-navy text-white",
+  pink: "bg-pink text-white",
+  purple: "bg-purple text-white",
+  teal: "bg-teal text-white",
+  yellow: "bg-yellow text-white",
 };
 
 /** Same five colours as top-border accents, for the Festival Pathways cards.
@@ -74,8 +74,10 @@ export default function ProgrammePage() {
         */}
         <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
-            <h1 className="max-w-[16ch] font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[0.95] text-navy">
-              {PROGRAMME.heading}
+            <h1 className="font-display text-[clamp(1.35rem,3vw,2.5rem)] font-bold leading-[1.05] text-navy">
+              <span className="whitespace-nowrap">Five Days. Five Themes.</span>
+              <br />
+              Many Conversations
             </h1>
             <p className="mt-6 max-w-[62ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.4] text-ink">
               {PROGRAMME.intro}
@@ -91,6 +93,30 @@ export default function ProgrammePage() {
           />
         </div>
       </section>
+
+      {/* Festival Pathways — the five colour-blocked cards PathwayCard
+          renders on the homepage (currently unused there, that section is
+          commented out) shown here instead as compact cards, the same
+          bordered/rounded-card/accent-top-rule treatment as the homepage's
+          Why Arts/Health/Community cards, rather than full-bleed blocks. */}
+      <ColorSection tone="cream">
+        <h2 className="font-display text-h2 font-bold text-navy">
+          Festival Pathways
+        </h2>
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+          {PATHWAYS.map((p) => (
+            <div
+              key={p.term}
+              className={`rounded-card border-t-4 bg-cream-2 p-8 lg:p-5 ${PATHWAY_BORDER[p.bg]}`}
+            >
+              <h3 className="font-display text-h3 font-semibold text-navy">
+                {p.term}
+              </h3>
+              <p className="mt-3 max-w-[42ch] text-body">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </ColorSection>
 
       {/*
         "The shape of the week" — centred as its own poster moment (the same
@@ -108,9 +134,6 @@ export default function ProgrammePage() {
           <h2 className="mx-auto max-w-[20ch] font-display text-h1 font-bold text-navy">
             {PROGRAMME.shapeHeading}
           </h2>
-          <p className="mx-auto mt-6 max-w-[62ch] text-lead">
-            {PROGRAMME.shapeIntro}
-          </p>
         </div>
       </ColorSection>
 
@@ -140,7 +163,7 @@ export default function ProgrammePage() {
               <p className="font-eyebrow text-eyebrow">{d.n}</p>
               <DayName
                 name={d.name}
-                className="mt-1 font-display text-h2 font-bold leading-none"
+                className="mt-1 font-samarkan text-h2 font-normal leading-none"
               />
               <p className="mt-1 font-eyebrow text-small">({d.english})</p>
             </div>
@@ -150,30 +173,6 @@ export default function ProgrammePage() {
           </div>
         </section>
       ))}
-
-      {/* Festival Pathways — the five colour-blocked cards PathwayCard
-          renders on the homepage (currently unused there, that section is
-          commented out) shown here instead as compact cards, the same
-          bordered/rounded-card/accent-top-rule treatment as the homepage's
-          Why Arts/Health/Community cards, rather than full-bleed blocks. */}
-      <ColorSection tone="cream">
-        <h2 className="font-display text-h2 font-bold text-navy">
-          Festival Pathways
-        </h2>
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {PATHWAYS.map((p) => (
-            <div
-              key={p.term}
-              className={`rounded-card border-t-4 bg-cream-2 p-8 ${PATHWAY_BORDER[p.bg]}`}
-            >
-              <h3 className="font-display text-h3 font-semibold text-navy">
-                {p.term}
-              </h3>
-              <p className="mt-3 max-w-[42ch] text-body">{p.body}</p>
-            </div>
-          ))}
-        </div>
-      </ColorSection>
 
       {/* What the festival explores — three columns, smaller type, so all
           eleven areas fit on screen at once without scrolling. The term
@@ -185,7 +184,6 @@ export default function ProgrammePage() {
         <h2 className="font-display text-h2 font-bold text-navy">
           {FESTIVAL_EXPLORES.heading}
         </h2>
-        <p className="mt-4 max-w-[62ch] text-body">{FESTIVAL_EXPLORES.intro}</p>
 
         <dl className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
           {FESTIVAL_EXPLORES.items.map((t) => (

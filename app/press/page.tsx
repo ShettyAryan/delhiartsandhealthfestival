@@ -49,7 +49,7 @@ export default function PressPage() {
             <dl className="mt-3 divide-y divide-navy/20 border-y border-navy/20">
               {PRESS.quickFacts.map((f) => (
                 <div key={f.term} className="grid gap-1 py-3 sm:grid-cols-12 sm:gap-6">
-                  <dt className="font-body text-small font-semibold text-navy sm:col-span-4">
+                  <dt className="font-body text-body font-semibold text-navy sm:col-span-4">
                     {f.term}
                   </dt>
                   <dd className="text-body leading-snug sm:col-span-8">{f.body}</dd>
@@ -86,7 +86,6 @@ export default function PressPage() {
             duration={10}
           />
           <h2 className="font-display text-h2 font-bold text-navy">Press FAQs</h2>
-          <p className="mt-6 max-w-[62ch] text-lead">{PRESS.faqIntro}</p>
         </div>
 
         <div className="mt-12 border-t border-navy/20">
@@ -131,9 +130,11 @@ export default function PressPage() {
           <h2 className="font-display text-h2 font-bold text-navy">
             Media enquiries
           </h2>
-          <p className="mt-6 max-w-[52ch] text-body">
+          <p className="mt-6 max-w-[80ch] text-body">
             For festival images, press kit, interviews, features and media
-            partnerships, write to{" "}
+            partnerships,
+            <br />
+            write to{" "}
             <a
               href={`mailto:${PRESS.mediaEmail}`}
               className="text-maroon underline decoration-1 underline-offset-4"
