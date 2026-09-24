@@ -653,6 +653,7 @@ export const TEAM_INTRO = {
 export const LEADERSHIP: Person[] = [
   {
     name: "Dr Kunle Adewale",
+    photo: "/images/team/kunle-adewale.jpg",
     pronouns: "he/him",
     role: "Chair and Global Development Lead, Global South Arts and Health",
     bio: [
@@ -712,8 +713,8 @@ export const WIDER_TEAM_NOTE =
 export const COMMITTEE: Person[] = [
   {
     name: "Shilka Agarwal",
-    pronouns:"she/her",
     photo: "/images/team/shilka-agarwal.jpg",
+    pronouns:"she/her",
     role: "Festival Implementation Lead",
     bio: [
       "A somatic and expressive arts therapist, researcher, multidisciplinary artist, and founder of Mind Movement Collective, Shilka Agarwal's work sits at the intersection of arts, trauma, embodiment, and our relationship with self.",
@@ -726,8 +727,8 @@ export const COMMITTEE: Person[] = [
   },
   {
     name: "Ananya Mahapatra",
-    pronouns:"she/her",
     photo: "/images/team/ananya-mahapatra.jpg",
+    pronouns:"she/her",
     role: "Committee Head — Research and Documentation",
     bio: [
       "Dr. Ananya Mahapatra is a psychiatrist with over 12 years of clinical and academic experience. An Alumni of All India Institute of Medical Sciences, New Delhi, and her research work has received multiple national and international academic recognitions. After more than a decade in academic and public health institutions, she transitioned into private practice, where her work increasingly began to move toward a deeper exploration of the inner life beyond diagnosis. Currently she is a Consultant with Cognis Mindcare & MAX Superspecialty Hospital, New Delhi.",
@@ -746,6 +747,17 @@ export const COMMITTEE: Person[] = [
       "Alongside her individual practice, she works with couples navigating connection, conflict, and everything in between, and brings the same body-centred approach into how she thinks about relationships.",
       "Outside her practice, Preeti has volunteered as a crisis counselor and a sex educator, and continues to look for spaces where she can keep doing this kind of work - conversations that don't always find room elsewhere.",
       "In her free time, you'll find her dancing, painting, or lost in a book. For her, art and creativity aren't just tools for therapy - they're what sustain us. They hold our emotions and thoughts in ways we don't always realise, quietly doing the work of processing life alongside us.",
+    ],
+  },
+  {
+    name: "Nidhi",
+    photo: "/images/team/nidhi.jpg",
+    pronouns: "she/her",
+    role: "Co-Committee Head — Logistics and Operations",
+    bio: [
+      "Nidhi is an event management professional with a passion for creating meaningful, people-centric experiences. With hands-on experience in corporate events, MICE, exhibitions, experiential marketing, and large-scale event operations, she has managed projects ranging from intimate experiences to events hosting thousands of attendees. Her expertise includes project coordination, client servicing, vendor and artist management, production planning, and on-ground execution, ensuring every event is delivered with precision and creativity.",
+      "A lifelong learner with a strong interest in tourism, hospitality, branding, and experience design, Nidhi enjoys transforming ideas into memorable experiences that inspire connection and engagement. She is equally passionate about art, culture, wellness, and community-driven initiatives, believing that thoughtfully curated events can create lasting impact beyond the occasion itself.",
+      "Beyond events, she finds inspiration in sketching, architecture, travel, reading novels, and discovering new music. These creative interests influence her approach to storytelling, design, and audience engagement.",
     ],
   },
   {
@@ -783,8 +795,8 @@ export const COMMITTEE: Person[] = [
   },
   {
     name: "Aarushi Panwar",
-    pronouns:"she/her",
     photo: "/images/team/aarushi-panwar.jpg",
+    pronouns:"she/her",
     role: "Committee Head — Communications and Design",
     bio: [
       "Aarushi is a psychotherapist and Expressive Arts Therapy Practitioner (ExAT-P) whose work is shaped by how arts can hold not only softness, but also play, intensity, grief, and chaos; allowing people to show up as they are. She is deeply curious about the inner and outer worlds people inhabit and move through, and how creative expression, connection & reflection can support emotional and sensory regulation.",
@@ -803,7 +815,7 @@ export const ADVISORY_INTRO = {
 export const ADVISORY_BOARD: Person[] = [
   {
     name: "Anshuma Kshetrapal",
-    photo: "/images/team/anshuma-kshetrapal.jpg",
+    photo: "/images/team/anshuma-kshetrapal.jpeg",
     pronouns: "she/her",
     tag: "Creative Arts Therapies & Mental Health Integration",
     role: "Psychotherapist and Drama and Movement Therapist; Founder, The Color of Grey Cells; Co-founder, The Arts Therapists Colab",
@@ -815,7 +827,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Shubham Srivastav",
-    photo: "/images/team/shubham-srivastav.jpg",
+    photo: "/images/team/shubham-srivastav.jpeg",
     pronouns: "she/her",
     tag: "Programme Curation & Festival Design",
     role: "Founder, The MoveVent Project",
@@ -828,7 +840,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Ritesh Sharma",
-    photo: "/images/team/ritesh-sharma.jpg",
+    photo: "/images/team/ritesh-sharma.jpeg",
     pronouns: "he/him",
     tag: "Public Art & Urban Interventions",
     role: "Project Director, St+art India Foundation",
@@ -841,7 +853,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Dr. Shruti Chakravarty",
-    photo: "/images/team/shruti-chakravarty.jpg",
+    photo: "/images/team/shruti-chakravarty.jpeg",
     pronouns: "she/her",
     tag: "Legal, Policy & Rights-Based Frameworks",
     role: "Chief Advisor, Mariwala Health Initiative",
@@ -851,7 +863,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Dr. Vipul Rastogi",
-    photo: "/images/team/vipul-rastogi.jpg",
+    photo: "/images/team/vipul-rastogi.jpeg",
     pronouns: "he/him",
     tag: "Healthcare & Medical Systems",
     role: "Psychiatrist; Clinical Regional Head, Sukoon Health",
@@ -862,6 +874,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Prashant Das",
+    photo: "/images/team/prashant-das.jpeg",
     pronouns: "he/him",
     tag: "Partnerships, CSR & Institutional Strategy",
     role: "Sustainability and CSR Specialist",
@@ -872,7 +885,7 @@ export const ADVISORY_BOARD: Person[] = [
   },
   {
     name: "Kavya Mukhija",
-    photo: "/images/team/kavya-mukhija.jpg",
+    photo: "/images/team/kavya-mukhija.jpeg",
     pronouns: "she/her",
     tag: "Diversity, Equity & Inclusion Practice",
     role: "Founder, Namastey Disability; Disability Rights Advocate",
@@ -892,6 +905,7 @@ export const CONSULTANTS_INTRO = {
 export const CONSULTANTS: Person[] = [
   {
     name: "Mehr Lungani",
+    photo: "/images/team/mehr-lungani.jpeg",
     pronouns: "she/her",
     role: "Community & Partnerships Consultant",
     bio: [
@@ -902,6 +916,7 @@ export const CONSULTANTS: Person[] = [
   },
   {
     name: "Chitra Kalyani",
+    photo: "/images/team/chitra-kalyani.jpeg",
     pronouns: "she/her",
     role: "Creative Collaborations Consultant",
     bio: [
@@ -910,6 +925,7 @@ export const CONSULTANTS: Person[] = [
   },
   {
     name: "Muskan",
+    photo: "/images/team/muskan.jpeg",
     pronouns: "any pronouns",
     role: "Intersectional Collaborations Consultant",
     bio: [
