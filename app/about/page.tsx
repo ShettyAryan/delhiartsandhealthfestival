@@ -30,7 +30,9 @@ export default function AboutPage() {
           full clamp(4rem,10vw,8rem) top gap read as too much empty space
           above "About DAHF". Bottom padding is untouched (still
           py-section-y), so spacing before the next section is unaffected. */}
-      <ColorSection tone="cream" className="pt-8 md:pt-12">
+      <ColorSection tone="cream" className="relative z-0 overflow-hidden pt-8 md:pt-12">
+        <FloatingMotif variant="daisy" className="right-[3%] top-[2%] hidden h-24 w-24 md:block lg:h-32 lg:w-32" baseRotate={10} duration={11} delay={0} />
+        <FloatingMotif variant="kalash" className="right-[16%] top-[10%] hidden h-16 w-16 lg:block lg:h-20 lg:w-20" baseRotate={-12} duration={9} delay={0.5} />
         <h1 className="font-display text-h1 font-bold text-navy">
           About DAHF
         </h1>
@@ -63,7 +65,9 @@ export default function AboutPage() {
 
       {/* Standalone image, right after Vision/Mission — freed up from the
           removed "Bringing Communities Together" section it used to sit in. */}
-      <ColorSection tone="cream">
+      <ColorSection tone="cream" className="relative z-0 overflow-hidden">
+        <FloatingMotif variant="stairs" className="left-[2%] top-[4%] hidden h-20 w-20 md:block lg:h-28 lg:w-28" baseRotate={-8} duration={10} delay={0} />
+        <FloatingMotif variant="star" className="right-[3%] bottom-[4%] hidden h-20 w-20 md:block lg:h-28 lg:w-28" baseRotate={14} duration={12} delay={0.6} />
         <Figure
           image={ABOUT_IMAGE}
           ratio="wide"
@@ -89,6 +93,7 @@ export default function AboutPage() {
             baseRotate={12}
             duration={10}
           />
+          <FloatingMotif variant="daisy" className="right-[16%] top-[30%] hidden h-14 w-14 lg:block lg:h-16 lg:w-16" baseRotate={6} duration={13} delay={1} />
           <h2 className="font-display text-h2 font-bold text-navy">Why Now</h2>
           <div className="mt-5 h-1.5 w-16 bg-teal" />
         </div>
@@ -125,7 +130,10 @@ export default function AboutPage() {
           rather than a repeat of the homepage's own Why Delhi section
           (four infrastructure pillars). Purple, the same tone the earlier
           "India and Delhi's moment" section used before it was removed. */}
-      <ColorSection tone="purple">
+      <ColorSection tone="purple" className="relative z-0 overflow-hidden">
+        <FloatingMotif variant="star" className="right-[6%] top-[12%] hidden h-24 w-24 md:block lg:h-36 lg:w-36" baseRotate={12} duration={11} delay={0} />
+        <FloatingMotif variant="kalash" className="right-[24%] top-[46%] hidden h-20 w-20 lg:block lg:h-28 lg:w-28" baseRotate={-10} duration={10} delay={0.4} />
+        <FloatingMotif variant="stairs" className="right-[8%] bottom-[8%] hidden h-20 w-20 md:block lg:h-24 lg:w-24" baseRotate={8} duration={12} delay={0.9} />
         <h2 className="font-display text-h2 font-bold">
           {ABOUT.whyDelhi.heading}
         </h2>
@@ -159,6 +167,8 @@ export default function AboutPage() {
           </h2>
           <div className="mt-5 h-1.5 w-16 bg-teal" />
         </div>
+        <FloatingMotif variant="stairs" className="right-[4%] top-[42%] hidden h-24 w-24 lg:block lg:h-32 lg:w-32" baseRotate={-9} duration={11} delay={0.3} />
+        <FloatingMotif variant="daisy" className="right-[20%] bottom-[6%] hidden h-16 w-16 lg:block lg:h-20 lg:w-20" baseRotate={9} duration={12} delay={0.8} />
         <ul className="relative mt-12 space-y-6 md:space-y-8">
           {ABOUT.hopes.map((h, i) => (
             <li
@@ -177,7 +187,9 @@ export default function AboutPage() {
 
       {/* Closing image — reuses the vision-board photo, freed up when the
           Vision section that used to carry it became a card without one. */}
-      <ColorSection tone="cream">
+      <ColorSection tone="cream" className="relative z-0 overflow-hidden">
+        <FloatingMotif variant="kalash" className="left-[3%] top-[4%] hidden h-20 w-20 md:block lg:h-28 lg:w-28" baseRotate={-10} duration={10} delay={0} />
+        <FloatingMotif variant="daisy" className="right-[3%] bottom-[4%] hidden h-20 w-20 md:block lg:h-28 lg:w-28" baseRotate={12} duration={11} delay={0.5} />
         <Figure
           image={ABOUT_VISION_IMAGE}
           ratio="wide"

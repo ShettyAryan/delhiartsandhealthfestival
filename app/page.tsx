@@ -4,7 +4,7 @@ import Hero from "@/components/hero";
 import Figure from "@/components/figure";
 import FloatingMotif from "@/components/floating-motif";
 import Marquee from "@/components/marquee";
-import MuralBand from "@/components/mural-band";
+import LogoBand from "@/components/logo-band";
 import ColorSection from "@/components/color-section";
 import StatBlock from "@/components/stat-block";
 import PathwayCard from "@/components/pathway-card";
@@ -93,7 +93,7 @@ export default function Home() {
       */}
       <ColorSection
         tone="cream"
-        className="flex min-h-[calc(100vh-4rem)] items-center py-6 md:min-h-[calc(100vh-4.5rem)] md:py-10"
+        className="pb-2 pt-8 md:pb-2 md:pt-12"
       >
         <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </ColorSection>
 
-      <MuralBand />
+      <LogoBand />
 
       {/* Festival at a Glance — 5 stats on teal. Moved up to sit right after
           the ecosystem section, with the mural band as its separator, rather
@@ -287,9 +287,6 @@ export default function Home() {
             ratio="wide"
             sizes="(min-width: 1024px) 90vw, 100vw"
           />
-          <figcaption className="mt-3 font-eyebrow text-eyebrow text-cream/70">
-            Lodhi Garden, Delhi
-          </figcaption>
         </figure>
 
         {/*

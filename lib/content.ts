@@ -36,51 +36,51 @@ export type FestivalImage = {
  */
 export const HERO_STRIP: FestivalImage[] = [
   {
-    src: "/images/hero-01-movement.jpg",
-    alt: "A group dancing together with arms raised at an evening gathering",
+    src: "/images/homepagecarousel/slide-01.jpg",
+    alt: "Participants raising their arms in a movement session on the lawn beside a historic domed tomb in Lodhi Garden",
     motif: "daisy",
   },
   {
-    src: "/images/hero-02-leaf-printing.jpg",
-    alt: "Children painting leaf prints onto clay discs at a workshop",
+    src: "/images/homepagecarousel/slide-02.jpg",
+    alt: "A group holding hands in a circle under a tree at an evening gathering in the park, one person stepping through a hoop",
     motif: "kalash",
   },
   {
-    src: "/images/hero-03-puppet.jpg",
-    alt: "Performers bringing a rooster puppet and a paper sun to life on stage",
+    src: "/images/homepagecarousel/slide-03.jpg",
+    alt: "Two participants colouring in a large hand-drawn poster that spells ARTS, with crayons and markers on the grass",
     motif: "star",
   },
   {
-    src: "/images/hero-04-nature-elders.jpg",
-    alt: "Older participants printing with leaves and shells onto a shared sheet",
+    src: "/images/homepagecarousel/slide-04.jpg",
+    alt: "A man and two children smiling behind a colourful hand-drawn FESTIVAL poster in the park",
     motif: "stairs",
   },
   {
-    src: "/images/hero-05-community-mural.jpg",
-    alt: "Participants painting a large mandala mural together outdoors",
+    src: "/images/homepagecarousel/slide-05.jpg",
+    alt: "Participants stretching their arms up in a group movement exercise in front of a domed tomb at sunset",
     motif: "daisy",
   },
   {
-    src: "/images/hero-06-classroom.jpg",
-    alt: "Schoolchildren holding up the sketchbooks they filled during a session",
+    src: "/images/homepagecarousel/slide-06.jpg",
+    alt: "A volunteer photographing a smiling participant holding a handwritten note, on a lawn in Lodhi Garden",
     motif: "kalash",
   },
   {
-    src: "/images/hero-07-drawing.jpg",
-    alt: "A young participant absorbed in drawing during a session",
+    src: "/images/homepagecarousel/slide-07.jpg",
+    alt: "Volunteers and participants seated on a rainbow parachute cloth beneath a hand-painted Poetry Corner sign",
     motif: "stairs",
   },
   {
-    src: "/images/hero-08-group.jpg",
-    alt: "A large group of participants at the close of a festival workshop",
+    src: "/images/homepagecarousel/slide-08.jpg",
+    alt: "People forming an arch with their arms beside a tomb, while a participant draws on a large sheet in the foreground",
     motif: "star",
   },
 ];
 
 /** One editorial image inside the What is Arts & Health section. */
 export const WHAT_IS_ARTS_HEALTH_IMAGE: FestivalImage = {
-  src: "/images/arts-health-table.jpg",
-  alt: "An art table mid-session, with hands painting henna patterns and paints spread across it",
+  src: "/images/what-is-arts-and-health.jpg",
+  alt: "A collaborative artwork of swirling purple and blue pastel with orange crepe paper, painted leaves and splashes of red, green and yellow paint",
   motif: "daisy",
 };
 
@@ -479,7 +479,7 @@ export const PROGRAMME = {
  * a third time for a consistent "page hero" pattern site-wide). */
 export const PROGRAMME_HERO_IMAGE: FestivalImage = {
   src: "/images/programme-hero.jpg",
-  alt: "Art supplies, a small drum, and cups spread across a workshop table",
+  alt: "Participants in a row at an evening workshop, laughing and dancing with their arms raised",
   motif: "kalash",
 };
 
@@ -1153,8 +1153,9 @@ export const CONTACT_HERO_IMAGE: FestivalImage = {
 // ---------------------------------------------------------------------------
 
 export type PreFestivalEvent = {
-  group: string;
+  group?: string;
   title: string;
+  subtitle?: string;
   partner?: string;
   location: string;
   date: string;
@@ -1171,44 +1172,95 @@ export const PRE_FESTIVAL = {
       title: "Dilli Art Jam",
       location: "Lodhi Garden",
       date: "30 August 2026",
-      images: [{ alt: "Dilli Art Jam at Lodhi Garden", motif: "daisy" }],
+      images: [
+        {
+          src: "/images/prefestival/dilli-art-jam.jpg",
+          alt: "Five people sitting on the grass around a large hand-drawn ARTS poster, colouring with markers",
+          motif: "daisy",
+        },
+      ],
     },
     {
       group: "School Initiative",
-      title: "Knowledge Tree School, Gurgaon",
+      title: "Knowledge Tree School",
+      subtitle: "Teacher’s Day Wellness Event",
       partner: "In partnership with Read India Foundation",
       location: "Knowledge Tree School, Gurgaon",
       date: "5 September 2026",
-      images: [{ alt: "School initiative at Knowledge Tree School, Gurgaon", motif: "stairs" }],
+      images: [
+        {
+          src: "/images/prefestival/knowledge-tree-school.jpg",
+          alt: "A group of teachers posing together and smiling in a classroom after the wellness event",
+          motif: "stairs",
+        },
+      ],
     },
     {
       group: "School Initiative",
-      title: "Jagran Public School, Noida",
+      title: "Jagran Public School",
+      subtitle: "Navigating Exam Stress - Session for Students",
       location: "Jagran Public School, Noida",
       date: "8 September 2026",
-      images: [{ alt: "School initiative at Jagran Public School, Noida", motif: "star" }],
+      images: [{ alt: "Students at the exam stress session at Jagran Public School, Noida", motif: "star" }],
     },
     {
       group: "School Initiative",
-      title: "JSS Public School, Noida",
+      title: "JSS Public School",
+      subtitle: "Navigating Exam Stress - Session for Students",
       location: "JSS Public School, Noida",
       date: "15 September 2026",
-      images: [{ alt: "School initiative at JSS Public School, Noida", motif: "kalash" }],
+      images: [
+        {
+          src: "/images/prefestival/jss-public-school.jpg",
+          alt: "Schoolchildren in uniform crowded around a large sheet of paper, writing together during the exam stress session",
+          motif: "kalash",
+        },
+      ],
+    },
+    {
+      title: "Zine-Making Workshop",
+      location: "Foresta Bistro and Cafe, Saket",
+      date: "20 September 2026",
+      images: [
+        {
+          src: "/images/prefestival/zine-making-workshop.jpg",
+          alt: "Participants crafting zines around a cafe table covered in markers, crayons and paper",
+          motif: "daisy",
+        },
+      ],
     },
   ] as PreFestivalEvent[],
   upcomingHeading: "Upcoming Events",
   upcoming: [
-    { title: "Zine-making Workshop", partner: "" },
+    { title: "Art Adda", partner: "with Shunya, Ramjas College Dramatics Club" },
     {
-      title: "Khula Aasmaan - Arts and Mental Health Fest",
+      title: "Khula Aasman - Creative Arts and Mental Health Fest",
       partner:
         "In partnership with Empowering Minds and Symbiosis Centre for Management Studies",
     },
     {
-      title: "Lights On Again",
-      partner: "In partnership with Sahaayta and Neev Mental Health",
+      title: "BeNaqaab - A Masquerade for MHPs",
+      partner: "In partnership with Chaos to Cosmos",
+    },
+    {
+      title: "Lights On, Again",
+      partner: "In partnership with Sahaayta, Neev Mental Health and Hank Nunn Institute",
     },
   ],
   closingLink: "Stay tuned",
   closingRest: " for more updates on ongoing events.",
 };
+
+/** Sister festivals shown in the band under the Global Ecosystem section. */
+export const OTHER_FESTIVALS = [
+  { city: "Abuja", src: "/images/otherfestivals/abuja.png" },
+  { city: "Accra", src: "/images/otherfestivals/accra.png" },
+  { city: "Bengaluru", src: "/images/otherfestivals/bangalore.png" },
+  { city: "Dharamshala", src: "/images/otherfestivals/dharamshala.png" },
+  { city: "Hong Kong", src: "/images/otherfestivals/hong-kong.png" },
+  { city: "Jaipur", src: "/images/otherfestivals/jaipur.png" },
+  { city: "Lagos", src: "/images/otherfestivals/lagos.png" },
+  { city: "Mumbai", src: "/images/otherfestivals/mumbai.png" },
+  { city: "Pune", src: "/images/otherfestivals/pune.png" },
+  { city: "Tehran", src: "/images/otherfestivals/tehran.png" },
+] as const;

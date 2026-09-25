@@ -49,10 +49,17 @@ export default function PreFestivalEventsPage() {
                 />
               </div>
               <div className="lg:col-span-6">
-                <p className="font-eyebrow text-eyebrow text-maroon">{e.group}</p>
+                {e.group ? (
+                  <p className="font-eyebrow text-eyebrow text-maroon">{e.group}</p>
+                ) : null}
                 <h2 className="mt-3 font-display text-h2 font-bold leading-[1.05] text-navy">
                   {e.title}
                 </h2>
+                {e.subtitle ? (
+                  <p className="mt-3 font-display text-h3 font-semibold text-maroon">
+                    {e.subtitle}
+                  </p>
+                ) : null}
                 {e.partner ? <p className="mt-4 text-lead">{e.partner}</p> : null}
                 <p className="mt-6 flex items-center gap-2 text-body text-navy">
                   <PinIcon />
@@ -72,7 +79,7 @@ export default function PreFestivalEventsPage() {
         <h2 className="font-display text-h2 font-bold text-navy">
           {PRE_FESTIVAL.upcomingHeading}
         </h2>
-        <ul className="mt-8 grid gap-6 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
           {PRE_FESTIVAL.upcoming.map((u) => (
             <li key={u.title} className="rounded-card border-t-4 border-pink bg-cream p-8">
               <h3 className="font-display text-h3 font-semibold text-navy">{u.title}</h3>
