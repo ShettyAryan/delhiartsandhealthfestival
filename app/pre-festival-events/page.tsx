@@ -87,8 +87,12 @@ export default function PreFestivalEventsPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-10 max-w-[62ch] text-lead"><StayInformed variant="link">{PRE_FESTIVAL.closingLink}</StayInformed>
-          {PRE_FESTIVAL.closingRest}</p>
+        {/* A div, not a <p>: <StayInformed> renders a dialog (heading, form) beside
+            its trigger, and none of that may sit inside a paragraph. */}
+        <div className="mt-10 max-w-[62ch] text-lead">
+          <StayInformed variant="link">{PRE_FESTIVAL.closingLink}</StayInformed>
+          {PRE_FESTIVAL.closingRest}
+        </div>
       </ColorSection>
     </>
   );
