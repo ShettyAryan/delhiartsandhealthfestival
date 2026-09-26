@@ -36,6 +36,11 @@ export type FestivalImage = {
  */
 export const HERO_STRIP: FestivalImage[] = [
   {
+    src: "/images/homepagecarousel/slide-00.jpg",
+    alt: "A large group holding DELHI, ARTS, HEALTH and FESTIVAL signs together on the grass at sunset in front of a domed tomb",
+    motif: "kalash",
+  },
+  {
     src: "/images/homepagecarousel/slide-01.jpg",
     alt: "Participants raising their arms in a movement session on the lawn beside a historic domed tomb in Lodhi Garden",
     motif: "daisy",
@@ -119,6 +124,10 @@ export const CONTACT = [
   { role: "Programming", email: "curation.dahf@gmail.com" },
   { role: "Sponsorship and funding", email: "fundraising.dahf@gmail.com" },
 ] as const;
+
+/** Shown in the footer and on Press & Media, not folded into CONTACT above —
+ * that array also drives the Contact page, which wasn't asked to change. */
+export const GRIEVANCES_EMAIL = "grievanes.dahf@gmail.com";
 
 export const SOCIALS = [
   {
@@ -383,6 +392,10 @@ export const FINAL_CTA = {
 
 export const ABOUT = {
   heading: "Reimagining Delhi as the Capital of Care",
+  heroIntro: [
+    "Delhi Arts and Health Festival (DAHF) is a community-led festival that brings together diverse practices, people and perspectives at the intersection of arts and health.",
+    "Across five days, it creates spaces to experience, explore and reflect on how creativity and arts can shape individual, community and collective care.",
+  ],
   question: "What would it look like if we placed care at the centre of city life?",
   opening: [
     "The Delhi Arts and Health Festival begins with a question that sounds simple until you sit with it. What would Delhi feel like if care were not something you went searching for in a crisis, but something woven quietly into everyday life?",
@@ -987,20 +1000,20 @@ export const GET_INVOLVED = {
  * re-encoded, renamed).
  */
 
-/** Opening "poster moment" — paired with the question in a hero-style
- * two-column layout, borrowing that section's photo treatment (§0.11). */
-export const ABOUT_HERO_IMAGE: FestivalImage = {
-  src: "/images/about-hero-dance.jpg",
-  alt: "A dancer in silhouette, sheer black fabric billowing overhead like wings",
-  motif: "star",
-};
-
 /** Under the opening passage. Alt rewritten to match the photo that actually
  * landed — a studio floor, not a "community space". */
 export const ABOUT_IMAGE: FestivalImage = {
   src: "/images/about-workshop.jpg",
   alt: "Participants seated together on a studio floor, making art side by side",
   motif: "stairs",
+};
+
+/** About's own hero photo, in the same slot the home/Programme/Press/Contact
+ * hero image occupies. */
+export const ABOUT_HERO_IMAGE: FestivalImage = {
+  src: "/images/about-hero-small.jpg",
+  alt: "Participants holding hands in a large circle on the lawn at Lodhi Garden as the sun sets",
+  motif: "daisy",
 };
 
 /** Beside "Our Vision" — a participant's own hand-made vision board, found
@@ -1201,7 +1214,13 @@ export const PRE_FESTIVAL = {
       subtitle: "Navigating Exam Stress - Session for Students",
       location: "Jagran Public School, Noida",
       date: "8 September 2026",
-      images: [{ alt: "Students at the exam stress session at Jagran Public School, Noida", motif: "star" }],
+      images: [
+        {
+          src: "/images/prefestival/jagran-public-school.jpg",
+          alt: "Two facilitators speaking to rows of students in a school hall during the Navigating Exam Stress session at Jagran Public School",
+          motif: "star",
+        },
+      ],
     },
     {
       group: "School Initiative",

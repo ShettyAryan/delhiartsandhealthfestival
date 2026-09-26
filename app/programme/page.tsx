@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
 import DayName from "@/components/day-name";
 import Figure from "@/components/figure";
+import MuralBandStatic from "@/components/mural-band-static";
 import {
   DAYS,
   FESTIVAL_EXPLORES,
@@ -93,6 +94,8 @@ export default function ProgrammePage() {
           />
         </div>
       </section>
+
+      <MuralBandStatic id="programme-hero-mural" />
 
       {/* Festival Pathways — the five colour-blocked cards PathwayCard
           renders on the homepage (currently unused there, that section is

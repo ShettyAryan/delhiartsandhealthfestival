@@ -3,7 +3,7 @@ import ColorSection from "@/components/color-section";
 import MuralBandStatic from "@/components/mural-band-static";
 import Figure from "@/components/figure";
 import FloatingMotif from "@/components/floating-motif";
-import { ABOUT, ABOUT_IMAGE, ABOUT_VISION_IMAGE } from "@/lib/content";
+import { ABOUT, ABOUT_HERO_IMAGE, ABOUT_IMAGE, ABOUT_VISION_IMAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,30 +15,56 @@ export default function AboutPage() {
   return (
     <>
       {/*
-        Page now opens with "About DAHF" as the real page <h1> — removing the
-        earlier opening-question hero left the page without one, and every
-        other page on the site has exactly one. Vision and Mission sit below
-        it as two cards, not the two full-bleed colour blocks they were
-        before — bordered + rounded-card + an accent top rule (teal for
-        Vision, navy for Mission, matching their old block colours), the same
-        card treatment as the homepage's Why Arts/Health/Community section,
-        rather than the generic soft-shadow-card look §2 rules out. Neither
-        carries an image — the standalone image below now carries that job.
+        Hero, matching Home/Programme/Press/Contact's two-column treatment:
+        heading and subtext left, one photo right in the shared rounded-photo
+        frame, height-capped by viewport so it fits beside the shorter text
+        column, brand circles bleeding off the corners — navy and lime here,
+        the one pairing none of the other pages use yet.
       */}
-      {/* pt-8/md:pt-12 override the default py-section-y top padding — this
-          is the first section on the page, right under the header, so the
-          full clamp(4rem,10vw,8rem) top gap read as too much empty space
-          above "About DAHF". Bottom padding is untouched (still
-          py-section-y), so spacing before the next section is unaffected. */}
-      <ColorSection tone="cream" className="relative z-0 overflow-hidden pt-8 md:pt-12">
-        <FloatingMotif variant="daisy" className="right-[3%] top-[2%] hidden h-24 w-24 md:block lg:h-32 lg:w-32" baseRotate={10} duration={11} delay={0} />
-        <FloatingMotif variant="kalash" className="right-[16%] top-[10%] hidden h-16 w-16 lg:block lg:h-20 lg:w-20" baseRotate={-12} duration={9} delay={0.5} />
-        <h1 className="font-display text-h1 font-bold text-navy">
-          About DAHF
-        </h1>
-        <div className="mt-5 h-1.5 w-16 bg-teal" />
+      <section className="relative z-0 overflow-hidden bg-cream px-section-x pb-section-y pt-8 md:pt-12">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-[6%] -top-[14%] aspect-square w-[24%] rounded-chip bg-navy/70"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-[7%] bottom-[10%] aspect-square w-[20%] rounded-chip bg-lime/70"
+        />
 
-        <div className="mt-8 grid gap-8 md:grid-cols-2">
+        <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <h1 className="font-display text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[0.95] text-navy">
+              About DAHF
+            </h1>
+            <div className="mt-5 h-1.5 w-16 bg-teal" />
+            <div className="mt-6 space-y-4">
+              {ABOUT.heroIntro.map((p, i) => (
+                <p key={i} className="max-w-[54ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.4] text-ink">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <Figure
+            image={ABOUT_HERO_IMAGE}
+            ratio="portrait"
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            priority
+            className="h-[30vh] w-full rounded-photo sm:h-[32vh] md:h-[38vh] lg:col-span-6 lg:h-[54vh]"
+          />
+        </div>
+      </section>
+
+      <MuralBandStatic id="about-hero-mural" />
+
+      {/* Vision and Mission, as two cards — bordered + rounded-card + an
+          accent top rule (teal for Vision, navy for Mission, matching their
+          old block colours), the same card treatment as the homepage's Why
+          Arts/Health/Community section, rather than the generic
+          soft-shadow-card look §2 rules out. */}
+      <ColorSection tone="cream">
+        <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-card border-t-4 border-teal bg-cream-2 p-8">
             <h2 className="font-display text-h2 font-bold text-navy">
               {ABOUT.vision.heading}

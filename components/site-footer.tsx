@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MuralStrip } from "@/components/motif";
 import SocialIcon, { platformFromLabel } from "@/components/social-icon";
-import { CONTACT, FOOTER_LINKS, SOCIALS, FESTIVAL } from "@/lib/content";
+import { CONTACT, FOOTER_LINKS, GRIEVANCES_EMAIL, SOCIALS, FESTIVAL } from "@/lib/content";
 
 /** Static mural band — no parallax here, the footer is a full stop. */
 function FooterMural() {
@@ -53,6 +53,19 @@ export default function SiteFooter() {
                   </dd>
                 </div>
               ))}
+              <div>
+                <dt className="font-eyebrow text-eyebrow text-yellow">
+                  Grievances
+                </dt>
+                <dd>
+                  <a
+                    href={`mailto:${GRIEVANCES_EMAIL}`}
+                    className="break-words font-body text-body underline decoration-1 underline-offset-4 hover:text-yellow"
+                  >
+                    {GRIEVANCES_EMAIL}
+                  </a>
+                </dd>
+              </div>
             </dl>
           </div>
 

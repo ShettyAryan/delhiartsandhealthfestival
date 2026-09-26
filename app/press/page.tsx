@@ -3,7 +3,8 @@ import ColorSection from "@/components/color-section";
 import CTAButton from "@/components/cta-button";
 import Figure from "@/components/figure";
 import FloatingMotif from "@/components/floating-motif";
-import { FORMS, PRESS, PRESS_HERO_IMAGE } from "@/lib/content";
+import MuralBandStatic from "@/components/mural-band-static";
+import { FORMS, GRIEVANCES_EMAIL, PRESS, PRESS_HERO_IMAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Press & Media",
@@ -73,6 +74,8 @@ export default function PressPage() {
         </div>
       </section>
 
+      <MuralBandStatic id="press-hero-mural" />
+
       {/* Press FAQs — native <details>, so it works with JS disabled (§9) */}
       <ColorSection tone="cream" className="relative z-0 overflow-hidden">
         {/* Scoped to just the heading/intro, not the whole FAQ list below —
@@ -140,6 +143,16 @@ export default function PressPage() {
               className="text-maroon underline decoration-1 underline-offset-4"
             >
               {PRESS.mediaEmail}
+            </a>
+            .
+          </p>
+          <p className="mt-4 max-w-[80ch] text-body">
+            For grievances, write to{" "}
+            <a
+              href={`mailto:${GRIEVANCES_EMAIL}`}
+              className="text-maroon underline decoration-1 underline-offset-4"
+            >
+              {GRIEVANCES_EMAIL}
             </a>
             .
           </p>

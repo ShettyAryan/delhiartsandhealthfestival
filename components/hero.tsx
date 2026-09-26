@@ -113,7 +113,7 @@ export default function Hero() {
               </p>
             ))}
             <div className="mt-6 flex flex-wrap gap-3 md:gap-4">
-              <CTAButton href={DONATE_HREF} external>
+              <CTAButton href={DONATE_HREF} variant="secondary" external>
                 Donate
               </CTAButton>
               <CTAButton href="/get-involved" variant="secondary">
