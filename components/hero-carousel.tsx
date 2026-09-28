@@ -5,7 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HERO_STRIP } from "@/lib/content";
 
-const INTERVAL = 5000;
+const INTERVAL = 2800;
 
 /**
  * The rotating hero carousel the content PDF asks for: a dance movement

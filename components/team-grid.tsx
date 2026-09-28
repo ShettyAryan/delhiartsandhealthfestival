@@ -59,7 +59,7 @@ export default function TeamGrid({
         button's own content ends rather than needing every card's internal
         layout to match line-for-line.
       */}
-      <ul className={`grid items-stretch gap-4 ${columns}`}>
+      <ul className={`grid items-stretch gap-5 ${columns}`}>
         {people.map((p, i) => (
           <li
             key={p.name}
@@ -81,31 +81,30 @@ export default function TeamGrid({
               }}
               aria-haspopup="dialog"
               aria-label={`View full profile: ${p.name}`}
-              className="group flex h-full w-full flex-col gap-3 rounded-card border border-current/20 p-4 text-left transition-[transform,border-color] duration-200 hover:scale-[1.02] hover:border-current/50 lg:flex-row lg:gap-4"
+              className="group flex h-full w-full flex-col gap-4 rounded-card border border-current/20 p-5 text-left transition-[transform,border-color] duration-200 hover:scale-[1.02] hover:border-current/50 lg:flex-row lg:gap-5"
             >
               {/* Compact card: a small portrait (stacked above the text
                   below `lg`, beside it from `lg` up) rather than a
-                  full-column-width one, so both rows of Festival Leadership
-                  fit on one screen. Sized the same on every roster. */}
+                  full-column-width one. Sized the same on every roster. */}
               <Portrait
                 name={p.name}
                 src={p.photo}
-                sizes="112px"
-                className="w-24 shrink-0 lg:w-28"
+                sizes="128px"
+                className="w-28 shrink-0 lg:w-32"
               />
               <div className="min-w-0">
-                <h3 className="font-display text-[clamp(1.125rem,1.5vw,1.375rem)] font-semibold leading-tight">
+                <h3 className="font-display text-[clamp(1.25rem,1.7vw,1.5rem)] font-semibold leading-tight">
                   {p.name}
                 </h3>
                 {p.pronouns ? (
-                  <p className="mt-1 font-body text-small leading-snug">
+                  <p className="mt-1 font-body text-body leading-snug">
                     ({p.pronouns})
                   </p>
                 ) : null}
-                <p className={`mt-1.5 font-body text-small leading-snug ${accent}`}>
+                <p className={`mt-1.5 font-body text-body leading-snug ${accent}`}>
                   {p.role}
                 </p>
-                <p className="mt-2 line-clamp-2 text-small leading-snug">
+                <p className="mt-2 line-clamp-2 text-body leading-snug">
                   {p.bio[0]}
                 </p>
               </div>

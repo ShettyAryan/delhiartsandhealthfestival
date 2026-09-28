@@ -34,7 +34,7 @@ export default function FestivalTeamPage() {
 
       <ColorSection tone="cream-2">
         <h2 className="font-display text-h2 font-bold text-navy">
-          Committees and wider team
+          Festival Core Team
         </h2>
 
         <div className="mt-12">

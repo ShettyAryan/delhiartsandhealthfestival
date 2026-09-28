@@ -41,19 +41,19 @@ export const HERO_STRIP: FestivalImage[] = [
     motif: "kalash",
   },
   {
-    src: "/images/homepagecarousel/slide-01.jpg",
-    alt: "Participants raising their arms in a movement session on the lawn beside a historic domed tomb in Lodhi Garden",
-    motif: "daisy",
-  },
-  {
     src: "/images/homepagecarousel/slide-02.jpg",
     alt: "A group holding hands in a circle under a tree at an evening gathering in the park, one person stepping through a hoop",
-    motif: "kalash",
+    motif: "daisy",
   },
   {
     src: "/images/homepagecarousel/slide-03.jpg",
     alt: "Two participants colouring in a large hand-drawn poster that spells ARTS, with crayons and markers on the grass",
     motif: "star",
+  },
+  {
+    src: "/images/homepagecarousel/slide-04new.jpg",
+    alt: "A circle of participants listening together on the lawn at an evening gathering in the park",
+    motif: "stairs",
   },
   {
     src: "/images/homepagecarousel/slide-04.jpg",
@@ -118,16 +118,17 @@ export const FESTIVAL = {
   ],
 } as const;
 
+/** Also referenced directly (not through CONTACT below) in the footer and on
+ * Press & Media. */
+export const GRIEVANCES_EMAIL = "grievances.dahf@gmail.com";
+
 export const CONTACT = [
   { role: "General enquiries", email: "delhiartsandhealthfestival@gmail.com" },
   { role: "Partnerships and media", email: "partnerships.dahf@gmail.com" },
   { role: "Programming", email: "curation.dahf@gmail.com" },
   { role: "Sponsorship and funding", email: "fundraising.dahf@gmail.com" },
+  { role: "Grievances", email: GRIEVANCES_EMAIL },
 ] as const;
-
-/** Shown in the footer and on Press & Media, not folded into CONTACT above —
- * that array also drives the Contact page, which wasn't asked to change. */
-export const GRIEVANCES_EMAIL = "grievanes.dahf@gmail.com";
 
 export const SOCIALS = [
   {
@@ -195,7 +196,7 @@ export const NAV = [
     label: "Team",
     children: [
       { label: "Festival Team", href: "/festival-team" },
-      { label: "Advisory Board & Consultants", href: "/advisory-board" },
+      { label: "Advisors and Consultants", href: "/advisory-board" },
     ],
   },
   {
@@ -1057,8 +1058,8 @@ export const ABOUT_WHY_NOW_IMAGES: [FestivalImage, FestivalImage] = [
  * pages, not new photography.
  */
 export const PRESS_HERO_IMAGE: FestivalImage = {
-  src: "/images/press-hero.jpg",
-  alt: "A group of performers linking hands mid-scene on a rooftop stage, string lights overhead",
+  src: "/images/press-media-new.jpg",
+  alt: "Two children posing together, smiling, inside a hand-decorated Delhi Arts and Health Festival photo frame",
   motif: "star",
 };
 

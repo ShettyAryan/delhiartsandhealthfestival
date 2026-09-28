@@ -114,14 +114,14 @@ export default function Home() {
                 alt="Global Arts in Medicine Fellowship (GAIMF)"
                 width={864}
                 height={1080}
-                className="h-14 w-auto sm:h-20 lg:h-32 xl:h-50"
+                className="h-44 w-auto xl:h-50"
               />
               <Image
                 src="/images/GSAHlogo.png"
                 alt="Global South Arts & Health (GSAH)"
                 width={864}
                 height={1080}
-                className="h-14 w-auto sm:h-20 lg:h-32 xl:h-50"
+                className="h-44 w-auto xl:h-50"
               />
             </div>
           </div>
