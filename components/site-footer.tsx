@@ -102,9 +102,17 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <p className="mx-auto mt-16 w-full max-w-360 font-body text-small text-cream/70">
-          © {new Date().getFullYear()} {FESTIVAL.name}
-        </p>
+        <div className="mx-auto mt-16 flex w-full max-w-360 flex-wrap items-center gap-x-6 gap-y-2 font-body text-small text-cream/70">
+          <p>
+            © {new Date().getFullYear()} {FESTIVAL.name}
+          </p>
+          <Link href="/terms" className="underline decoration-1 underline-offset-4 hover:text-yellow">
+            Terms & Refund Policy
+          </Link>
+          <Link href="/privacy" className="underline decoration-1 underline-offset-4 hover:text-yellow">
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );
