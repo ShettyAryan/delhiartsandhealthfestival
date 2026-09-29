@@ -124,7 +124,7 @@ export const GRIEVANCES_EMAIL = "grievances.dahf@gmail.com";
 
 export const CONTACT = [
   { role: "General enquiries", email: "delhiartsandhealthfestival@gmail.com" },
-  { role: "Partnerships and media", email: "partnerships.dahf@gmail.com" },
+  { role: "Partnerships and media", email: "partnership.dahf@gmail.com" },
   { role: "Programming", email: "curation.dahf@gmail.com" },
   { role: "Sponsorship and funding", email: "fundraising.dahf@gmail.com" },
   { role: "Grievances", email: GRIEVANCES_EMAIL },
@@ -1139,7 +1139,7 @@ export const PRESS = {
     "View press releases",
     "View festival images",
   ],
-  mediaEmail: "partnerships.dahf@gmail.com",
+  mediaEmail: "partnership.dahf@gmail.com",
 } as const;
 
 // ---------------------------------------------------------------------------
