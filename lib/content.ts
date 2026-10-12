@@ -308,6 +308,8 @@ export const STATS = [
   { value: 10000, suffix: "+", label: "Participants" },
 ] as const;
 
+export const STATS_DISCLAIMER = "All figures are indicative, subjective to final confirmation.";
+
 export type Pathway = {
   term: string;
   body: string;

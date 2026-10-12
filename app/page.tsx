@@ -15,6 +15,7 @@ import {
   GLOBAL_ECOSYSTEM,
   PATHWAYS,
   STATS,
+  STATS_DISCLAIMER,
   WHAT_IS_ARTS_HEALTH,
   WHY_ARTS_HEALTH_COMMUNITY,
   WHY_DELHI,
@@ -150,6 +151,11 @@ export default function Home() {
             />
           ))}
         </div>
+        {/* Solid white, not a dimmed opacity — §0.5 rules out opacity dimming
+            on coloured backgrounds (it drops contrast below AA). */}
+        <p className="mt-10 text-center font-body text-small text-white">
+          {STATS_DISCLAIMER}
+        </p>
       </ColorSection>
 
       {/* What is Arts & Health — editorial two-column. The heading now spans
