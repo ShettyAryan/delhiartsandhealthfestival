@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
 import Figure from "@/components/figure";
 import EventCarousel from "@/components/event-carousel";
-import StayInformed from "@/components/stay-informed";
 import { PRE_FESTIVAL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Pre-Festival Events",
   description:
-    "Events leading up to the Delhi Arts & Health Festival, 2 to 6 December 2026: Dilli Art Jam, school initiatives, and what is coming next.",
+    "Events leading up to the Delhi Arts & Health Festival, 2 to 6 December 2026: Dilli Art Jam, school initiatives, workshops and community sessions across the city.",
 };
 
 function PinIcon() {
@@ -61,37 +60,23 @@ export default function PreFestivalEventsPage() {
                   </p>
                 ) : null}
                 {e.partner ? <p className="mt-4 text-lead">{e.partner}</p> : null}
-                <p className="mt-6 flex items-center gap-2 text-body text-navy">
-                  <PinIcon />
-                  <span>
-                    <span className="sr-only">Location: </span>
-                    {e.location}
-                  </span>
+                {e.location ? (
+                  <p className="mt-6 flex items-center gap-2 text-body text-navy">
+                    <PinIcon />
+                    <span>
+                      <span className="sr-only">Location: </span>
+                      {e.location}
+                    </span>
+                  </p>
+                ) : null}
+                <p
+                  className={`${e.location ? "mt-2" : "mt-6"} text-body font-semibold text-navy`}
+                >
+                  {e.date}
                 </p>
-                <p className="mt-2 text-body font-semibold text-navy">{e.date}</p>
               </div>
             </article>
           ))}
-        </div>
-      </ColorSection>
-
-      <ColorSection tone="cream-2">
-        <h2 className="font-display text-h2 font-bold text-navy">
-          {PRE_FESTIVAL.upcomingHeading}
-        </h2>
-        <ul className="mt-8 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
-          {PRE_FESTIVAL.upcoming.map((u) => (
-            <li key={u.title} className="rounded-card border-t-4 border-pink bg-cream p-8">
-              <h3 className="font-display text-h3 font-semibold text-navy">{u.title}</h3>
-              {u.partner ? <p className="mt-4 text-body">{u.partner}</p> : null}
-            </li>
-          ))}
-        </ul>
-        {/* A div, not a <p>: <StayInformed> renders a dialog (heading, form) beside
-            its trigger, and none of that may sit inside a paragraph. */}
-        <div className="mt-10 max-w-[62ch] text-lead">
-          <StayInformed variant="link">{PRE_FESTIVAL.closingLink}</StayInformed>
-          {PRE_FESTIVAL.closingRest}
         </div>
       </ColorSection>
     </>

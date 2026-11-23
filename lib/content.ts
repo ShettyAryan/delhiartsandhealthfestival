@@ -190,6 +190,7 @@ export const NAV = [
       { label: "About DAHF", href: "/about" },
       { label: "Programme", href: "/programme" },
       { label: "Pre-Festival Events", href: "/pre-festival-events" },
+      { label: "Partners", href: "/partners" },
     ],
   },
   {
@@ -216,6 +217,7 @@ export const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Programme", href: "/programme" },
   { label: "Pre-Festival Events", href: "/pre-festival-events" },
+  { label: "Partners", href: "/partners" },
   { label: "Festival Team", href: "/festival-team" },
   { label: "Advisory Board", href: "/advisory-board" },
   { label: "Get Involved", href: "/get-involved" },
@@ -952,6 +954,130 @@ export const CONSULTANTS: Person[] = [
 ];
 
 // ---------------------------------------------------------------------------
+// Partners
+// ---------------------------------------------------------------------------
+
+/**
+ * Partner logos, grouped by the partnership type the client gave each one
+ * (the folder structure of `assets-source/Partners/`). Names come from the
+ * folder/file names, corrected against the logo artwork where the file name
+ * wasn't the partner's name (`final.png` is Aiman, `IPCW-logo.png` is
+ * Indraprastha College for Women, the "Alhcon" folder is Ahlcon). Logos were
+ * trimmed, capped at 600px and renamed to lowercase slugs in
+ * `public/images/partners/`.
+ *
+ * `slug` is both the image file name and a stable key.
+ */
+export type Partner = { name: string; slug: string };
+export type PartnerGroup = { type: string; partners: readonly Partner[] };
+
+const partner = (name: string, slug: string): Partner => ({ name, slug });
+
+export const PARTNERS = {
+  heading: "Our Partners",
+  associates: {
+    type: "In association with",
+    partners: [
+      partner("Aatmanveshan", "aatmanveshan"),
+      partner("CoGC", "cogc"),
+      partner("The Arts Therapists CoLab", "tatc"),
+      partner("The MoveVent Project", "movevent-project"),
+      partner("The Safe Space Co.", "safe-space-co"),
+    ],
+  },
+  festivalHeading: "Festival Partners",
+  festival: [
+    {
+      type: "Main Festival Venues",
+      partners: [
+        partner("Niv Art Centre", "niv-art-centre"),
+        partner("Surtal Amphitheatre", "surtal-amphitheatre"),
+      ],
+    },
+    {
+      type: "Knowledge Partner",
+      partners: [partner("Indraprastha College for Women", "ipcw")],
+    },
+    {
+      type: "Medical Partner",
+      partners: [partner("CK Birla Hospital", "ck-birla-hospital")],
+    },
+    {
+      type: "Mental Health Partner",
+      partners: [partner("Aiman", "aiman")],
+    },
+    {
+      type: "Community Partners",
+      partners: [
+        partner("CMTAI", "cmtai"),
+        partner("Indian Association of Dance Movement Therapy", "iadmt"),
+      ],
+    },
+    {
+      type: "Arts and Folklore Partner",
+      partners: [partner("Centre for Contemporary Folklore", "centre-for-contemporary-folklore")],
+    },
+    {
+      type: "Joy and Wellness Partner",
+      partners: [partner("Clownselors", "clownselors")],
+    },
+    {
+      type: "Programme Partner – ISL",
+      partners: [partner("KarmaCare", "karmacare")],
+    },
+    {
+      type: "NGO Partners",
+      partners: [
+        partner("Empowering Minds", "empowering-minds"),
+        partner("NeuroAid Research Foundation", "neuroaid-research-foundation"),
+        partner("Shakti Shalini", "shakti-shalini"),
+      ],
+    },
+    {
+      type: "Sustainability Partner",
+      partners: [partner("One Step Greener", "one-step-greener")],
+    },
+    {
+      type: "Media Partners",
+      partners: [
+        partner("Delhi Events", "delhi-events"),
+        partner("The Dilli", "the-dilli"),
+      ],
+    },
+  ] satisfies readonly PartnerGroup[],
+  preFestivalHeading: "Pre-Festival Partners",
+  preFestival: [
+    {
+      type: "Pre-Festival Event Partners",
+      partners: [
+        partner("Akkad Bakkad Collective", "akkad-bakkad-collective"),
+        partner("Ahlcon International School", "ahlcon-international-school"),
+        partner("Chaos to Cosmos", "chaos-to-cosmos"),
+        partner("Dakshin Delhi Cultural Association", "dakshin-delhi-cultural-association"),
+        partner("Hank Nunn Institute", "hank-nunn-institute"),
+        partner("Hindu College", "hindu-college"),
+        partner("Jagran Public School", "jagran-public-school"),
+        partner("JSS Public School", "jss-public-school"),
+        partner("Kathika Cultural Centre", "kathika-cultural-centre"),
+        partner("Knowledge Tree School", "knowledge-tree-school"),
+        partner("Neev MH", "neev-mh"),
+        partner("Read India", "read-india"),
+        partner("Sahaayta", "sahaayta"),
+        partner("Tagore International School", "tagore-international-school"),
+      ],
+    },
+    {
+      type: "Pre-Festival Venue Partners",
+      partners: [
+        partner("Cafe Sheroes Hangout", "cafe-sheroes"),
+        partner("Foresta Bistro & Cafe", "foresta"),
+        partner("Lilanoor", "lilanoor"),
+      ],
+    },
+  ] satisfies readonly PartnerGroup[],
+} as const;
+
+// ---------------------------------------------------------------------------
 // Get Involved
 // ---------------------------------------------------------------------------
 
@@ -1173,7 +1299,8 @@ export type PreFestivalEvent = {
   title: string;
   subtitle?: string;
   partner?: string;
-  location: string;
+  /** Omitted where the client hasn't given one — never guessed. */
+  location?: string;
   date: string;
   /** One entry per carousel slide. Add `src` as photographs arrive; more
    * entries add more slides. */
@@ -1251,26 +1378,219 @@ export const PRE_FESTIVAL = {
         },
       ],
     },
-  ] as PreFestivalEvent[],
-  upcomingHeading: "Upcoming Events",
-  upcoming: [
-    { title: "Art Adda", partner: "with Shunya, Ramjas College Dramatics Club" },
+    // Updates as per 21 November 2026 — `assets-source/updates as per 21st
+    // nov/`. Titles and dates come from the client's file names. The four that
+    // used to sit under "Upcoming Events" (Art Adda, BeNaqaab, Lights On Again,
+    // Khula Aasman) keep the partner lines the client wrote for them there.
     {
-      title: "Khula Aasman - Creative Arts and Mental Health Fest",
-      partner:
-        "In partnership with Empowering Minds and Symbiosis Centre for Management Studies",
+      title: "Art Adda",
+      partner: "with Shunya, Ramjas College Dramatics Club",
+      location: "Basant Lok",
+      date: "26 September 2026",
+      images: [
+        {
+          src: "/images/prefestival/art-adda-basant-lok.jpg",
+          alt: "A large group posing together at night in Basant Lok market, several holding up hand-drawn posters",
+          motif: "stairs",
+        },
+      ],
     },
     {
       title: "BeNaqaab - A Masquerade for MHPs",
       partner: "In partnership with Chaos to Cosmos",
+      date: "3 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/benaqaab.jpg",
+          alt: "Participants wearing decorated masquerade masks, posing together in a cafe",
+          motif: "star",
+        },
+      ],
+    },
+    {
+      title: "YMH Confab",
+      date: "4 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/ymh-confab.jpg",
+          alt: "A facilitator leading a movement exercise while participants sit around her on a patterned carpet",
+          motif: "kalash",
+        },
+      ],
+    },
+    {
+      group: "School Initiative",
+      title: "Ahlcon International School",
+      date: "8 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/ahlcon-international-school.jpg",
+          alt: "Rows of students in uniform seated on an auditorium floor, facing two speakers and a projected presentation",
+          motif: "daisy",
+        },
+      ],
     },
     {
       title: "Lights On, Again",
       partner: "In partnership with Sahaayta, Neev Mental Health and Hank Nunn Institute",
+      date: "11 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/lights-on-again.jpg",
+          alt: "Audience members seated on wooden benches in a dimmed hall, facing a projection screen",
+          motif: "stairs",
+        },
+      ],
     },
-  ],
-  closingLink: "Stay tuned",
-  closingRest: " for more updates on ongoing events.",
+    {
+      title: "QCI x Aiman",
+      date: "12 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/qci-x-aiman.jpg",
+          alt: "Participants gathered around a table spread with colourful markers and handmade booklets",
+          motif: "star",
+        },
+      ],
+    },
+    {
+      group: "School Initiative",
+      title: "Tagore International School",
+      date: "14 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/tagore-international-school.jpg",
+          alt: "Students in uniform standing in small groups with facilitators in a school hall",
+          motif: "kalash",
+        },
+      ],
+    },
+    {
+      title: "Dhunuchi x Expressive Arts",
+      date: "20 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/dhunuchi-expressive-arts.jpg",
+          alt: "Women in saris dancing with smoking dhunuchi incense burners",
+          motif: "daisy",
+        },
+      ],
+    },
+    {
+      title: "CMTAI Conference",
+      date: "24–25 October 2026",
+      // Photo supplied as HEIC, which could not be converted here — export it
+      // as JPG, then add `src: "/images/prefestival/cmtai-conference.jpg"`.
+      images: [{ alt: "The CMTAI conference", motif: "stairs" }],
+    },
+    {
+      title: "Khula Aasman - Creative Arts and Mental Health Fest",
+      partner:
+        "In partnership with Empowering Minds and Symbiosis Centre for Management Studies",
+      date: "27 October 2026",
+      // Photo supplied as HEIC, as above — add
+      // `src: "/images/prefestival/khula-aasman.jpg"` once it is a JPG.
+      images: [{ alt: "Khula Aasman, with Empowering Minds", motif: "star" }],
+    },
+    {
+      title: "Clownselors",
+      date: "29 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/clownselors.jpg",
+          alt: "Clowns in rainbow wigs posing with staff, children and families around a table",
+          motif: "kalash",
+        },
+      ],
+    },
+    {
+      title: "Hindu College",
+      date: "29 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/hindu-college.jpg",
+          alt: "Students moving together across a large open hall during a movement session",
+          motif: "daisy",
+        },
+      ],
+    },
+    {
+      title: "Perils of Patriarchy",
+      subtitle: "Why Loiter Campaign",
+      date: "31 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/perils-of-patriarchy.jpg",
+          alt: "Five young women standing outdoors at night, each holding a handwritten placard",
+          motif: "stairs",
+        },
+      ],
+    },
+    {
+      title: "Taal Mel-a",
+      date: "1 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/taal-mel-a.jpg",
+          alt: "A group standing in a circle on a lawn with hand drums, a colourful parachute cloth spread on the grass",
+          motif: "star",
+        },
+      ],
+    },
+    {
+      title: "Expressive Arts Space",
+      partner: "In partnership with KMC",
+      date: "4 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/kmc-expressive-arts-space.jpg",
+          alt: "A large group of students posing with books and drawings on rugs outside a red-brick college building",
+          motif: "kalash",
+        },
+      ],
+    },
+    {
+      title: "Mural Painting + EXAT",
+      partner: "In partnership with Shakti Shalini",
+      date: "5 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/shakti-shalini-mural-1.jpg",
+          alt: "Children and volunteers painting rainbow-coloured waves onto a long outdoor wall",
+          motif: "daisy",
+        },
+        {
+          src: "/images/prefestival/shakti-shalini-mural-2.jpg",
+          alt: "The finished mural: rainbow waves beneath the words Healing is an Art, with Delhi Arts and Health Festival, Capital of Care painted alongside",
+          motif: "daisy",
+        },
+      ],
+    },
+    {
+      title: "Re:Imagine",
+      partner: "In partnership with Indraprastha College for Women",
+      date: "13 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/reimagine-ipcw.jpg",
+          alt: "A speaker addressing a full auditorium, beside a lit traditional lamp",
+          motif: "stairs",
+        },
+      ],
+    },
+    {
+      title: "Khushiyon ke Rang",
+      partner: "In partnership with NeuroAid Research Foundation",
+      date: "14 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/khushiyon-ke-rang.jpg",
+          alt: "Facilitators and children sitting together on mats in a colourful play and therapy room",
+          motif: "star",
+        },
+      ],
+    },
+  ] as PreFestivalEvent[],
 };
 
 /** Sister festivals shown in the band under the Global Ecosystem section. */

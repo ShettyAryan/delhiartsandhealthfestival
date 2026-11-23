@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Newsreader, Mulish } from "next/font/google";
+import localFont from "next/font/local";
 import SmoothScroll from "@/components/smooth-scroll";
 import { MotifDefs } from "@/components/motif";
 import SiteHeader from "@/components/site-header";
@@ -7,31 +7,40 @@ import SiteFooter from "@/components/site-footer";
 import "./globals.css";
 
 /**
- * Weights are named explicitly rather than letting next/font pull the variable
- * face, matching the discipline the previous Antonio/Libre Franklin load used.
- * Poppins covers headings, the hero title, and eyebrow labels (400 default,
- * 600/700 for the bold weights already used throughout).
+ * Self-hosted, not next/font/google. Google Fonts has started serving some
+ * font URLs as `fonts.gstatic.com/l/font?kit=…&skey=…&v=…`, and Turbopack's
+ * next/font/google loader fails on any URL whose query has more than one
+ * entry ("next/font/google queries have exactly one entry"), which broke both
+ * `next dev` and `next build`, intermittently, depending on which URL format
+ * Google returned. Local files also take the network out of the build.
+ *
+ * The files in app/fonts are the latin-subset woff2s Google serves for
+ * exactly the faces used before: Poppins 400/600/700, Mulish 400–500 (one
+ * variable file covers both), Newsreader 500 italic. To change a weight,
+ * download the matching latin woff2 from fonts.googleapis.com/css2.
+ *
+ * Poppins covers headings, the hero title, and eyebrow labels.
  */
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+const poppins = localFont({
+  src: [
+    { path: "./fonts/poppins-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/poppins-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/poppins-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-poppins",
   display: "swap",
 });
 
-const mulish = Mulish({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+const mulish = localFont({
+  src: [{ path: "./fonts/mulish-latin-variable.woff2", weight: "400 500", style: "normal" }],
   variable: "--font-mulish",
   display: "swap",
 });
 
 // Medium italic only: Newsreader's one job on this site is the hero
-// subtitle line, so there is no reason to fetch a roman cut it never uses.
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["500"],
-  style: ["italic"],
+// subtitle line, so there is no reason to ship a roman cut it never uses.
+const newsreader = localFont({
+  src: [{ path: "./fonts/newsreader-500-italic.woff2", weight: "500", style: "italic" }],
   variable: "--font-newsreader",
   display: "swap",
   preload: false,
@@ -58,7 +67,6 @@ export default function RootLayout({
     >
       <head>
         {/* Samarkan, for the Pehchaan to Muskaan day names only (programme page). */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/samarkan" />
       </head>
       {/*

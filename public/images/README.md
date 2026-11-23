@@ -189,3 +189,32 @@ mobile viewport — genuinely above the fold, so it keeps `priority` and loads
 eagerly. The other seven lazy-load. `next/image` serves it at ~360px on a phone,
 so the delivered bytes are already right-sized; the remaining cost is real image
 weight, not a code defect.
+
+## Partners
+
+`partners/` holds 38 logos for `/partners`, normalised from
+`assets-source/Partners/` (the folder names there are the partnership types).
+Each was trimmed of its empty margin, capped at 600px and saved as a
+lowercase-slug PNG. The slug ↔ name ↔ type mapping lives in `PARTNERS` in
+`lib/content.ts`; adding a partner is one file here plus one line there.
+
+Where a partner supplied variants, the one that reads on white was used
+(TATC and MoveVent black, Chaos to Cosmos on white, the transparent
+Aatmanveshan and Jagran files). Names were checked against the artwork where
+the file name wasn't the partner's name: `final.png` is Aiman, `IPCW-logo.png`
+is Indraprastha College for Women, and the "Alhcon" folder is Ahlcon. The
+`Surtal Amphi.png` file is the NDMC logo, captioned "Surtal Amphitheatre".
+
+## Pre-festival events — updates as per 21 November
+
+17 photos in `prefestival/`, normalised from
+`assets-source/updates as per 21st nov/` (EXIF rotation baked in, capped at
+2400px, q82 progressive; 76MB → 8.4MB). Event titles and dates come from the
+client's file names.
+
+**Still outstanding:** the CMTAI conference (24–25 Oct) and Empowering Minds
+(27 Oct) photos were supplied as HEIC, which couldn't be converted here. Export
+them as JPG, save as `prefestival/cmtai-conference.jpg` and
+`prefestival/khula-aasman.jpg`, and add the `src` line (the comment next to
+each in `PRE_FESTIVAL` shows it). Write a real `alt` at the same time; the
+current one is a placeholder.
