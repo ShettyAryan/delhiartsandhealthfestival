@@ -17,15 +17,15 @@ export const metadata: Metadata = {
  * own white ground, which is why the card is white rather than cream-2:
  * the edge of the artwork disappears into it instead of showing as a box.
  */
-function PartnerTile({ p, size = "md" }: { p: Partner; size?: "md" | "lg" }) {
+function PartnerTile({ p, sizes }: { p: Partner; sizes: string }) {
   return (
-    <li className={size === "lg" ? "w-full" : "w-36 md:w-44"}>
+    <li>
       <div className="relative aspect-square rounded-card border border-navy/10 bg-white">
         <Image
           src={`/images/partners/${p.slug}.png`}
           alt={`${p.name} logo`}
           fill
-          sizes={size === "lg" ? "(min-width: 1024px) 18vw, 45vw" : "176px"}
+          sizes={sizes}
           className="object-contain p-4 md:p-5"
         />
       </div>
@@ -34,20 +34,68 @@ function PartnerTile({ p, size = "md" }: { p: Partner; size?: "md" | "lg" }) {
   );
 }
 
-/** The partnership type is the label; the logos follow it. */
-function TypeLabel({ children }: { children: string }) {
-  return <h3 className="font-display text-h3 font-semibold text-maroon">{children}</h3>;
+/**
+ * The partnership types as a ruled list: type on the left, logos on the
+ * right. Every row's logos sit on the same five-column grid, so tiles line
+ * up vertically down the whole section whether a type has one partner or
+ * fourteen (an earlier flex-wrap version packed types side by side, and
+ * because each type was a different width nothing lined up).
+ *
+ * Stacked below `lg`, where the label sits above its logos.
+ */
+function GroupList({ groups }: { groups: readonly PartnerGroup[] }) {
+  return (
+    <div className="divide-y divide-navy/10 border-y border-navy/10">
+      {groups.map((g) => (
+        <div key={g.type} className="grid gap-6 py-8 md:py-10 lg:grid-cols-12 lg:gap-8">
+          <h3 className="font-display text-h3 font-semibold text-maroon lg:col-span-3">
+            {g.type}
+          </h3>
+          <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:col-span-9 lg:grid-cols-5">
+            {g.partners.map((p) => (
+              <PartnerTile
+                key={p.slug}
+                p={p}
+                sizes="(min-width: 1024px) 13vw, (min-width: 768px) 22vw, (min-width: 640px) 30vw, 45vw"
+              />
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
 }
 
-function Group({ g }: { g: PartnerGroup }) {
+/**
+ * For sections where every type has only a few partners (the festival
+ * partners: one to three each). The ruled list above would leave most of each
+ * row empty, so the types become cells instead, three across on desktop,
+ * each with a fixed three-column logo grid.
+ *
+ * Each cell is a two-row subgrid of the outer grid, so a label that wraps to
+ * two lines pushes every cell in that row down together: the logo tiles
+ * share one top edge across the row as well as one set of columns.
+ */
+function GroupGrid({ groups }: { groups: readonly PartnerGroup[] }) {
   return (
-    <div>
-      <TypeLabel>{g.type}</TypeLabel>
-      <ul className="mt-5 flex flex-wrap gap-5">
-        {g.partners.map((p) => (
-          <PartnerTile key={p.slug} p={p} />
-        ))}
-      </ul>
+    <div className="grid gap-x-10 gap-y-14 md:grid-cols-2 xl:grid-cols-3">
+      {groups.map((g) => (
+        <div
+          key={g.type}
+          className="row-span-2 grid grid-rows-subgrid gap-y-5 border-t border-navy/10 pt-6"
+        >
+          <h3 className="font-display text-h3 font-semibold text-maroon">{g.type}</h3>
+          <ul className="grid grid-cols-3 items-start gap-4">
+            {g.partners.map((p) => (
+              <PartnerTile
+                key={p.slug}
+                p={p}
+                sizes="(min-width: 1280px) 9vw, (min-width: 768px) 14vw, 28vw"
+              />
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
@@ -66,22 +114,21 @@ export default function PartnersPage() {
         </h2>
         <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8">
           {PARTNERS.associates.partners.map((p) => (
-            <PartnerTile key={p.slug} p={p} size="lg" />
+            <PartnerTile
+              key={p.slug}
+              p={p}
+              sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
+            />
           ))}
         </ul>
       </ColorSection>
 
-      {/* Most types have one or two partners, so a heading-per-type stack
-          would be mostly air. The groups pack into a wrapping flow instead,
-          each sized by how many logos it holds. */}
       <ColorSection tone="cream-2">
         <h2 className="font-display text-h2 font-bold text-navy">
           {PARTNERS.festivalHeading}
         </h2>
-        <div className="mt-10 flex flex-wrap gap-x-14 gap-y-12">
-          {PARTNERS.festival.map((g) => (
-            <Group key={g.type} g={g} />
-          ))}
+        <div className="mt-10">
+          <GroupGrid groups={PARTNERS.festival} />
         </div>
       </ColorSection>
 
@@ -91,10 +138,8 @@ export default function PartnersPage() {
         <h2 className="font-display text-h2 font-bold text-navy">
           {PARTNERS.preFestivalHeading}
         </h2>
-        <div className="mt-10 space-y-14">
-          {PARTNERS.preFestival.map((g) => (
-            <Group key={g.type} g={g} />
-          ))}
+        <div className="mt-10">
+          <GroupList groups={PARTNERS.preFestival} />
         </div>
       </ColorSection>
     </>
