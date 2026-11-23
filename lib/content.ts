@@ -1379,9 +1379,10 @@ export const PRE_FESTIVAL = {
       ],
     },
     // Updates as per 21 November 2026 — `assets-source/updates as per 21st
-    // nov/`. Titles and dates come from the client's file names. The four that
-    // used to sit under "Upcoming Events" (Art Adda, BeNaqaab, Lights On Again,
-    // Khula Aasman) keep the partner lines the client wrote for them there.
+    // nov/`. Titles and dates come from the client's file names. The three that
+    // used to sit under "Upcoming Events" (Art Adda, BeNaqaab, Lights On Again)
+    // keep the partner lines the client wrote for them there. Khula Aasman was
+    // removed on client direction.
     {
       title: "Art Adda",
       partner: "with Shunya, Ramjas College Dramatics Club",
@@ -1479,18 +1480,13 @@ export const PRE_FESTIVAL = {
     {
       title: "CMTAI Conference",
       date: "24–25 October 2026",
-      // Photo supplied as HEIC, which could not be converted here — export it
-      // as JPG, then add `src: "/images/prefestival/cmtai-conference.jpg"`.
-      images: [{ alt: "The CMTAI conference", motif: "stairs" }],
-    },
-    {
-      title: "Khula Aasman - Creative Arts and Mental Health Fest",
-      partner:
-        "In partnership with Empowering Minds and Symbiosis Centre for Management Studies",
-      date: "27 October 2026",
-      // Photo supplied as HEIC, as above — add
-      // `src: "/images/prefestival/khula-aasman.jpg"` once it is a JPG.
-      images: [{ alt: "Khula Aasman, with Empowering Minds", motif: "star" }],
+      images: [
+        {
+          src: "/images/prefestival/cmtai-conference.jpg",
+          alt: "Four people at a festival stall in front of display boards charting the history of dance movement therapy in India, the table draped with an illustrated Delhi Arts and Health Festival banner",
+          motif: "stairs",
+        },
+      ],
     },
     {
       title: "Clownselors",

@@ -207,14 +207,10 @@ is Indraprastha College for Women, and the "Alhcon" folder is Ahlcon. The
 
 ## Pre-festival events — updates as per 21 November
 
-17 photos in `prefestival/`, normalised from
+18 photos in `prefestival/`, normalised from
 `assets-source/updates as per 21st nov/` (EXIF rotation baked in, capped at
-2400px, q82 progressive; 76MB → 8.4MB). Event titles and dates come from the
+2400px, q82 progressive; 76MB → 9.2MB). Event titles and dates come from the
 client's file names.
 
-**Still outstanding:** the CMTAI conference (24–25 Oct) and Empowering Minds
-(27 Oct) photos were supplied as HEIC, which couldn't be converted here. Export
-them as JPG, save as `prefestival/cmtai-conference.jpg` and
-`prefestival/khula-aasman.jpg`, and add the `src` line (the comment next to
-each in `PRE_FESTIVAL` shows it). Write a real `alt` at the same time; the
-current one is a placeholder.
+The CMTAI conference photo was originally supplied as HEIC and later
+re-supplied as JPG (`assets-source/CMTAI  conference- 24&25 oct.jpg`).
