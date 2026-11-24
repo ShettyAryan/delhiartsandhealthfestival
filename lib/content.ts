@@ -594,10 +594,20 @@ export type ScheduleDay = {
   /** Index into DAYS — name, colour and motif come from there. */
   day: number;
   date: string;
+  venue: string;
   /** The day's theme as the schedule sheet words it. */
   theme: string;
   sessions: ScheduleSession[];
 };
+
+const NIV = "Niv Art Centre, IGNOU Chowk, Neb Sarai";
+const SURTAL = "Surtal Amphitheater, Talkatora Garden, President’s Estate";
+
+/** Venue line in the schedule hero. */
+export const SCHEDULE_VENUES = [
+  { dates: "2 to 4 December", venue: NIV },
+  { dates: "5 to 6 December", venue: SURTAL },
+] as const;
 
 /**
  * From the client's programming sheet, rows highlighted green only (light
@@ -609,6 +619,7 @@ export const SCHEDULE: ScheduleDay[] = [
   {
     day: 0,
     date: "Wednesday, 2 December",
+    venue: NIV,
     theme: "Identity & Self Awareness",
     sessions: [
       {
@@ -705,6 +716,7 @@ export const SCHEDULE: ScheduleDay[] = [
   {
     day: 1,
     date: "Thursday, 3 December",
+    venue: NIV,
     theme: "Expression & Release",
     sessions: [
       {
@@ -773,6 +785,7 @@ export const SCHEDULE: ScheduleDay[] = [
   {
     day: 2,
     date: "Friday, 4 December",
+    venue: NIV,
     theme: "Desire, Hope & Inner Resilience",
     sessions: [
       {
@@ -840,6 +853,7 @@ export const SCHEDULE: ScheduleDay[] = [
   {
     day: 3,
     date: "Saturday, 5 December",
+    venue: SURTAL,
     theme: "Community & Collective Healing",
     sessions: [
       {
@@ -902,6 +916,7 @@ export const SCHEDULE: ScheduleDay[] = [
   {
     day: 4,
     date: "Sunday, 6 December",
+    venue: SURTAL,
     theme: "Joy, Vitality & Celebration",
     sessions: [
       {
@@ -1390,10 +1405,6 @@ export const PARTNERS = {
       partners: [partner("Indraprastha College for Women", "ipcw")],
     },
     {
-      type: "Medical Partner",
-      partners: [partner("CK Birla Hospital", "ck-birla-hospital")],
-    },
-    {
       type: "Mental Health Partner",
       partners: [partner("Aiman", "aiman")],
     },
@@ -1430,6 +1441,14 @@ export const PARTNERS = {
         partner("Delhi Events", "delhi-events"),
         partner("The Dilli", "the-dilli"),
       ],
+    },
+    {
+      type: "Visual Identity Partner",
+      partners: [partner("ConstructDev", "constructdev")],
+    },
+    {
+      type: "Ticketing Partner",
+      partners: [partner("thumpN", "thumpn")],
     },
   ] satisfies readonly PartnerGroup[],
   preFestivalHeading: "Pre-Festival Partners",
@@ -1689,6 +1708,8 @@ export type PreFestivalEvent = {
   /** Omitted where the client hasn't given one — never guessed. */
   location?: string;
   date: string;
+  /** Set for a vertical photo: shown in a 3:4 frame instead of 3:2. */
+  portrait?: boolean;
   /** One entry per carousel slide. Add `src` as photographs arrive; more
    * entries add more slides. */
   images: FestivalImage[];
@@ -2001,6 +2022,7 @@ export const PRE_FESTIVAL = {
       partner: "In collaboration with Kathika Cultural Center",
       location: "Kathika Cultural Centre",
       date: "22 November 2026",
+      portrait: true,
       images: [
         {
           src: "/images/prefestival/baithak.jpg",

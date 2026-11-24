@@ -9,6 +9,7 @@ import {
   FESTIVAL,
   REGISTER_HREF,
   SCHEDULE,
+  SCHEDULE_VENUES,
   type Experience,
   type ScheduleSession,
 } from "@/lib/content";
@@ -49,6 +50,15 @@ const USED_EXPERIENCES = (Object.keys(EXPERIENCE) as Experience[]).filter((e) =>
 function splitTime(t: string): [string, string?] {
   const m = t.match(/^(\d{1,2}:\d{2})\s?(AM|PM)$/);
   return m ? [m[1], m[2]] : [t];
+}
+
+/** Same pin as the Pre-Festival Events page. */
+function PinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 6.2 12.2 6.9 12.9a.8.8 0 0 0 1.2 0c.7-.7 6.9-7.5 6.9-12.9A7.5 7.5 0 0 0 12 1.5Zm0 10.3a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z" />
+    </svg>
+  );
 }
 
 /** Small field heading inside a session tile ("Time", "Format", …), so a
@@ -150,7 +160,7 @@ export default function SchedulePage() {
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[6%] bottom-[6%] aspect-square w-[18%] rounded-chip bg-teal/70"
+          className="pointer-events-none absolute -bottom-[22%] -left-[6%] aspect-square w-[18%] rounded-chip bg-teal/70"
         />
 
         <div className="relative z-10 mx-auto grid w-full max-w-360 items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -163,6 +173,21 @@ export default function SchedulePage() {
               Five days of talks, workshops, performances and installations.
               Follow a single thread through the week, or wander between them.
             </p>
+
+            <div className="mt-8">
+              <p className="font-display text-small font-semibold text-navy">Venue</p>
+              <ul className="mt-3 space-y-2">
+                {SCHEDULE_VENUES.map((v) => (
+                  <li key={v.dates} className="flex items-start gap-2 text-[1rem] leading-snug">
+                    <PinIcon className="mt-0.5 h-5 w-5 shrink-0 text-maroon" />
+                    <span>
+                      <span className="font-semibold text-navy">{v.dates}</span>
+                      <span className="block">{v.venue}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className="mt-8">
               <p className="font-display text-small font-semibold text-navy">
@@ -251,6 +276,13 @@ export default function SchedulePage() {
                     />
                     <p className="mt-2 font-display text-[clamp(1.0625rem,1.8vw,1.375rem)] font-semibold leading-tight">
                       {sd.theme}
+                    </p>
+                    <p className="mt-3 flex items-start gap-1.5 text-[0.9375rem] font-medium leading-snug md:text-[1rem]">
+                      <PinIcon className="mt-0.5 h-4 w-4 shrink-0 md:h-5 md:w-5" />
+                      <span>
+                        <span className="sr-only">Venue: </span>
+                        {sd.venue}
+                      </span>
                     </p>
                   </div>
                   <Motif

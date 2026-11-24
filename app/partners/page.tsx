@@ -17,9 +17,17 @@ export const metadata: Metadata = {
  * own white ground, which is why the card is white rather than cream-2:
  * the edge of the artwork disappears into it instead of showing as a box.
  */
-function PartnerTile({ p, sizes }: { p: Partner; sizes: string }) {
+function PartnerTile({
+  p,
+  sizes,
+  className,
+}: {
+  p: Partner;
+  sizes: string;
+  className?: string;
+}) {
   return (
-    <li>
+    <li className={className}>
       <div className="relative aspect-square rounded-card border border-navy/10 bg-white">
         <Image
           src={`/images/partners/${p.slug}.png`}

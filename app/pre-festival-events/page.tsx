@@ -40,9 +40,11 @@ export default function PreFestivalEventsPage() {
                     <Figure
                       key={img.alt}
                       image={img}
-                      ratio="landscape"
+                      ratio={e.portrait ? "tall" : "landscape"}
                       sizes="(min-width: 1024px) 46vw, 100vw"
-                      className="w-full rounded-photo"
+                      // Capped and centred, so a vertical photo doesn't tower
+                      // over the text column beside it.
+                      className={`w-full rounded-photo ${e.portrait ? "mx-auto max-w-[28rem]" : ""}`}
                     />
                   ))}
                 />
