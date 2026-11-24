@@ -44,10 +44,30 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
       <ColorSection tone="cream-2">
         <div className="space-y-12 md:space-y-14">
           {doc.sections.map((section) => (
-            <div key={section.heading} className="border-t border-navy/20 pt-8">
+            <div key={section.heading}>
+              {section.part ? (
+                <p className="mb-10 mt-4 font-display text-h2 font-bold leading-tight text-navy md:mb-12">
+                  {section.part}
+                </p>
+              ) : null}
+            <div lang={section.lang} className="border-t border-navy/20 pt-8">
               <h2 className="font-display text-h3 font-bold text-navy">{section.heading}</h2>
               <div className="mt-4 max-w-[75ch] space-y-4">
                 {section.blocks.map((block, i) => {
+                  if (block.type === "items") {
+                    return (
+                      <ul key={i} className="space-y-2 pl-1 md:pl-4">
+                        {block.items.map((item) => (
+                          <li key={item.label} className="flex items-start gap-3">
+                            <span className="w-8 shrink-0 font-semibold text-maroon">
+                              {item.label}
+                            </span>
+                            <span className="text-body">{item.text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
                   if (block.type === "p") {
                     return (
                       <p key={i} className="text-body">
@@ -90,6 +110,7 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
                 })}
               </div>
             </div>
+            </div>
           ))}
         </div>
 
@@ -100,7 +121,7 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
               href="/terms"
               className="text-maroon underline decoration-1 underline-offset-4"
             >
-              Registration Terms and Conditions
+              Terms and Conditions
             </Link>
             .
           </p>

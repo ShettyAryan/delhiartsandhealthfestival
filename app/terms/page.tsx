@@ -3,9 +3,9 @@ import LegalDocument from "@/components/legal-document";
 import { TERMS_DOC } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Terms & Refund Policy",
+  title: "Terms and Conditions",
   description:
-    "Registration terms and conditions, refund policy, and transfer policy for the Delhi Arts & Health Festival.",
+    "House rules, terms and conditions of entry, and code of conduct for the Delhi Arts & Health Festival, 2 to 6 December 2026.",
 };
 
 export default function TermsPage() {

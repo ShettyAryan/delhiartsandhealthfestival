@@ -107,7 +107,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} {FESTIVAL.name}
           </p>
           <Link href="/terms" className="underline decoration-1 underline-offset-4 hover:text-yellow">
-            Terms & Refund Policy
+            Terms & Conditions
           </Link>
           <Link href="/privacy" className="underline decoration-1 underline-offset-4 hover:text-yellow">
             Privacy Policy

@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ColorSection from "@/components/color-section";
 import CTAButton from "@/components/cta-button";
 import Figure from "@/components/figure";
 import FloatingMotif from "@/components/floating-motif";
 import MuralBandStatic from "@/components/mural-band-static";
-import { FORMS, GRIEVANCES_EMAIL, PRESS, PRESS_HERO_IMAGE } from "@/lib/content";
+import {
+  FORMS,
+  GRIEVANCES_EMAIL,
+  PRESS,
+  PRESS_COVERAGE,
+  PRESS_HERO_IMAGE,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Press & Media",
@@ -75,6 +82,46 @@ export default function PressPage() {
       </section>
 
       <MuralBandStatic id="press-hero-mural" />
+
+      {/* Coverage — one row per article: outlet logo, outlet and date, the
+          headline as the link. A grid, so more articles drop in as rows. */}
+      <ColorSection tone="cream-2">
+        <h2 className="font-display text-h2 font-bold text-navy">In the News</h2>
+        <ul className="mt-10 grid gap-5 md:grid-cols-2">
+          {PRESS_COVERAGE.map((a) => (
+            <li key={a.href}>
+              <a
+                href={a.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full items-center gap-5 rounded-card border border-navy/10 bg-white p-5 transition-transform hover:-translate-y-0.5 md:gap-6 md:p-6"
+              >
+                <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-card md:h-24 md:w-24">
+                  <Image
+                    src={`/images/partners/${a.logo}.png`}
+                    alt=""
+                    fill
+                    sizes="96px"
+                    className="object-contain"
+                  />
+                </span>
+                <span>
+                  <span className="block font-eyebrow text-small font-semibold text-maroon">
+                    {a.outlet} | {a.date}
+                  </span>
+                  <span className="mt-2 block font-display text-[clamp(1.125rem,1.6vw,1.375rem)] font-semibold leading-snug text-navy group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
+                    {a.headline}
+                  </span>
+                  <span className="mt-3 block text-small font-medium text-maroon">
+                    Read the article
+                    <span className="sr-only"> on {a.outlet} (opens in a new tab)</span>
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </ColorSection>
 
       {/* Press FAQs — native <details>, so it works with JS disabled (§9) */}
       <ColorSection tone="cream" className="relative z-0 overflow-hidden">

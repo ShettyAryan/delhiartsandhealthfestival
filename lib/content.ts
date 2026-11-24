@@ -1676,6 +1676,18 @@ export const PRESS = {
   mediaEmail: "partnership.dahf@gmail.com",
 } as const;
 
+/** Articles about the festival, newest first. `logo` is a slug in
+ * public/images/partners/ (outlets that are also media partners). */
+export const PRESS_COVERAGE = [
+  {
+    outlet: "The Dilli",
+    logo: "the-dilli",
+    headline: "Delhi Arts & Health Festival 2026: Dates, Venues, Stall Booking & Volunteering",
+    date: "November 2026",
+    href: "https://www.thedilli.in/2026/11/delhi-arts-health-festival.html",
+  },
+] as const;
+
 // ---------------------------------------------------------------------------
 // Contact
 // ---------------------------------------------------------------------------
