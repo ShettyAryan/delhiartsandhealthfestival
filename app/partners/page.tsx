@@ -109,18 +109,20 @@ export default function PartnersPage() {
 
         {/* The organisations the festival is made with: given the most room,
             five across on desktop. */}
-        <h2 className="mt-12 font-display text-h2 font-bold text-navy">
-          {PARTNERS.associates.type}
-        </h2>
-        <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8">
-          {PARTNERS.associates.partners.map((p) => (
-            <PartnerTile
-              key={p.slug}
-              p={p}
-              sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
-            />
-          ))}
-        </ul>
+        {PARTNERS.associates.map((g) => (
+          <div key={g.type}>
+            <h2 className="mt-12 font-display text-h2 font-bold text-navy">{g.type}</h2>
+            <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8">
+              {g.partners.map((p) => (
+                <PartnerTile
+                  key={p.slug}
+                  p={p}
+                  sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
+                />
+              ))}
+            </ul>
+          </div>
+        ))}
       </ColorSection>
 
       <ColorSection tone="cream-2">

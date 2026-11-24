@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ColorSection from "@/components/color-section";
+import CTAButton from "@/components/cta-button";
 import DayName from "@/components/day-name";
 import Figure from "@/components/figure";
 import MuralBandStatic from "@/components/mural-band-static";
@@ -200,17 +201,15 @@ export default function ProgrammePage() {
         </dl>
       </ColorSection>
 
-      {/* Full Programme Schedule — replaces the earlier "How the programme
-          unfolds" timeline + Festival Programmes button, on request. No
-          link here since there's nothing to link to yet. */}
+      {/* Full Programme Schedule — now live at /schedule. */}
       <ColorSection tone="navy">
         <div className="text-center">
           <h2 className="font-display text-h2 font-bold">
             Full Programme Schedule
           </h2>
-          <p className="mt-6 font-display text-h1 font-bold uppercase text-yellow">
-            Coming Soon!
-          </p>
+          <CTAButton href="/schedule" variant="invert" className="mt-8">
+            See the schedule
+          </CTAButton>
         </div>
       </ColorSection>
     </>

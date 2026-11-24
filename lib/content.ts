@@ -189,6 +189,7 @@ export const NAV = [
     children: [
       { label: "About DAHF", href: "/about" },
       { label: "Programme", href: "/programme" },
+      { label: "Festival Schedule", href: "/schedule" },
       { label: "Pre-Festival Events", href: "/pre-festival-events" },
       { label: "Partners", href: "/partners" },
     ],
@@ -216,6 +217,7 @@ export const NAV = [
 export const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Programme", href: "/programme" },
+  { label: "Schedule", href: "/schedule" },
   { label: "Pre-Festival Events", href: "/pre-festival-events" },
   { label: "Partners", href: "/partners" },
   { label: "Festival Team", href: "/festival-team" },
@@ -566,6 +568,388 @@ export const DAYS: Day[] = [
       alt: "People celebrating together at a festival gathering",
       motif: "daisy",
     },
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Schedule
+// ---------------------------------------------------------------------------
+
+export type Experience = "Reflect" | "Immerse" | "Discover" | "Energise" | "Refresh";
+
+export type ScheduleSession = {
+  /** "10:00 AM", or "All day". */
+  time: string;
+  title: string;
+  subtitle?: string;
+  format: string;
+  experience: Experience;
+  theme: string;
+  people: string;
+  /** Omitted where the sheet leaves it blank — never guessed. */
+  duration?: string;
+};
+
+export type ScheduleDay = {
+  /** Index into DAYS — name, colour and motif come from there. */
+  day: number;
+  date: string;
+  /** The day's theme as the schedule sheet words it. */
+  theme: string;
+  sessions: ScheduleSession[];
+};
+
+/**
+ * From the client's programming sheet, rows highlighted green only (light
+ * green on the Programme cell). Times converted to 12-hour; titles split at
+ * their first colon into title + subtitle. Panel line-ups list only names
+ * marked confirmed in the sheet.
+ */
+export const SCHEDULE: ScheduleDay[] = [
+  {
+    day: 0,
+    date: "Wednesday, 2 December",
+    theme: "Identity & Self Awareness",
+    sessions: [
+      {
+        time: "10:00 AM",
+        title: "Festival Opening: Capital of Care",
+        subtitle: "Opening address by the Festival Directors",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Community & Collective Care",
+        people: "Festival Directors Anvesha Vijay & Pragyan Behera",
+        duration: "15 mins",
+      },
+      {
+        time: "10:15 AM",
+        title: "Road to Capital of Care",
+        subtitle: "Short Video Compilation of the Pre-Festival Journey",
+        format: "Screening",
+        experience: "Reflect",
+        theme: "Community & Collective Care",
+        people: "Associate Director Jyotsna Ramachandran",
+        duration: "15 mins",
+      },
+      {
+        time: "10:30 AM",
+        title: "Keynote",
+        subtitle: "The Body & Arts as Therapies in Mental Health",
+        format: "Keynote",
+        experience: "Reflect",
+        theme: "Arts in Healthcare",
+        people: "Tripura Kashyap, CMTAI",
+        duration: "30 mins",
+      },
+      {
+        time: "11:30 AM",
+        title: "Samarpit",
+        subtitle: "An Experimental Dance on Devotion",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Tiara Tripathi",
+        duration: "15 mins",
+      },
+      {
+        time: "12:30 PM",
+        title: "Advisory Panel: Who Gets to Experience Wellbeing?",
+        subtitle: "Making Arts and Health Accessible to All",
+        format: "Panel",
+        experience: "Reflect",
+        theme: "Public Health & Social Change",
+        people: "Anshuma, Dr. Shruti & Dr. Vipul",
+        duration: "45 mins",
+      },
+      {
+        time: "1:30 PM",
+        title: "The Museum of Things We Carry",
+        subtitle: "What would a museum of our inner lives contain?",
+        format: "Experience",
+        experience: "Immerse",
+        theme: "Creativity & Self-Expression",
+        people: "Manan Oberoi",
+        duration: "75 mins",
+      },
+      {
+        time: "3:00 PM",
+        title: "Homo & Juliet Book Launch",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Dr. Shruti",
+        duration: "75 mins",
+      },
+      {
+        time: "3:00 PM",
+        title: "From Compliance to Care",
+        subtitle: "Designing Cultures of Wellbeing Through Expressive Practice",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Ria Arya",
+        duration: "75 mins",
+      },
+      {
+        time: "4:00 PM",
+        title: "Kafila – Sakhi Re Shyam Kon?",
+        subtitle:
+          "An interdisciplinary production exploring gender, sexuality, love, and identity through the world of Krishna and the Rasleela",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Shreejeeta Ghosh & Bhargavi Thakur",
+      },
+    ],
+  },
+  {
+    day: 1,
+    date: "Thursday, 3 December",
+    theme: "Expression & Release",
+    sessions: [
+      {
+        time: "11:00 AM",
+        title: "The Many Pathways to Healing",
+        subtitle:
+          "How do therapy, creativity, community and lived experience come together to support healing?",
+        format: "Panel",
+        experience: "Reflect",
+        theme: "Research, Education & Professional Practice",
+        people: "Moderated by Moon, with Nishtha (Co-founder, CMTAI) & Itisha Nagar",
+        duration: "45 mins",
+      },
+      {
+        time: "11:00 AM",
+        title: "Designing Conversations for Care",
+        subtitle: "Creative Tools for Talking About What Matters",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Community & Collective Care",
+        people: "Anupama Krishnan",
+        duration: "75 mins",
+      },
+      {
+        time: "12:30 PM",
+        title: "The Art of Participation",
+        subtitle: "Making Space for Different Ways of Being",
+        format: "Experience",
+        experience: "Immerse",
+        theme: "Access, Inclusion & Equity",
+        people: "Soumini Menon, Being Brave",
+        duration: "75 mins",
+      },
+      {
+        time: "12:30 PM",
+        title: "Learn Indian Sign Language",
+        subtitle: "Beginner Friendly",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Public Health & Social Change",
+        people: "Parmeet Singh",
+        duration: "75 mins",
+      },
+      {
+        time: "2:00 PM",
+        title: "Art As Inclusion",
+        subtitle: "Creativity in an Unequal, Unjust World",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Creativity & Self-Expression",
+        people: "Vasundhara Gupta, Humraahi Psychotherapy",
+        duration: "75 mins",
+      },
+      {
+        time: "2:00 PM",
+        title: "One Rewire At A Time",
+        subtitle: "Getting To Know Your ADHD",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Access, Inclusion & Equity",
+        people: "Ananya Sharma, The Coping Central",
+        duration: "75 mins",
+      },
+    ],
+  },
+  {
+    day: 2,
+    date: "Friday, 4 December",
+    theme: "Desire, Hope & Inner Resilience",
+    sessions: [
+      {
+        time: "10:00 AM",
+        title: "Power of Empowerment",
+        subtitle: "A Dance Movement Therapy Session",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Indian Association of Dance Movement Therapy",
+        duration: "75 mins",
+      },
+      {
+        time: "11:30 AM",
+        title: "Hasrat",
+        subtitle: "Longing Beyond the Script",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Community & Collective Care",
+        people: "Mehr Lungani, Chaos to Cosmos",
+        duration: "75 mins",
+      },
+      {
+        time: "1:00 PM",
+        title: "Touch Me Not?",
+        subtitle: "Navigating intersections of pleasure, shame and embodiment",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Utkarsha Jagga, The Coping Central",
+        duration: "75 mins",
+      },
+      {
+        time: "1:00 PM",
+        title: "Reimagining Embodied Healing",
+        subtitle: "Centering Body-Based Practices in Queer-Affirmative Therapy",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Shruti Garg",
+        duration: "75 mins",
+      },
+      {
+        time: "2:30 PM",
+        title: "Beyond Pathology",
+        subtitle: "BDSM, Consent, and Queer Healing in South Asian LBQ Communities",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Shriya Gaur",
+        duration: "75 mins",
+      },
+      {
+        time: "3:00 PM",
+        title: "Khel Khel Mein",
+        subtitle: "An Improv Session",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Creativity & Self-Expression",
+        people: "Altaf Hussain",
+        duration: "60 mins",
+      },
+    ],
+  },
+  {
+    day: 3,
+    date: "Saturday, 5 December",
+    theme: "Community & Collective Healing",
+    sessions: [
+      {
+        time: "All day",
+        title: "The Happiness Lab",
+        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Asambhava Shubha, Anutraa",
+      },
+      {
+        time: "9:00 AM",
+        title: "Immersive Sound Bath Experience",
+        format: "Experience",
+        experience: "Immerse",
+        theme: "Nature, Ecology & Sustainability",
+        people: "Swati, Ravyantra",
+        duration: "45 mins",
+      },
+      {
+        time: "10:00 AM",
+        title: "A Site of Home",
+        subtitle: "Dance Movement Meditation",
+        format: "Experience",
+        experience: "Energise",
+        theme: "Community & Collective Care",
+        people: "Sanat Mehta",
+        duration: "45 mins",
+      },
+      {
+        time: "12:00 PM",
+        title: "Immersive Nature Based Poetry Reading",
+        format: "Performance",
+        experience: "Immerse",
+        theme: "Nature, Ecology & Sustainability",
+        people: "Dr. Ananya Mahapatra",
+        duration: "30 mins",
+      },
+      {
+        time: "12:30 PM",
+        title: "Art From the Earth",
+        subtitle: "Community Art with Nature",
+        format: "Experience",
+        experience: "Immerse",
+        theme: "Nature, Ecology & Sustainability",
+        people: "Priyal Sethi",
+        duration: "75 mins",
+      },
+      {
+        time: "2:00 PM",
+        title: "Stand Up Comedy",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Shruti Garg",
+      },
+    ],
+  },
+  {
+    day: 4,
+    date: "Sunday, 6 December",
+    theme: "Joy, Vitality & Celebration",
+    sessions: [
+      {
+        time: "All day",
+        title: "The Happiness Lab",
+        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Asambhava Shubha, Anutraa",
+      },
+      {
+        time: "9:00 AM",
+        title: "Opening Kathak Performance",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Nainika Mukherjee",
+        duration: "15 mins",
+      },
+      {
+        time: "9:30 AM",
+        title: "Meri Jagah (My Space)",
+        subtitle: "Claiming space using Movement and Expressive Arts",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Creativity & Self-Expression",
+        people: "Kanchan",
+        duration: "90 mins",
+      },
+      {
+        time: "11:00 AM",
+        title: "Earth Tales",
+        subtitle: "Book Reading and Q&A",
+        format: "Talk",
+        experience: "Reflect",
+        theme: "Nature, Ecology & Sustainability",
+        people: "Nikhita Singh & Dheeraj Dubey, Centre for Contemporary Folklore",
+      },
+      {
+        time: "12:00 PM",
+        title: "Bhangra Performance",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Bhangra Team, Sri Guru Gobind Singh College of Commerce",
+      },
+    ],
   },
 ];
 
@@ -975,16 +1359,23 @@ const partner = (name: string, slug: string): Partner => ({ name, slug });
 
 export const PARTNERS = {
   heading: "Our Partners",
-  associates: {
-    type: "In association with",
-    partners: [
-      partner("Aatmanveshan", "aatmanveshan"),
-      partner("CoGC", "cogc"),
-      partner("The Arts Therapists CoLab", "tatc"),
-      partner("The MoveVent Project", "movevent-project"),
-      partner("The Safe Space Co.", "safe-space-co"),
-    ],
-  },
+  associates: [
+    {
+      type: "An initiative by",
+      partners: [
+        partner("The Safe Space Co.", "safe-space-co"),
+        partner("Aatmanveshan", "aatmanveshan"),
+      ],
+    },
+    {
+      type: "In association with",
+      partners: [
+        partner("CoGC", "cogc"),
+        partner("The Arts Therapists CoLab", "tatc"),
+        partner("The MoveVent Project", "movevent-project"),
+      ],
+    },
+  ] as PartnerGroup[],
   festivalHeading: "Festival Partners",
   festival: [
     {
@@ -1020,10 +1411,6 @@ export const PARTNERS = {
     {
       type: "Joy and Wellness Partner",
       partners: [partner("Clownselors", "clownselors")],
-    },
-    {
-      type: "Programme Partner – ISL",
-      partners: [partner("KarmaCare", "karmacare")],
     },
     {
       type: "NGO Partners",
@@ -1385,7 +1772,8 @@ export const PRE_FESTIVAL = {
     // removed on client direction.
     {
       title: "Art Adda",
-      partner: "with Shunya, Ramjas College Dramatics Club",
+      partner:
+        "A Nukkad Natak event with Shunya, Ramjas College Dramatics Society and Anubhuti, Sri Venkateswara College Dramatics Society",
       location: "Basant Lok",
       date: "26 September 2026",
       images: [
@@ -1399,6 +1787,7 @@ export const PRE_FESTIVAL = {
     {
       title: "BeNaqaab - A Masquerade for MHPs",
       partner: "In partnership with Chaos to Cosmos",
+      location: "Sheroes Hangout and Cafe",
       date: "3 October 2026",
       images: [
         {
@@ -1409,7 +1798,9 @@ export const PRE_FESTIVAL = {
       ],
     },
     {
+      group: "Also seen at",
       title: "YMH Confab",
+      location: "Vishwa Yuvak Kendra, New Delhi",
       date: "4 October 2026",
       images: [
         {
@@ -1422,6 +1813,8 @@ export const PRE_FESTIVAL = {
     {
       group: "School Initiative",
       title: "Ahlcon International School",
+      subtitle: "Mental Health & Emotional Wellbeing",
+      location: "Ahlcon International School, Mayur Vihar",
       date: "8 October 2026",
       images: [
         {
@@ -1433,6 +1826,7 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Lights On, Again",
+      subtitle: "Conversations on Suicide Prevention",
       partner: "In partnership with Sahaayta, Neev Mental Health and Hank Nunn Institute",
       date: "11 October 2026",
       images: [
@@ -1444,7 +1838,9 @@ export const PRE_FESTIVAL = {
       ],
     },
     {
-      title: "QCI x Aiman",
+      group: "Also seen at",
+      title: "Quality Council of India",
+      partner: "In collaboration with Aiman Health",
       date: "12 October 2026",
       images: [
         {
@@ -1457,6 +1853,8 @@ export const PRE_FESTIVAL = {
     {
       group: "School Initiative",
       title: "Tagore International School",
+      subtitle: "Navigating Challenges around Adolescence",
+      location: "Tagore International School, Vasant Vihar",
       date: "14 October 2026",
       images: [
         {
@@ -1468,6 +1866,8 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Dhunuchi x Expressive Arts",
+      partner: "In collaboration with Dakkhin Delhi Cultural Association",
+      location: "Vasant Kunj",
       date: "20 October 2026",
       images: [
         {
@@ -1478,7 +1878,9 @@ export const PRE_FESTIVAL = {
       ],
     },
     {
+      group: "Also seen at",
       title: "CMTAI Conference",
+      location: "India International Centre",
       date: "24–25 October 2026",
       images: [
         {
@@ -1489,7 +1891,9 @@ export const PRE_FESTIVAL = {
       ],
     },
     {
-      title: "Clownselors",
+      title: "Medical Clowning",
+      partner: "In partnership with Clownselors",
+      location: "Safdarjung Hospital",
       date: "29 October 2026",
       images: [
         {
@@ -1500,7 +1904,10 @@ export const PRE_FESTIVAL = {
       ],
     },
     {
-      title: "Hindu College",
+      title: "Flow State On",
+      partner:
+        "In collaboration with Friend’s Corner, Mental Health and Counselling Cell, Hindu College",
+      location: "Hindu College",
       date: "29 October 2026",
       images: [
         {
@@ -1512,7 +1919,8 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Perils of Patriarchy",
-      subtitle: "Why Loiter Campaign",
+      partner:
+        "A woman’s walk in solidarity with survivors of sexual assault in collaboration with Why Loiter Campaign",
       date: "31 October 2026",
       images: [
         {
@@ -1524,6 +1932,7 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Taal Mel-a",
+      location: "Nehru Park",
       date: "1 November 2026",
       images: [
         {
@@ -1535,7 +1944,8 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Expressive Arts Space",
-      partner: "In partnership with KMC",
+      partner: "In collaboration with Empathia, the Mental Health Club, Kirori Mal College",
+      location: "Kirori Mal College",
       date: "4 November 2026",
       images: [
         {
@@ -1555,16 +1965,14 @@ export const PRE_FESTIVAL = {
           alt: "Children and volunteers painting rainbow-coloured waves onto a long outdoor wall",
           motif: "daisy",
         },
-        {
-          src: "/images/prefestival/shakti-shalini-mural-2.jpg",
-          alt: "The finished mural: rainbow waves beneath the words Healing is an Art, with Delhi Arts and Health Festival, Capital of Care painted alongside",
-          motif: "daisy",
-        },
       ],
     },
     {
       title: "Re:Imagine",
-      partner: "In partnership with Indraprastha College for Women",
+      subtitle: "Creative Arts Therapies, Psychology and Therapeutic Practice",
+      partner:
+        "A Symposium in partnership with Psychology Department, Indraprastha College for Women",
+      location: "Indraprastha College for Women",
       date: "13 November 2026",
       images: [
         {
@@ -1576,13 +1984,28 @@ export const PRE_FESTIVAL = {
     },
     {
       title: "Khushiyon ke Rang",
-      partner: "In partnership with NeuroAid Research Foundation",
+      partner: "In partnership with Neuroaid & Research Foundation",
+      location: "Neuroaid & Research Foundation",
       date: "14 November 2026",
       images: [
         {
           src: "/images/prefestival/khushiyon-ke-rang.jpg",
           alt: "Facilitators and children sitting together on mats in a colourful play and therapy room",
           motif: "star",
+        },
+      ],
+    },
+    {
+      title: "Baithak",
+      subtitle: "A celebration of Arts, Culture, Heritage and Old Delhi",
+      partner: "In collaboration with Kathika Cultural Center",
+      location: "Kathika Cultural Centre",
+      date: "22 November 2026",
+      images: [
+        {
+          src: "/images/prefestival/baithak.jpg",
+          alt: "A dancer in red mid-twirl, arms arched overhead, before the green doors of the Kathika Cultural Centre",
+          motif: "kalash",
         },
       ],
     },
