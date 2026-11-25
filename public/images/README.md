@@ -214,3 +214,12 @@ client's file names.
 
 The CMTAI conference photo was originally supplied as HEIC and later
 re-supplied as JPG (`assets-source/CMTAI  conference- 24&25 oct.jpg`).
+
+## Sponsors, GSAH/GAIMF, and later pre-festival additions
+
+- `partners/mariwala-health-initiative.png` (rendered from `assets-source/Mariwala.svg`,
+  which embeds raster images, so it's served as PNG) and `partners/veeba.png`
+  (`assets-source/Veeba Logo-01.png`): the Sponsors row on `/partners`.
+- `partners/gsah.png` and `partners/gaimf.png`: trimmed copies of the
+  homepage's `GSAHlogo.png` / `GAIMFlogo.png`, for "In association with".
+- `prefestival/play-move-zine.jpg` from `assets-source/Playmovezine.jpeg`.

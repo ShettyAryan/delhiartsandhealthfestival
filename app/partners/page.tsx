@@ -5,9 +5,9 @@ import MuralBandStatic from "@/components/mural-band-static";
 import { PARTNERS, type Partner, type PartnerGroup } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Partners",
+  title: "Sponsors and Partners",
   description:
-    "The organisations, venues and collectives partnering with the Delhi Arts & Health Festival, 2 to 6 December 2026.",
+    "The sponsors, organisations, venues and collectives supporting the Delhi Arts & Health Festival, 2 to 6 December 2026.",
 };
 
 /**
@@ -21,20 +21,27 @@ function PartnerTile({
   p,
   sizes,
   className,
+  wide = false,
 }: {
   p: Partner;
   sizes: string;
   className?: string;
+  /** 3:2 instead of square — for the sponsors, whose logos are wordmarks. */
+  wide?: boolean;
 }) {
   return (
     <li className={className}>
-      <div className="relative aspect-square rounded-card border border-navy/10 bg-white">
+      <div
+        className={`relative rounded-card border border-navy/10 bg-white ${
+          wide ? "aspect-3/2" : "aspect-square"
+        }`}
+      >
         <Image
           src={`/images/partners/${p.slug}.png`}
           alt={`${p.name} logo`}
           fill
           sizes={sizes}
-          className="object-contain p-4 md:p-5"
+          className={`object-contain ${wide ? "p-8 md:p-12" : "p-4 md:p-5"}`}
         />
       </div>
       <p className="mt-3 text-small font-medium leading-snug text-ink">{p.name}</p>
@@ -114,6 +121,21 @@ export default function PartnersPage() {
       <ColorSection tone="cream" className="pt-8 md:pt-12">
         <h1 className="font-display text-h1 font-bold text-navy">{PARTNERS.heading}</h1>
         <div className="mt-5 h-1.5 w-16 bg-teal" />
+
+        {/* Sponsors lead the page, on larger wide tiles. */}
+        <h2 className="mt-12 font-display text-h2 font-bold text-navy">
+          {PARTNERS.sponsors.type}
+        </h2>
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {PARTNERS.sponsors.partners.map((p) => (
+            <PartnerTile
+              key={p.slug}
+              p={p}
+              wide
+              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+            />
+          ))}
+        </ul>
 
         {/* The organisations the festival is made with: given the most room,
             five across on desktop. */}

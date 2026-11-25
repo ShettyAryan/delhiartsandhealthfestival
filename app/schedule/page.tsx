@@ -260,6 +260,10 @@ export default function SchedulePage() {
               </ul>
             </div>
 
+            <CTAButton href={REGISTER_HREF} external className="mt-8">
+              Register
+            </CTAButton>
+
             <div className="mt-8">
               <p className="font-display text-small font-semibold text-navy">
                 Experience sections
@@ -299,7 +303,8 @@ export default function SchedulePage() {
                         {d.name}
                       </span>
                       <span className="text-center font-eyebrow text-[0.6875rem] font-semibold leading-tight sm:text-[0.8125rem]">
-                        {sd.sessions.length}
+                        {/* Registration is on the day's card, but it isn't a session. */}
+                        {sd.sessions.filter((s) => s.title !== "Registration").length}
                         <span className="block">sessions</span>
                       </span>
                     </a>

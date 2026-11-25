@@ -191,7 +191,7 @@ export const NAV = [
       { label: "Programme", href: "/programme" },
       { label: "Festival Schedule", href: "/schedule" },
       { label: "Pre-Festival Events", href: "/pre-festival-events" },
-      { label: "Partners", href: "/partners" },
+      { label: "Sponsors and Partners", href: "/partners" },
     ],
   },
   {
@@ -219,7 +219,7 @@ export const FOOTER_LINKS = [
   { label: "Programme", href: "/programme" },
   { label: "Schedule", href: "/schedule" },
   { label: "Pre-Festival Events", href: "/pre-festival-events" },
-  { label: "Partners", href: "/partners" },
+  { label: "Sponsors and Partners", href: "/partners" },
   { label: "Festival Team", href: "/festival-team" },
   { label: "Advisory Board", href: "/advisory-board" },
   { label: "Get Involved", href: "/get-involved" },
@@ -624,7 +624,12 @@ export const SCHEDULE: ScheduleDay[] = [
     theme: "Identity & Self Awareness",
     sessions: [
       {
-        time: "10:00 AM",
+        time: "9:30 AM",
+        title: "Registration",
+        duration: "45 mins",
+      },
+      {
+        time: "10:30 AM",
         title: "Festival Opening: Capital of Care",
         subtitle: "Opening address by the Festival Directors",
         format: "Talk",
@@ -634,7 +639,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "15 mins",
       },
       {
-        time: "10:15 AM",
+        time: "10:45 AM",
         title: "Road to Capital of Care",
         subtitle: "Short Video Compilation of the Pre-Festival Journey",
         format: "Screening",
@@ -644,17 +649,17 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "15 mins",
       },
       {
-        time: "10:30 AM",
+        time: "11:00 AM",
         title: "Keynote",
         subtitle: "The Body & Arts as Therapies in Mental Health",
         format: "Keynote",
         experience: "Reflect",
         theme: "Arts in Healthcare",
         people: "Tripura Kashyap, CMTAI",
-        duration: "30 mins",
+        duration: "45 mins",
       },
       {
-        time: "11:30 AM",
+        time: "12:00 PM",
         title: "Samarpit",
         subtitle: "An Experimental Dance on Devotion",
         format: "Performance",
@@ -664,7 +669,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "15 mins",
       },
       {
-        time: "12:00 PM",
+        time: "12:30 PM",
         title: "Sapna Karn shares her Artistic Process",
         subtitle: "and kick starts a new Installation at the festival",
         format: "Talk",
@@ -674,7 +679,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "30 mins",
       },
       {
-        time: "12:30 PM",
+        time: "1:00 PM",
         title: "Advisory Panel: Who Gets to Experience Wellbeing?",
         subtitle: "Making Arts and Health Accessible to All",
         format: "Panel",
@@ -685,7 +690,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "45 mins",
       },
       {
-        time: "1:30 PM",
+        time: "2:30 PM",
         title: "The Museum of Things We Carry",
         subtitle: "What would a museum of our inner lives contain?",
         format: "Experience",
@@ -695,7 +700,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "3:00 PM",
+        time: "4:00 PM",
         title: "Homo & Juliet Book Launch",
         format: "Talk",
         experience: "Reflect",
@@ -704,7 +709,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "3:00 PM",
+        time: "4:00 PM",
         title: "From Compliance to Care",
         subtitle: "Designing Cultures of Wellbeing Through Expressive Practice",
         format: "Talk",
@@ -714,7 +719,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "4:00 PM",
+        time: "5:00 PM",
         title: "Kafila – Sakhi Re Shyam Kon?",
         subtitle:
           "An interdisciplinary production exploring gender, sexuality, love, and identity through the world of Krishna and the Rasleela",
@@ -732,7 +737,12 @@ export const SCHEDULE: ScheduleDay[] = [
     theme: "Expression & Release",
     sessions: [
       {
-        time: "10:00 AM",
+        time: "9:30 AM",
+        title: "Registration",
+        duration: "45 mins",
+      },
+      {
+        time: "10:30 AM",
         title: "Opening and Keynote: In Our Own Words",
         subtitle: "The CRPD at 20 in arts and health (Live Screening)",
         format: "Keynote",
@@ -742,18 +752,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "45 mins",
       },
       {
-        time: "11:00 AM",
-        title: "The Many Pathways to Healing",
-        subtitle:
-          "How do therapy, creativity, community and lived experience come together to support healing?",
-        format: "Panel",
-        experience: "Reflect",
-        theme: "Research, Education & Professional Practice",
-        people: "Moderated by Moon, with Nishtha (Co-founder, CMTAI) & Itisha Nagar",
-        duration: "45 mins",
-      },
-      {
-        time: "11:00 AM",
+        time: "11:30 AM",
         title: "Designing Conversations for Care",
         subtitle: "Creative Tools for Talking About What Matters",
         format: "Workshop",
@@ -762,8 +761,10 @@ export const SCHEDULE: ScheduleDay[] = [
         people: "Anupama Krishnan",
         duration: "75 mins",
       },
+      // The sheet's time cell reads 11:30 PM (0.979 of a day) — read as 11:30
+      // AM, its exact twelve-hour twin and the slot Gallery 1 has free.
       {
-        time: "12:30 PM",
+        time: "11:30 AM",
         title: "The Art of Participation",
         subtitle: "Making Space for Different Ways of Being",
         format: "Experience",
@@ -773,7 +774,19 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "12:30 PM",
+        time: "1:00 PM",
+        title: "The Many Pathways to Healing",
+        subtitle:
+          "How do therapy, creativity, community and lived experience come together to support healing?",
+        format: "Panel",
+        experience: "Reflect",
+        theme: "Research, Education & Professional Practice",
+        people:
+          "Moderated by Moon / Muskaan (Care Collage), with Nishtha (Co-founder, CMTAI), Itisha Nagar, Christen Kong & Seema Kumar (Smile Foundation)",
+        duration: "45 mins",
+      },
+      {
+        time: "1:00 PM",
         title: "Learn Indian Sign Language",
         subtitle: "Beginner Friendly",
         format: "Workshop",
@@ -783,7 +796,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "2:00 PM",
+        time: "2:30 PM",
         title: "Art As Inclusion",
         subtitle: "Creativity in an Unequal, Unjust World",
         format: "Workshop",
@@ -793,7 +806,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "2:00 PM",
+        time: "2:30 PM",
         title: "One Rewire At A Time",
         subtitle: "Getting To Know Your ADHD",
         format: "Workshop",
@@ -803,13 +816,13 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "5:00 PM",
-        title: "ND Music Band: Chayanit",
+        time: "4:00 PM",
+        title: "Queerography",
         format: "Performance",
         experience: "Energise",
-        theme: "Arts, Culture & Heritage",
-        people: "Chayanit",
-        duration: "60 mins",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Queerography",
+        duration: "75 mins",
       },
     ],
   },
@@ -820,7 +833,12 @@ export const SCHEDULE: ScheduleDay[] = [
     theme: "Desire, Hope & Inner Resilience",
     sessions: [
       {
-        time: "10:00 AM",
+        time: "9:30 AM",
+        title: "Registration",
+        duration: "45 mins",
+      },
+      {
+        time: "10:30 AM",
         title: "Love Maps",
         subtitle: "Depicting unique relational territories",
         format: "Workshop",
@@ -830,7 +848,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "10:00 AM",
+        time: "10:30 AM",
         title: "Power of Empowerment",
         subtitle: "A Dance Movement Therapy Session",
         format: "Workshop",
@@ -841,7 +859,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "11:30 AM",
+        time: "12:00 PM",
         title: "Art as a Way of Life",
         subtitle: "Stories of Creativity, Courage and Connection",
         format: "Panel",
@@ -851,7 +869,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "45 mins",
       },
       {
-        time: "11:30 AM",
+        time: "12:00 PM",
         title: "Hasrat",
         subtitle: "Longing Beyond the Script",
         format: "Workshop",
@@ -861,7 +879,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "1:00 PM",
+        time: "1:30 PM",
         title: "Touch Me Not?",
         subtitle: "Navigating intersections of pleasure, shame and embodiment",
         format: "Workshop",
@@ -871,7 +889,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "1:00 PM",
+        time: "1:30 PM",
         title: "Reimagining Embodied Healing",
         subtitle: "Centering Body-Based Practices in Queer-Affirmative Therapy",
         format: "Talk",
@@ -881,7 +899,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "2:30 PM",
+        time: "3:00 PM",
         title: "Don’t Interrupt While We Dance",
         subtitle: "Film Screening",
         format: "Workshop",
@@ -891,7 +909,7 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "30 mins",
       },
       {
-        time: "2:30 PM",
+        time: "3:00 PM",
         title: "Beyond Pathology",
         subtitle: "BDSM, Consent, and Queer Healing in South Asian LBQ Communities",
         format: "Talk",
@@ -901,14 +919,14 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "75 mins",
       },
       {
-        time: "3:00 PM",
+        time: "4:00 PM",
         title: "Khel Khel Mein",
         subtitle: "An Improv Session",
         format: "Workshop",
         experience: "Immerse",
         theme: "Creativity & Self-Expression",
         people: "Altaf Hussain",
-        duration: "60 mins",
+        duration: "75 mins",
       },
       {
         time: "5:30 PM",
@@ -929,6 +947,10 @@ export const SCHEDULE: ScheduleDay[] = [
     theme: "Community & Collective Healing",
     sessions: [
       {
+        time: "8:30 AM",
+        title: "Registration",
+      },
+      {
         time: "9:00 AM",
         title: "Immersive Sound Bath Experience",
         format: "Experience",
@@ -948,7 +970,17 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "45 mins",
       },
       {
-        time: "12:00 PM",
+        time: "11:00 AM",
+        title: "Kaivalya Plays",
+        subtitle: "Improv for Wellbeing",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Varoon P Anand, Kaivalya Plays",
+        duration: "75 mins",
+      },
+      {
+        time: "12:30 PM",
         title: "Immersive Nature Based Poetry Reading",
         format: "Performance",
         experience: "Immerse",
@@ -963,6 +995,7 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Energise",
         theme: "Arts, Culture & Heritage",
         people: "Shruti Garg",
+        duration: "45 mins",
       },
     ],
   },
@@ -972,6 +1005,10 @@ export const SCHEDULE: ScheduleDay[] = [
     venue: SURTAL,
     theme: "Joy, Vitality & Celebration",
     sessions: [
+      {
+        time: "8:30 AM",
+        title: "Registration",
+      },
       {
         time: "9:00 AM",
         title: "Opening Kathak Performance",
@@ -989,7 +1026,7 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Immerse",
         theme: "Creativity & Self-Expression",
         people: "Kanchan",
-        duration: "90 mins",
+        duration: "75 mins",
       },
       {
         time: "11:00 AM",
@@ -999,6 +1036,7 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Reflect",
         theme: "Nature, Ecology & Sustainability",
         people: "Nikhita Singh & Dheeraj Dubey, Centre for Contemporary Folklore",
+        duration: "45 mins",
       },
       {
         time: "12:00 PM",
@@ -1007,19 +1045,20 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Energise",
         theme: "Arts, Culture & Heritage",
         people: "Bhangra Team, Sri Guru Gobind Singh College of Commerce",
+        duration: "75 mins",
+      },
+      {
+        time: "1:30 PM",
+        title: "Adhrita",
+        subtitle: "Indian Classical Music Performance",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Adhrita Pandey",
+        duration: "15 mins",
       },
       {
         time: "2:00 PM",
-        title: "Experientia",
-        subtitle: "Immersive Multisensory Experience",
-        format: "Performance",
-        experience: "Energise",
-        theme: "Play, Joy & Celebration",
-        people: "Vedoci Lekhi",
-        duration: "60 mins",
-      },
-      {
-        time: "3:00 PM",
         title: "Festival Closing and Vote of Thanks",
         duration: "15 mins",
       },
@@ -1112,8 +1151,22 @@ export const SCHEDULE_ALSO: { dates: string; venue: string; items: ScheduleSessi
     items: [
       {
         time: "All day",
+        title: "Clowning Station",
+        format: "Experience",
+      },
+      {
+        // The sheet marks this one "6th only".
+        time: "All day",
+        title: "Henna Station",
+        subtitle: "6 December only",
+        format: "Experience",
+      },
+      {
+        // The sheet marks this one "5th only".
+        time: "All day",
         title: "The Happiness Lab",
-        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
+        subtitle:
+          "A Living Installation on Ecological Well-Being, Grief, and Joy. 5 December only.",
         format: "Installation",
         experience: "Discover",
         theme: "Mental Health & Emotional Wellbeing",
@@ -1528,7 +1581,14 @@ export type PartnerGroup = { type: string; partners: readonly Partner[] };
 const partner = (name: string, slug: string): Partner => ({ name, slug });
 
 export const PARTNERS = {
-  heading: "Our Partners",
+  heading: "Sponsors and Partners",
+  sponsors: {
+    type: "Sponsors",
+    partners: [
+      partner("Mariwala Health Initiative", "mariwala-health-initiative"),
+      partner("Veeba", "veeba"),
+    ],
+  } as PartnerGroup,
   associates: [
     {
       type: "An initiative by",
@@ -1540,6 +1600,10 @@ export const PARTNERS = {
     {
       type: "In association with",
       partners: [
+        // The same two logos as the homepage's Global Ecosystem section,
+        // trimmed copies of /images/GSAHlogo.png and /images/GAIMFlogo.png.
+        partner("Global South Arts & Health Initiative", "gsah"),
+        partner("Global Arts in Medicine Fellowship", "gaimf"),
         partner("CoGC", "cogc"),
         partner("The Arts Therapists CoLab", "tatc"),
         partner("The MoveVent Project", "movevent-project"),
@@ -2075,6 +2139,19 @@ export const PRE_FESTIVAL = {
           src: "/images/prefestival/cmtai-conference.jpg",
           alt: "Four people at a festival stall in front of display boards charting the history of dance movement therapy in India, the table draped with an illustrated Delhi Arts and Health Festival banner",
           motif: "stairs",
+        },
+      ],
+    },
+    {
+      title: "Play, Move, Zine",
+      partner: "In collaboration with Empowering Minds",
+      location: "Arthala Centre",
+      date: "27 October 2026",
+      images: [
+        {
+          src: "/images/prefestival/play-move-zine.jpg",
+          alt: "A facilitator leading a circle of schoolchildren in uniform through a movement activity in a classroom decorated with bunting and children's artwork",
+          motif: "star",
         },
       ],
     },
