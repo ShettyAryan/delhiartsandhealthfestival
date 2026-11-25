@@ -1597,7 +1597,7 @@ export const PARTNERS = {
         "mariwala-health-initiative",
         "Major Festival Partner",
       ),
-      partner("Veeba", "veeba", "Programme Partner"),
+      partner("Veeba", "veeba", "Program Partner"),
     ],
   } as PartnerGroup,
   associates: [
