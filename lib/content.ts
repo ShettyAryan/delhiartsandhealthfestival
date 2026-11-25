@@ -159,15 +159,13 @@ export const FORMS = {
 } as const;
 
 /**
- * The header CTA is labelled "Register" rather than "Stay Informed" — which
- * resolves the open question CLAUDE.md §0.12 raised (neither of the two
- * registration forms was labelled "Stay Informed", so it never had a clear
- * destination). "Register" points naturally at one of them; pointed at
- * Festival Week as the closer match to a header-level CTA. Swap this one
- * line if the client would rather it go to Pre-Festival Activations, or add
- * a second control if both need their own link.
+ * Every "Register" button on the site (header, mobile menu, schedule page)
+ * points here. Festival registration runs through thumpN, the ticketing
+ * partner, on client direction; it replaced the Festival Week Google Form
+ * (still listed in FORMS above, but no longer linked).
  */
-export const REGISTER_HREF: string = FORMS.festivalWeek;
+export const REGISTER_HREF: string =
+  "https://thumpn.com/tour/ZJJTRQ/delhi-arts-and-health-festival-2026";
 
 /** Milaap fundraiser page for the festival — the client's payment link. */
 export const DONATE_HREF: string =
@@ -1631,12 +1629,8 @@ export const PARTNERS = {
       ],
     },
     {
-      type: "Knowledge Partner",
-      partners: [partner("Indraprastha College for Women", "ipcw")],
-    },
-    {
-      type: "Mental Health Partner",
-      partners: [partner("Aiman", "aiman")],
+      type: "Sustainability Partner",
+      partners: [partner("One Step Greener", "one-step-greener")],
     },
     {
       type: "Community Partners",
@@ -1646,12 +1640,24 @@ export const PARTNERS = {
       ],
     },
     {
-      type: "Arts and Folklore Partner",
-      partners: [partner("Centre for Contemporary Folklore", "centre-for-contemporary-folklore")],
+      type: "Knowledge Partner",
+      partners: [partner("Indraprastha College for Women", "ipcw")],
+    },
+    {
+      type: "Mental Health Partner",
+      partners: [partner("Aiman", "aiman")],
     },
     {
       type: "Joy and Wellness Partner",
       partners: [partner("Clownselors", "clownselors")],
+    },
+    {
+      type: "Arts and Folklore Partner",
+      partners: [partner("Centre for Contemporary Folklore", "centre-for-contemporary-folklore")],
+    },
+    {
+      type: "Ticketing Partner",
+      partners: [partner("thumpN", "thumpn")],
     },
     {
       type: "NGO Partners",
@@ -1660,10 +1666,6 @@ export const PARTNERS = {
         partner("NeuroAid Research Foundation", "neuroaid-research-foundation"),
         partner("Shakti Shalini", "shakti-shalini"),
       ],
-    },
-    {
-      type: "Sustainability Partner",
-      partners: [partner("One Step Greener", "one-step-greener")],
     },
     {
       type: "Media Partners",
@@ -1675,10 +1677,6 @@ export const PARTNERS = {
     {
       type: "Visual Identity Partner",
       partners: [partner("ConstructDev", "constructdev")],
-    },
-    {
-      type: "Ticketing Partner",
-      partners: [partner("thumpN", "thumpn")],
     },
   ] satisfies readonly PartnerGroup[],
   preFestivalHeading: "Pre-Festival Partners",

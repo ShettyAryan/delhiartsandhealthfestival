@@ -455,20 +455,20 @@ export default function SchedulePage() {
                 Open all 5 days: A curated marketplace of food, folklore,
                 handmade crafts, and mindful gifts.
               </p>
-              {/* Cream on maroon: the `invert` CTA, 6.8:1+ against this card. */}
-              <CTAButton href={REGISTER_HREF} external variant="invert" className="mt-5">
-                Register
-              </CTAButton>
             </div>
 
             <CardFooter id="schedule-logo-also" logo="negative" />
           </article>
 
-          {/* The Register button now lives inside the card above. */}
-          <p className="mx-auto max-w-[52ch] text-center text-body">
-            The schedule may change as the festival comes together. Register to
-            hear about updates first.
-          </p>
+          <div className="text-center">
+            <p className="mx-auto max-w-[52ch] text-body">
+              The schedule may change as the festival comes together. Register to
+              hear about updates first.
+            </p>
+            <CTAButton href={REGISTER_HREF} external className="mt-6">
+              Register
+            </CTAButton>
+          </div>
         </div>
       </section>
     </>
