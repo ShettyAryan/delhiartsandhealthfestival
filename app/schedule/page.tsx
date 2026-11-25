@@ -273,9 +273,7 @@ export default function SchedulePage() {
             <CTAButton href={REGISTER_HREF} external className="mt-8">
               Register
             </CTAButton>
-            <p className="mt-3 text-small italic">
-              The schedule may change as the festival comes together.
-            </p>
+            <p className="mt-3 text-small italic">Open to all - Free Registration</p>
           </div>
 
           <nav aria-label="Jump to a day" className="lg:col-span-6">
