@@ -281,12 +281,17 @@ export default function SchedulePage() {
               {SCHEDULE.map((sd) => {
                 const d = DAYS[sd.day];
                 const tone = DAY_TONE[d.bg];
+                // Client direction: the hero bands alternate white / black
+                // text, so the last (yellow) band takes white. Below AA
+                // (~1.7:1 on yellow) — accepted for this band only; the
+                // Muskaan day card further down keeps black.
+                const text = d.bg === "yellow" ? "text-cream" : tone.text;
                 const dateNum = sd.date.match(/\d+/)?.[0] ?? "";
                 return (
                   <li key={d.name}>
                     <a
                       href={`#day-${sd.day + 1}`}
-                      className={`group flex h-[16rem] flex-col items-center justify-between rounded-card py-4 transition-transform hover:-translate-y-1 sm:h-[20rem] lg:h-[24rem] ${tone.bg} ${tone.text}`}
+                      className={`group flex h-[16rem] flex-col items-center justify-between rounded-card py-4 transition-transform hover:-translate-y-1 sm:h-[20rem] lg:h-[24rem] ${tone.bg} ${text}`}
                     >
                       <span className="text-center font-display leading-none">
                         <span className="block text-[0.75rem] font-semibold sm:text-small">
@@ -299,6 +304,13 @@ export default function SchedulePage() {
                       {/* Vertical, reading bottom-to-top like a book spine. */}
                       <span className="font-samarkan text-[1.375rem] leading-none [writing-mode:vertical-rl] rotate-180 sm:text-[1.75rem] lg:text-[2.125rem]">
                         {d.name}
+                      </span>
+                      {/* Stacked so it fits the narrow phone columns. */}
+                      <span className="text-center font-eyebrow text-[0.6875rem] font-semibold leading-tight sm:text-[0.8125rem]">
+                        Day
+                        <span className="block text-[1rem] font-bold sm:text-[1.25rem]">
+                          {sd.day + 1}
+                        </span>
                       </span>
                     </a>
                   </li>
