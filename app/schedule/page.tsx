@@ -9,6 +9,7 @@ import {
   FESTIVAL,
   REGISTER_HREF,
   SCHEDULE,
+  SCHEDULE_ALSO,
   SCHEDULE_VENUES,
   type Experience,
   type ScheduleSession,
@@ -42,8 +43,10 @@ const EXPERIENCE: Record<Experience, { chip: string; rule: string }> = {
   Refresh: { chip: "bg-purple text-cream", rule: "border-purple" },
 };
 
-const USED_EXPERIENCES = (Object.keys(EXPERIENCE) as Experience[]).filter((e) =>
-  SCHEDULE.some((d) => d.sessions.some((s) => s.experience === e)),
+const USED_EXPERIENCES = (Object.keys(EXPERIENCE) as Experience[]).filter(
+  (e) =>
+    SCHEDULE.some((d) => d.sessions.some((s) => s.experience === e)) ||
+    SCHEDULE_ALSO.some((g) => g.items.some((s) => s.experience === e)),
 );
 
 /** "10:00 AM" → ["10:00", "AM"]; "All day" stays whole. */
@@ -71,31 +74,71 @@ function FieldLabel({ children }: { children: string }) {
   );
 }
 
+/**
+ * Column count per card, and how the last, short row is filled. Busy days go
+ * four-up so the card stays inside Instagram's 4:5; a short last row is
+ * widened to fill the row instead of ending ragged.
+ */
+const GRID: Record<number, string> = {
+  2: "md:grid-cols-2",
+  3: "md:grid-cols-2 lg:grid-cols-3",
+  4: "md:grid-cols-2 lg:grid-cols-4",
+};
+const SPAN: Record<string, string> = {
+  "2:2": "md:col-span-2",
+  "3:2": "lg:col-span-2",
+  "3:3": "lg:col-span-3",
+  "4:2": "lg:col-span-2",
+  "4:3": "lg:col-span-3",
+  "4:4": "lg:col-span-4",
+};
+
+function columnsFor(n: number) {
+  return n >= 8 ? 4 : n >= 5 ? 3 : 2;
+}
+
+/** Span for tile `i` of `n`: the tiles of a short last row share it evenly
+ * where they can; otherwise the last one takes the leftover columns. */
+function spanFor(i: number, n: number, cols: number): string | undefined {
+  const r = n % cols;
+  if (r === 0 || i < n - r) return undefined;
+  const span = cols % r === 0 ? cols / r : i === n - 1 ? cols - r + 1 : 1;
+  return span > 1 ? SPAN[`${cols}:${span}`] : undefined;
+}
+
 function SessionTile({
   s,
-  wide,
+  span,
+  compact = false,
 }: {
   s: ScheduleSession;
-  wide: boolean;
+  span?: string;
+  /** Four-across cards: tighter padding so busy days stay inside 4:5. */
+  compact?: boolean;
 }) {
-  const [clock, meridiem] = splitTime(s.time);
-  const xp = EXPERIENCE[s.experience];
+  const [clock, meridiem] = s.time ? splitTime(s.time) : [];
+  const xp = s.experience ? EXPERIENCE[s.experience] : undefined;
+  const hasTags = Boolean(s.experience || s.format || s.theme);
   return (
     <li
-      className={`flex flex-col rounded-card border-t-4 bg-cream p-4 text-ink md:p-5 ${xp.rule} ${
-        wide ? "md:col-span-2" : ""
-      }`}
+      className={`flex flex-col rounded-card border-t-4 bg-cream p-4 text-ink ${
+        compact ? "" : "md:p-5"
+      } ${xp?.rule ?? "border-navy"} ${span ?? ""}`}
     >
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <FieldLabel>Time</FieldLabel>
-          <p className="font-display font-bold leading-none text-navy">
-            <span className="text-[1.375rem] md:text-[1.5rem]">{clock}</span>
-            {meridiem ? (
-              <span className="ml-1 text-[0.8125rem] font-semibold">{meridiem}</span>
-            ) : null}
-          </p>
-        </div>
+        {clock ? (
+          <div>
+            <FieldLabel>Time</FieldLabel>
+            <p className="font-display font-bold leading-none text-navy">
+              <span className="text-[1.375rem] md:text-[1.5rem]">{clock}</span>
+              {meridiem ? (
+                <span className="ml-1 text-[0.8125rem] font-semibold">{meridiem}</span>
+              ) : null}
+            </p>
+          </div>
+        ) : (
+          <span />
+        )}
         {s.duration ? (
           <div className="shrink-0 text-right">
             <FieldLabel>Duration</FieldLabel>
@@ -106,7 +149,7 @@ function SessionTile({
         ) : null}
       </div>
 
-      <div className="mt-4">
+      <div className={clock || s.duration ? (compact ? "mt-3" : "mt-4") : ""}>
         <FieldLabel>Programme</FieldLabel>
         <h3 className="font-display text-[1.125rem] font-semibold leading-snug text-navy md:text-[1.1875rem]">
           {s.title}
@@ -116,34 +159,62 @@ function SessionTile({
         ) : null}
       </div>
 
-      <div className="mt-3">
-        <FieldLabel>Facilitator / Artist / Speaker</FieldLabel>
-        <p className="text-[0.9375rem] font-medium leading-snug text-maroon">{s.people}</p>
-      </div>
+      {s.people ? (
+        <div className="mt-3">
+          <FieldLabel>Facilitator / Artist / Speaker</FieldLabel>
+          <p className="text-[0.9375rem] font-medium leading-snug text-maroon">{s.people}</p>
+        </div>
+      ) : null}
 
       {/* mt-auto pins the tags to the tile's foot, so tiles stretched to a
           shared row height still line their tags up. */}
-      <div className="mt-auto flex flex-wrap items-end gap-x-3 gap-y-2.5 pt-4 text-[0.8125rem] font-semibold leading-none">
-        <div>
-          <FieldLabel>Experience Section</FieldLabel>
-          <span className={`inline-block rounded-chip px-2.5 py-1.5 ${xp.chip}`}>
-            {s.experience}
-          </span>
+      {hasTags ? (
+        <div
+          className={`mt-auto flex flex-wrap items-end gap-x-3 gap-y-2.5 text-[0.8125rem] font-semibold leading-none ${
+            compact ? "pt-3" : "pt-4"
+          }`}
+        >
+          {s.experience && xp ? (
+            <div>
+              <FieldLabel>Experience Section</FieldLabel>
+              <span className={`inline-block rounded-chip px-2.5 py-1.5 ${xp.chip}`}>
+                {s.experience}
+              </span>
+            </div>
+          ) : null}
+          {s.format ? (
+            <div>
+              <FieldLabel>Format</FieldLabel>
+              <span className="inline-block rounded-chip border border-navy px-2.5 py-[0.3125rem] text-navy">
+                {s.format}
+              </span>
+            </div>
+          ) : null}
+          {s.theme ? (
+            <div>
+              <FieldLabel>Thematic Area</FieldLabel>
+              <span className="inline-block rounded-chip bg-cream-2 px-2.5 py-1.5 text-ink">
+                {s.theme}
+              </span>
+            </div>
+          ) : null}
         </div>
-        <div>
-          <FieldLabel>Format</FieldLabel>
-          <span className="inline-block rounded-chip border border-navy px-2.5 py-[0.3125rem] text-navy">
-            {s.format}
-          </span>
-        </div>
-        <div>
-          <FieldLabel>Thematic Area</FieldLabel>
-          <span className="inline-block rounded-chip bg-cream-2 px-2.5 py-1.5 text-ink">
-            {s.theme}
-          </span>
-        </div>
-      </div>
+      ) : null}
     </li>
+  );
+}
+
+/** Lockup, dates and handle at the foot of every card, so a screen grab of
+ * any one card stands alone as a post. */
+function CardFooter({ id, logo }: { id: string; logo: "positive" | "negative" }) {
+  return (
+    <footer className="mt-6 flex items-center justify-between gap-4 md:mt-8">
+      <Logo id={id} variant={logo} className="h-9 w-auto md:h-12" />
+      <p className="text-right font-eyebrow text-[0.75rem] font-semibold leading-snug md:text-small">
+        {FESTIVAL.dates}
+        <span className="block">@delhiartsandhealthfestival</span>
+      </p>
+    </footer>
   );
 }
 
@@ -255,9 +326,8 @@ export default function SchedulePage() {
           {SCHEDULE.map((sd) => {
             const d = DAYS[sd.day];
             const tone = DAY_TONE[d.bg];
-            // Busy days go three-up so the card stays inside Instagram's 4:5.
-            const three = sd.sessions.length > 6;
-            const odd = sd.sessions.length % 2 === 1;
+            const n = sd.sessions.length;
+            const cols = columnsFor(n);
             return (
               <article
                 key={d.name}
@@ -292,37 +362,86 @@ export default function SchedulePage() {
                 </header>
 
                 {/* auto-rows-fr + flex-1: on a card with few sessions the
-                    tiles stretch to fill the 4:5 frame instead of leaving a
-                    bare band of colour above the footer. An odd count lets
-                    the first tile span both columns so no row ends ragged. */}
+                    tiles stretch to fill the square frame instead of leaving
+                    a bare band of colour above the footer. Busy four-across
+                    cards skip it: equal rows would pad every row to the
+                    tallest and push the card past 4:5. */}
                 <ul
-                  className={`mt-6 grid flex-1 gap-3 md:mt-8 md:auto-rows-fr md:gap-4 ${
-                    three ? "md:grid-cols-3" : "md:grid-cols-2"
-                  }`}
+                  className={`mt-6 grid flex-1 gap-3 md:mt-8 md:gap-4 ${
+                    cols === 4 ? "" : "md:auto-rows-fr"
+                  } ${GRID[cols]}`}
                 >
                   {sd.sessions.map((s, i) => (
                     <SessionTile
                       key={`${s.time}-${s.title}`}
                       s={s}
-                      wide={!three && odd && i === 0}
+                      span={spanFor(i, n, cols)}
+                      compact={cols === 4}
                     />
                   ))}
                 </ul>
 
-                <footer className="mt-6 flex items-center justify-between gap-4 md:mt-8">
-                  <Logo
-                    id={`schedule-logo-${sd.day}`}
-                    variant={tone.logo}
-                    className="h-9 w-auto md:h-12"
-                  />
-                  <p className="text-right font-eyebrow text-[0.75rem] font-semibold leading-snug md:text-small">
-                    {FESTIVAL.dates}
-                    <span className="block">@delhiartsandhealthfestival</span>
-                  </p>
-                </footer>
+                <CardFooter id={`schedule-logo-${sd.day}`} logo={tone.logo} />
               </article>
             );
           })}
+
+          {/* Exhibits, installations and stations that run across several
+              days — one card of their own rather than repeated on each day.
+              Same poster frame as the day cards, in maroon. */}
+          <article
+            id="also-at-the-festival"
+            aria-label="Also at the Festival"
+            className="flex scroll-mt-24 flex-col rounded-card bg-maroon p-5 text-cream sm:p-8 md:aspect-square md:p-10"
+          >
+            <header className="flex items-start justify-between gap-6">
+              <div>
+                <p className="font-eyebrow text-small font-semibold md:text-[1rem]">
+                  {FESTIVAL.dates}
+                </p>
+                <h2 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none">
+                  Also at the Festival
+                </h2>
+                <p className="mt-3 font-display text-[clamp(1.0625rem,1.8vw,1.375rem)] font-semibold leading-tight">
+                  Exhibits, installations and experiences, open all day
+                </p>
+              </div>
+              <Motif
+                variant="kalash"
+                className="h-16 w-16 shrink-0 rounded-chip ring-4 ring-cream md:h-24 md:w-24"
+              />
+            </header>
+
+            <div className="mt-6 flex flex-1 flex-col gap-6 md:mt-8">
+              {SCHEDULE_ALSO.map((g) => {
+                const n = g.items.length;
+                const cols = n >= 4 ? 4 : n >= 3 ? 3 : 2;
+                return (
+                  <section key={g.dates} aria-label={g.dates}>
+                    <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-[1.0625rem] font-semibold leading-snug md:text-[1.125rem]">
+                      <span>{g.dates}</span>
+                      <span className="flex items-center gap-1.5 text-[0.9375rem] font-medium">
+                        <PinIcon className="h-4 w-4 shrink-0" />
+                        <span className="sr-only">Venue: </span>
+                        {g.venue}
+                      </span>
+                    </p>
+                    <ul className={`mt-3 grid gap-3 md:auto-rows-fr md:gap-4 ${GRID[cols]}`}>
+                      {g.items.map((s, i) => (
+                        <SessionTile
+                          key={s.title}
+                          s={s}
+                          span={n === 1 ? "md:col-span-2 lg:col-span-4" : spanFor(i, n, cols)}
+                        />
+                      ))}
+                    </ul>
+                  </section>
+                );
+              })}
+            </div>
+
+            <CardFooter id="schedule-logo-also" logo="negative" />
+          </article>
 
           <div className="text-center">
             <p className="mx-auto max-w-[52ch] text-body">

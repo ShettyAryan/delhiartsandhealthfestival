@@ -578,15 +578,16 @@ export const DAYS: Day[] = [
 export type Experience = "Reflect" | "Immerse" | "Discover" | "Energise" | "Refresh";
 
 export type ScheduleSession = {
-  /** "10:00 AM", or "All day". */
-  time: string;
+  /** "10:00 AM", or "All day". Omitted where the sheet gives none. */
+  time?: string;
   title: string;
   subtitle?: string;
-  format: string;
-  experience: Experience;
-  theme: string;
-  people: string;
-  /** Omitted where the sheet leaves it blank — never guessed. */
+  /** Format, experience section, thematic area and people are each omitted
+   * where the sheet leaves them blank (e.g. the closing) — never guessed. */
+  format?: string;
+  experience?: Experience;
+  theme?: string;
+  people?: string;
   duration?: string;
 };
 
@@ -663,13 +664,24 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "15 mins",
       },
       {
+        time: "12:00 PM",
+        title: "Sapna Karn shares her Artistic Process",
+        subtitle: "and kick starts a new Installation at the festival",
+        format: "Talk",
+        experience: "Immerse",
+        theme: "Creativity & Self-Expression",
+        people: "Sapna Karn",
+        duration: "30 mins",
+      },
+      {
         time: "12:30 PM",
         title: "Advisory Panel: Who Gets to Experience Wellbeing?",
         subtitle: "Making Arts and Health Accessible to All",
         format: "Panel",
         experience: "Reflect",
         theme: "Public Health & Social Change",
-        people: "Anshuma, Dr. Shruti & Dr. Vipul",
+        people:
+          "Anshuma Kshetrapal, Shubham Srivastav, Dr. Shruti Chakravarty & Dr. Vipul Rastogi",
         duration: "45 mins",
       },
       {
@@ -688,7 +700,7 @@ export const SCHEDULE: ScheduleDay[] = [
         format: "Talk",
         experience: "Reflect",
         theme: "Gender, Sexuality & Queer Wellbeing",
-        people: "Dr. Shruti",
+        people: "Dr. Shruti Chakravarty",
         duration: "75 mins",
       },
       {
@@ -719,6 +731,16 @@ export const SCHEDULE: ScheduleDay[] = [
     venue: NIV,
     theme: "Expression & Release",
     sessions: [
+      {
+        time: "10:00 AM",
+        title: "Opening and Keynote: In Our Own Words",
+        subtitle: "The CRPD at 20 in arts and health (Live Screening)",
+        format: "Keynote",
+        experience: "Reflect",
+        theme: "Access, Inclusion & Equity",
+        people: "Kavya Mukhija",
+        duration: "45 mins",
+      },
       {
         time: "11:00 AM",
         title: "The Many Pathways to Healing",
@@ -780,6 +802,15 @@ export const SCHEDULE: ScheduleDay[] = [
         people: "Ananya Sharma, The Coping Central",
         duration: "75 mins",
       },
+      {
+        time: "5:00 PM",
+        title: "ND Music Band: Chayanit",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Arts, Culture & Heritage",
+        people: "Chayanit",
+        duration: "60 mins",
+      },
     ],
   },
   {
@@ -790,13 +821,34 @@ export const SCHEDULE: ScheduleDay[] = [
     sessions: [
       {
         time: "10:00 AM",
+        title: "Love Maps",
+        subtitle: "Depicting unique relational territories",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Somya Narang",
+        duration: "75 mins",
+      },
+      {
+        time: "10:00 AM",
         title: "Power of Empowerment",
         subtitle: "A Dance Movement Therapy Session",
         format: "Workshop",
         experience: "Immerse",
         theme: "Mental Health & Emotional Wellbeing",
-        people: "Indian Association of Dance Movement Therapy",
+        people:
+          "Tarini Anchan & Yashvi Bhatnagar, Indian Association of Dance Movement Therapy",
         duration: "75 mins",
+      },
+      {
+        time: "11:30 AM",
+        title: "Art as a Way of Life",
+        subtitle: "Stories of Creativity, Courage and Connection",
+        format: "Panel",
+        experience: "Reflect",
+        theme: "Creativity & Self-Expression",
+        people: "Moderated by Saumya Pande, with Chitra Kalyani (Sahaayta) & Ridhima Sethi",
+        duration: "45 mins",
       },
       {
         time: "11:30 AM",
@@ -830,6 +882,16 @@ export const SCHEDULE: ScheduleDay[] = [
       },
       {
         time: "2:30 PM",
+        title: "Don’t Interrupt While We Dance",
+        subtitle: "Film Screening",
+        format: "Workshop",
+        experience: "Immerse",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Anureet Watta",
+        duration: "30 mins",
+      },
+      {
+        time: "2:30 PM",
         title: "Beyond Pathology",
         subtitle: "BDSM, Consent, and Queer Healing in South Asian LBQ Communities",
         format: "Talk",
@@ -848,6 +910,16 @@ export const SCHEDULE: ScheduleDay[] = [
         people: "Altaf Hussain",
         duration: "60 mins",
       },
+      {
+        time: "5:30 PM",
+        title: "Kalahantrita",
+        subtitle: "Draupadi as the Kalahantrita Nayika",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Gender, Sexuality & Queer Wellbeing",
+        people: "Mansi Kumari",
+        duration: "15 mins",
+      },
     ],
   },
   {
@@ -856,15 +928,6 @@ export const SCHEDULE: ScheduleDay[] = [
     venue: SURTAL,
     theme: "Community & Collective Healing",
     sessions: [
-      {
-        time: "All day",
-        title: "The Happiness Lab",
-        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
-        format: "Installation",
-        experience: "Discover",
-        theme: "Mental Health & Emotional Wellbeing",
-        people: "Asambhava Shubha, Anutraa",
-      },
       {
         time: "9:00 AM",
         title: "Immersive Sound Bath Experience",
@@ -894,16 +957,6 @@ export const SCHEDULE: ScheduleDay[] = [
         duration: "30 mins",
       },
       {
-        time: "12:30 PM",
-        title: "Art From the Earth",
-        subtitle: "Community Art with Nature",
-        format: "Experience",
-        experience: "Immerse",
-        theme: "Nature, Ecology & Sustainability",
-        people: "Priyal Sethi",
-        duration: "75 mins",
-      },
-      {
         time: "2:00 PM",
         title: "Stand Up Comedy",
         format: "Performance",
@@ -919,15 +972,6 @@ export const SCHEDULE: ScheduleDay[] = [
     venue: SURTAL,
     theme: "Joy, Vitality & Celebration",
     sessions: [
-      {
-        time: "All day",
-        title: "The Happiness Lab",
-        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
-        format: "Installation",
-        experience: "Discover",
-        theme: "Mental Health & Emotional Wellbeing",
-        people: "Asambhava Shubha, Anutraa",
-      },
       {
         time: "9:00 AM",
         title: "Opening Kathak Performance",
@@ -963,6 +1007,117 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Energise",
         theme: "Arts, Culture & Heritage",
         people: "Bhangra Team, Sri Guru Gobind Singh College of Commerce",
+      },
+      {
+        time: "2:00 PM",
+        title: "Experientia",
+        subtitle: "Immersive Multisensory Experience",
+        format: "Performance",
+        experience: "Energise",
+        theme: "Play, Joy & Celebration",
+        people: "Vedoci Lekhi",
+        duration: "60 mins",
+      },
+      {
+        time: "3:00 PM",
+        title: "Festival Closing and Vote of Thanks",
+        duration: "15 mins",
+      },
+    ],
+  },
+];
+
+/**
+ * The sheet's "Also at the Festival" blocks: exhibits, installations and
+ * stations that run across several days rather than at a set time.
+ */
+export const SCHEDULE_ALSO: { dates: string; venue: string; items: ScheduleSession[] }[] = [
+  {
+    dates: "2 to 4 December",
+    venue: NIV,
+    items: [
+      {
+        time: "All day",
+        title: "Ramayana Series",
+        subtitle: "Madhubani Art by Shalu Khandelwal",
+        format: "Exhibit",
+        experience: "Discover",
+        theme: "Arts, Culture & Heritage",
+        people: "Shalu Khandelwal",
+      },
+      {
+        time: "All day",
+        title: "Fragrant Nostalgia",
+        subtitle: "Textile Art by Sapna Karn",
+        format: "Exhibit",
+        experience: "Discover",
+        theme: "Arts, Culture & Heritage",
+        people: "Sapna Karn",
+      },
+      {
+        time: "All day",
+        title: "Becoming",
+        subtitle: "by Myra and Anya",
+        format: "Exhibit",
+        experience: "Discover",
+        theme: "Creativity & Self-Expression",
+        people: "Myra and Anya",
+      },
+      {
+        title: "Clowning by Clownselors",
+        format: "Experience",
+        experience: "Energise",
+        theme: "Arts in Healthcare",
+      },
+    ],
+  },
+  {
+    dates: "2 to 6 December",
+    venue: "Both venues",
+    items: [
+      {
+        time: "All day",
+        title: "Joy & Celebration Exhibit",
+        format: "Exhibit",
+        experience: "Discover",
+        theme: "Play, Joy & Celebration",
+      },
+      {
+        time: "All day",
+        title: "KIND Photobooth",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Community & Collective Care",
+      },
+      {
+        time: "All day",
+        title: "Letters to Mother Earth",
+        subtitle: "Planter Installation",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Nature, Ecology & Sustainability",
+      },
+      {
+        time: "All day",
+        title: "What Do You Knot Say",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Community & Collective Care",
+      },
+    ],
+  },
+  {
+    dates: "5 to 6 December",
+    venue: SURTAL,
+    items: [
+      {
+        time: "All day",
+        title: "The Happiness Lab",
+        subtitle: "A Living Installation on Ecological Well-Being, Grief, and Joy",
+        format: "Installation",
+        experience: "Discover",
+        theme: "Mental Health & Emotional Wellbeing",
+        people: "Asambhava Shubha, Anutraa",
       },
     ],
   },
