@@ -31,6 +31,9 @@ function PartnerTile({
 }) {
   return (
     <li className={className}>
+      {p.role ? (
+        <h3 className="mb-3 font-display text-h3 font-semibold text-maroon">{p.role}</h3>
+      ) : null}
       <div
         className={`relative rounded-card border border-navy/10 bg-white ${
           wide ? "aspect-3/2" : "aspect-square"

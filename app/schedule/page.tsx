@@ -43,11 +43,7 @@ const EXPERIENCE: Record<Experience, { chip: string; rule: string }> = {
   Refresh: { chip: "bg-purple text-cream", rule: "border-purple" },
 };
 
-const USED_EXPERIENCES = (Object.keys(EXPERIENCE) as Experience[]).filter(
-  (e) =>
-    SCHEDULE.some((d) => d.sessions.some((s) => s.experience === e)) ||
-    SCHEDULE_ALSO.some((g) => g.items.some((s) => s.experience === e)),
-);
+const EXPERIENCES = Object.keys(EXPERIENCE) as Experience[];
 
 /** "10:00 AM" → ["10:00", "AM"]; "All day" stays whole. */
 function splitTime(t: string): [string, string?] {
@@ -260,22 +256,26 @@ export default function SchedulePage() {
               </ul>
             </div>
 
-            <CTAButton href={REGISTER_HREF} external className="mt-8">
-              Register
-            </CTAButton>
-
             <div className="mt-8">
               <p className="font-display text-small font-semibold text-navy">
                 Experience sections
               </p>
-              <ul className="mt-3 flex flex-wrap gap-2 text-small font-semibold">
-                {USED_EXPERIENCES.map((e) => (
-                  <li key={e} className={`rounded-chip px-3.5 py-1.5 ${EXPERIENCE[e].chip}`}>
+              {/* All five, Refresh included, even where no session carries it yet. */}
+              <ul className="mt-3 flex flex-wrap gap-2.5 text-[1.0625rem] font-semibold md:text-[1.125rem]">
+                {EXPERIENCES.map((e) => (
+                  <li key={e} className={`rounded-chip px-4 py-2 ${EXPERIENCE[e].chip}`}>
                     {e}
                   </li>
                 ))}
               </ul>
             </div>
+
+            <CTAButton href={REGISTER_HREF} external className="mt-8">
+              Register
+            </CTAButton>
+            <p className="mt-3 text-small italic">
+              The schedule may change as the festival comes together.
+            </p>
           </div>
 
           <nav aria-label="Jump to a day" className="lg:col-span-6">
@@ -301,11 +301,6 @@ export default function SchedulePage() {
                       {/* Vertical, reading bottom-to-top like a book spine. */}
                       <span className="font-samarkan text-[1.375rem] leading-none [writing-mode:vertical-rl] rotate-180 sm:text-[1.75rem] lg:text-[2.125rem]">
                         {d.name}
-                      </span>
-                      <span className="text-center font-eyebrow text-[0.6875rem] font-semibold leading-tight sm:text-[0.8125rem]">
-                        {/* Registration is on the day's card, but it isn't a session. */}
-                        {sd.sessions.filter((s) => s.title !== "Registration").length}
-                        <span className="block">sessions</span>
                       </span>
                     </a>
                   </li>
@@ -445,18 +440,25 @@ export default function SchedulePage() {
               })}
             </div>
 
+            <div className="mt-6 border-t border-cream/30 pt-6 md:mt-8 md:pt-8">
+              <p className="max-w-[60ch] font-display text-[clamp(1.0625rem,1.8vw,1.375rem)] font-semibold leading-snug">
+                Open all 5 days: A curated marketplace of food, folklore,
+                handmade crafts, and mindful gifts.
+              </p>
+              {/* Cream on maroon: the `invert` CTA, 6.8:1+ against this card. */}
+              <CTAButton href={REGISTER_HREF} external variant="invert" className="mt-5">
+                Register
+              </CTAButton>
+            </div>
+
             <CardFooter id="schedule-logo-also" logo="negative" />
           </article>
 
-          <div className="text-center">
-            <p className="mx-auto max-w-[52ch] text-body">
-              The schedule may change as the festival comes together. Register
-              to hear about updates first.
-            </p>
-            <CTAButton href={REGISTER_HREF} external className="mt-6">
-              Register
-            </CTAButton>
-          </div>
+          {/* The Register button now lives inside the card above. */}
+          <p className="mx-auto max-w-[52ch] text-center text-body">
+            The schedule may change as the festival comes together. Register to
+            hear about updates first.
+          </p>
         </div>
       </section>
     </>

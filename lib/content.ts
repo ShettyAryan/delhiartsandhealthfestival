@@ -727,6 +727,7 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Energise",
         theme: "Arts, Culture & Heritage",
         people: "Shreejeeta Ghosh & Bhargavi Thakur",
+        duration: "60 mins",
       },
     ],
   },
@@ -986,7 +987,7 @@ export const SCHEDULE: ScheduleDay[] = [
         experience: "Immerse",
         theme: "Nature, Ecology & Sustainability",
         people: "Dr. Ananya Mahapatra",
-        duration: "30 mins",
+        duration: "75 mins",
       },
       {
         time: "2:00 PM",
@@ -1575,18 +1576,28 @@ export const CONSULTANTS: Person[] = [
  *
  * `slug` is both the image file name and a stable key.
  */
-export type Partner = { name: string; slug: string };
+export type Partner = {
+  name: string;
+  slug: string;
+  /** A partner-specific title, shown above the logo (sponsors only so far). */
+  role?: string;
+};
 export type PartnerGroup = { type: string; partners: readonly Partner[] };
 
-const partner = (name: string, slug: string): Partner => ({ name, slug });
+const partner = (name: string, slug: string, role?: string): Partner =>
+  role ? { name, slug, role } : { name, slug };
 
 export const PARTNERS = {
   heading: "Sponsors and Partners",
   sponsors: {
     type: "Sponsors",
     partners: [
-      partner("Mariwala Health Initiative", "mariwala-health-initiative"),
-      partner("Veeba", "veeba"),
+      partner(
+        "Mariwala Health Initiative",
+        "mariwala-health-initiative",
+        "Major Festival Partner",
+      ),
+      partner("Veeba", "veeba", "Programme Partner"),
     ],
   } as PartnerGroup,
   associates: [
@@ -2266,11 +2277,10 @@ export const PRE_FESTIVAL = {
       partner: "In collaboration with Kathika Cultural Center",
       location: "Kathika Cultural Centre",
       date: "22 November 2026",
-      portrait: true,
       images: [
         {
           src: "/images/prefestival/baithak.jpg",
-          alt: "A dancer in red mid-twirl, arms arched overhead, before the green doors of the Kathika Cultural Centre",
+          alt: "A dancer in red, seen from behind mid-twirl with arms arched overhead, before the green doors of the Kathika Cultural Centre",
           motif: "kalash",
         },
       ],
