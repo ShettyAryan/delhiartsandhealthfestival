@@ -1557,6 +1557,15 @@ export const CONSULTANTS: Person[] = [
       "Alongside their psychotherapy practice, Muskan works as an independent consultant, facilitator, and speaker, leading workshops, guest lectures, and conversations with organisations including the Karma Centre for Counselling and Wellbeing, Believe in the Invisible, TARSHI, and Nazariya, among others. They are also an Advisor with Sangath on Youth LEARN, a project bringing young people with lived experience and mental health researchers together to co-create more inclusive and meaningful mental health research in India.",
     ],
   },
+  {
+    name: "Saumya Pande",
+    photo: "/images/team/saumya-pande.jpg",
+    role: "Events & Marketing Consultant",
+    bio: [
+      "Saumya Pande is a brand, communications, and marketing consultant with over nine years of experience building audiences and bringing ideas to life, from intimate community gatherings to large-scale festivals reaching 60,000+ attendees. Her work spans wellness, pet care, social entrepreneurship, lifestyle, media, and education, across brand strategy, digital marketing, events, partnerships, and communications.",
+      "From leading 360° marketing campaigns at Pet Fed, India's Biggest Pet Festival, to co-creating Echoes of Kasar, a festival celebrating women entrepreneurs, arts, crafts, and holistic healing in Kasar Devi, Almora, Saumya has consistently worked at the intersection of creativity and community. Her early work with Make A Difference, where she trained volunteers and contributed to educational experiences for underprivileged children, continues to inform her belief in collective care and creativity as tools for wellbeing. At DAHF, she brings this experience to event strategy, planning, and marketing.",
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -1613,6 +1622,11 @@ export const PARTNERS = {
         // trimmed copies of /images/GSAHlogo.png and /images/GAIMFlogo.png.
         partner("Global South Arts & Health Initiative", "gsah"),
         partner("Global Arts in Medicine Fellowship", "gaimf"),
+      ],
+    },
+    {
+      type: "Supported by",
+      partners: [
         partner("CoGC", "cogc"),
         partner("The Arts Therapists CoLab", "tatc"),
         partner("The MoveVent Project", "movevent-project"),
